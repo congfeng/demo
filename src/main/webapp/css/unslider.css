@@ -1,0 +1,78 @@
+*{
+	padding:0;
+	margin:0;
+}
+
+body{
+	font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;
+	background-color : #F0F0F0;
+	font-size:16px;
+	padding:.5rem .3rem;
+}
+
+div{
+	overflow: auto;
+	background-color : #FFFFFF;
+	box-sizing:border-box;
+	border-style:solid;
+	border-color:#F0F0F0;
+	border-width:0;
+}
+
+.banner { 
+	position: relative; 
+	overflow: auto; 
+	text-align:center;
+	width:100%;
+	height:10rem;
+}
+.banner img{
+	width:100%;
+	height:10rem;
+}
+.banner li { 
+	list-style: none;
+}
+.banner ul li { 
+	float: left; 
+}
+
+.banner .dots { 
+	position: absolute; 
+	left: 0; 
+	right: 0; 
+	bottom: 1rem;
+}
+.banner .dots li {
+	display: inline-block; 
+	width: .625rem; 
+	height: .625rem; 
+	margin: 0 .25rem; 
+	text-indent: -999em; 
+	border: .125rem solid #fff; 
+	border-radius: .375rem; 
+	cursor: pointer; 
+	opacity: .4; 
+	-webkit-transition: background .5s, opacity .5s; 
+	-moz-transition: background .5s, opacity .5s; 
+	transition: background .5s, opacity .5s;
+}
+.banner .dots li.active {
+	background: #fff;
+	opacity: 1;
+}
+
+.banner .arrow { 
+	position: absolute; 
+	top: 3.5rem;
+}
+.banner #al { 
+	left: 1rem;
+	width:1.25rem; 
+	height:2.1875rem;
+}
+.banner #ar { 
+	right: 1rem;
+	width:1.25rem; 
+	height:2.3125rem;
+}
