@@ -3,49 +3,43 @@
  */
 package com.cf.code.web;
 
-import javax.servlet.http.HttpSession;
+import java.util.HashMap;
+import java.util.Map;
 
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.apache.commons.lang.StringUtils;
 
-import com.cf.code.entity.Profile;
-import com.cf.code.web.access.AccessVerifier;
+import com.jfinal.core.Controller;
 
 /**
  * @Version: 1.0
  * @Author: 丛峰
  * @Email: 3024992@qq.com
  */
-@Controller
-@RequestMapping("/profile")
-public class ProfileController {
+public class ProfileController extends Controller{
 	
-	
-	@RequestMapping(value = {"login"}, method = { RequestMethod.GET,RequestMethod.POST})
-	@ResponseBody
-    public Profile login(Model model,HttpSession session,
-			@RequestParam(required = true) String username,
-			@RequestParam(required = true) String password){
-		Profile profile = new Profile(session.getId(), null, null,null);
-		session.setAttribute("profile", profile);
-        return profile;
-    }
-	
-	@RequestMapping(value = {"logout"}, method = { RequestMethod.GET,RequestMethod.POST})
-	@ResponseBody
-    public void logout(HttpSession session){
-		session.removeAttribute("profile");
+	public void login(){
+		String username = this.getPara("username");
+		String password = this.getPara("password");
+		Map<String,Object> ret = new HashMap<String,Object>();
+		if(StringUtils.isEmpty(username)){
+			ret.put("s", 0);
+			ret.put("m", "用户名 不能为空");
+			this.renderJson(ret);
+			return ;
+		}
+		if(StringUtils.isEmpty(password)){
+			ret.put("s", 0);
+			ret.put("m", "密码不能为空");
+			this.renderJson(ret);
+			return ;
+		}
+		if(!(username.equals("admin")&&password.equals("admin"))){
+			ret.put("s", 0);
+			ret.put("m", "用户名或密码错误");
+			this.renderJson(ret);
+			return ;
+		}
+		this.renderJson("s", 1);
 	}
-	
-	@AccessVerifier
-	@RequestMapping(value = {""}, method = { RequestMethod.GET,RequestMethod.POST})
-	@ResponseBody
-    public Profile init(@RequestParam(required = false)Profile profile,HttpSession session) {
-        return profile;
-    }
 	
 }
