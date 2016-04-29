@@ -1,11 +1,6 @@
 $(function(){
-	$.ajax({
-		type: 'POST',
-		dataType: 'json',
-		url: '/profile/login',
-		data: {username:'admin',password:'admin'},
-		success: function(data){
-			console.log(data);
-		}
+	$('.p_line').click(function(){
+		var pt = $(this).find('.p_t').text();
+		window.location.href = '/product.html?pt='+pt;
 	});
 })
