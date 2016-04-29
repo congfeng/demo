@@ -35,9 +35,9 @@ div{
 
 .p_line{
 	width:50%;
-	height:5rem;
+	min-height:5rem;
 	float:left;
-	overflow: hidden;
+	//overflow: hidden;
 	position:relative;	
 	border-width:.1rem;
 }
@@ -58,4 +58,9 @@ div{
 .msgboard_box{
 	text-align:center;
 	border-width:.1rem;
+}
+
+.msgboard_link{
+	line-height:3rem;
+	color:#6A6AFF;
 }
