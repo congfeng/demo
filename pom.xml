@@ -8,7 +8,7 @@
     </parent>
   
 	<groupId>com.cf.code</groupId>
-	<artifactId>demo-simple</artifactId>
+	<artifactId>demo-product</artifactId>
 	<version>1.0.0-SNAPSHOT</version>
 	<packaging>war</packaging>
 	
