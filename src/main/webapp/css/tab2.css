@@ -1,0 +1,49 @@
+.header_tab2 {
+	z-index: 2;
+	width: 100%;
+	height: 45px;
+	line-height: 45px;
+	background: #CD235C;
+	padding: 0;
+	color: #eee;
+	font-size: 20px;
+	text-align: center;
+	font-weight: bold;
+}
+
+.list_box{
+	padding:10px;
+	border-bottom:1px solid #ddd8ce;
+	overflow:hidden;
+	font-size:12px;
+}
+
+.list_box .img_title{
+	display:block;
+	float:left;
+	height:100%;
+}
+
+.list_box .span_title{
+	display:block;
+	float:left;
+	height:100%;
+}
+
+.list_box .comment{
+	display:block;
+	float:left;
+	height:100%;
+}
+
+.list_box .avg_price{
+	float:right;
+}
+
+.list_box .detail{
+	
+}
+
+.list_box .distance{
+	float:right;
+}
