@@ -1,0 +1,1 @@
+java -classpath ../*;../lib/* com.cf.code.core.Main 5
