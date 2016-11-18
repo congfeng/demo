@@ -3,6 +3,8 @@
  */
 package com.cf.code.core.net;
 
+import org.apache.commons.httpclient.HttpState;
+
 import com.cf.code.core.exception.MsgSendException;
 
 /**
@@ -22,4 +24,7 @@ public abstract class AbstractMsgSender<TargetDataType, SendMsgType, ReceiveMsgT
 		throw new MsgSendException(this.getClass().getName()+"暂不支持异步发送");
 	}
 	
+	protected HttpState getHttpState(){
+	    return null;
+	}
 }

@@ -12,8 +12,10 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 
+import org.apache.commons.httpclient.Cookie;
 import org.apache.commons.httpclient.HttpClient;
 import org.apache.commons.httpclient.HttpException;
+import org.apache.commons.httpclient.HttpState;
 import org.apache.commons.httpclient.methods.GetMethod;
 
 import com.cf.code.common.Constant;
@@ -37,6 +39,10 @@ public class HttpGetMsgSender extends AbstractMsgSender<String, Map<String,Strin
         }
         HttpClient client = new HttpClient();
         client.getHttpConnectionManager().getParams().setConnectionTimeout(80000);
+        HttpState state  = this.getHttpState();
+        if(state != null){
+            client.setState(state);
+        }
         GetMethod getMethod = new GetMethod(targetUrl){};
         if(msgMap!=null&&!msgMap.isEmpty()){
             getMethod.setQueryString(buildQuery(msgMap, getDefaultCharset()));
@@ -117,5 +123,5 @@ public class HttpGetMsgSender extends AbstractMsgSender<String, Map<String,Strin
 	public String getDefaultCharset() {
 		return Constant.Charset;
 	}
-
+	
 }
