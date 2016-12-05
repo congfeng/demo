@@ -38,7 +38,7 @@ public class NoticeTest {
             Cookie mycookie = new Cookie(
                     "mqv2.sprucetec.com", 
                     "utoken", 
-                    "admin_user_48062_web_d1e5ae6ac645d62a184baa273f09bac9",   
+                    "admin_user_48062_web_2380f5363ae97602bf41d077c53b7aa9",   
                     "/", null, false);  
             state.addCookie(mycookie);
             return state;
@@ -59,10 +59,10 @@ public class NoticeTest {
     tms_8:29,30,31,57
     
     SELECT tb.driver_name,tb.driver_phone,tw.receive_customer_name,rec.*
-      FROM tms_1.`taskbill_waybill_receipt_detail` rec,taskbill_waybill tw,taskbill tb
+      FROM `taskbill_waybill_receipt_detail` rec,taskbill_waybill tw,taskbill tb
      WHERE rec.taskbill_no = tb.taskbill_no 
        and rec.waybill_no = tw.waybill_no 
-       and rec.`waybill_no` = '8450812800'
+       and rec.`waybill_no` = '8561862300'
        
      * @param args
      * @throws MsgSendException
