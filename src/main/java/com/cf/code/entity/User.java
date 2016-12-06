@@ -16,6 +16,8 @@ public class User {
  
     private String phone;
     
+    private String username;
+    
     private String password;
     
     private String nick;
@@ -41,6 +43,133 @@ public class User {
     private Integer prayNum;
     
     private Integer createTime;
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public String getPhone() {
+		return phone;
+	}
+
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public String getNick() {
+		return nick;
+	}
+
+	public void setNick(String nick) {
+		this.nick = nick;
+	}
+
+	public Byte getUserType() {
+		return userType;
+	}
+
+	public void setUserType(Byte userType) {
+		this.userType = userType;
+	}
+
+	public String getPortrait() {
+		return portrait;
+	}
+
+	public void setPortrait(String portrait) {
+		this.portrait = portrait;
+	}
+
+	public String getCover() {
+		return cover;
+	}
+
+	public void setCover(String cover) {
+		this.cover = cover;
+	}
+
+	public String getDesc() {
+		return desc;
+	}
+
+	public void setDesc(String desc) {
+		this.desc = desc;
+	}
+
+	public Byte getStatus() {
+		return status;
+	}
+
+	public void setStatus(Byte status) {
+		this.status = status;
+	}
+
+	public Integer getLevel() {
+		return level;
+	}
+
+	public void setLevel(Integer level) {
+		this.level = level;
+	}
+
+	public String getRankName() {
+		return rankName;
+	}
+
+	public void setRankName(String rankName) {
+		this.rankName = rankName;
+	}
+
+	public Integer getScore() {
+		return score;
+	}
+
+	public void setScore(Integer score) {
+		this.score = score;
+	}
+
+	public Integer getMerits() {
+		return merits;
+	}
+
+	public void setMerits(Integer merits) {
+		this.merits = merits;
+	}
+
+	public Integer getPrayNum() {
+		return prayNum;
+	}
+
+	public void setPrayNum(Integer prayNum) {
+		this.prayNum = prayNum;
+	}
+
+	public Integer getCreateTime() {
+		return createTime;
+	}
+
+	public void setCreateTime(Integer createTime) {
+		this.createTime = createTime;
+	}
+
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
     
-		
 }

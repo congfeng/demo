@@ -45,13 +45,14 @@ public class UserController {
 	@RequestMapping(value = {"register"}, method = { RequestMethod.GET,RequestMethod.POST})
 	@ResponseBody
     public void register(Model model,HttpServletResponse response,
-			@RequestParam(required = true) String username,
+			@RequestParam(required = true) String phone,
 			@RequestParam(required = true) String password) throws BusinessException{
-		if(userDaoRead.find(username) != null){
+		if(userDaoRead.find(phone) != null){
 			throw new BusinessException("用户已存在，不能重复注册");
 		}
 		User user = new User();
-		user.setUsername(username);
+		user.setPhone(phone);
+		user.setUsername(phone);
 		user.setPassword(password);
 		this.userDao.insert(user);
     }

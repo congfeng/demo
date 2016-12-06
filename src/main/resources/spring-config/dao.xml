@@ -40,16 +40,6 @@
 		<property name="sqlSessionFactory" ref="ReadSqlSessionFactory" />
 	</bean>
 	
-	<bean id="productDaoRead" class="org.mybatis.spring.mapper.MapperFactoryBean">
-		<property name="mapperInterface" value="com.cf.code.dao.ProductDao" />
-		<property name="sqlSessionFactory" ref="ReadSqlSessionFactory" />
-	</bean>
-	
-	<bean id="productDao" class="org.mybatis.spring.mapper.MapperFactoryBean">
-		<property name="mapperInterface" value="com.cf.code.dao.ProductDao" />
-		<property name="sqlSessionFactory" ref="WriteSqlSessionFactory" />
-	</bean>
-	
 	<bean id="noticeDaoRead" class="org.mybatis.spring.mapper.MapperFactoryBean">
 		<property name="mapperInterface" value="com.cf.code.dao.NoticeDao" />
 		<property name="sqlSessionFactory" ref="ReadSqlSessionFactory" />

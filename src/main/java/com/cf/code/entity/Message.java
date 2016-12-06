@@ -24,12 +24,22 @@ public class Message {
     
     private Integer userId;
     
-    private Byte caseType;
+    private Integer communityId;
     
-    private Integer caseId;
+    private Byte scope;
     
     private Integer createTime;
     
-    private 
+    private String image1;
+    
+    private String image2;
+    
+    private String image3;
+    
+    private String image4;
+    
+    private String image5;
+    
+    private String image6;
     
 }
