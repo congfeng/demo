@@ -22,6 +22,10 @@ public class AppAccessVerifier extends WebAdvice{
 
     @Override
     protected Object access(Method method,HttpServletRequest request)throws AccessException{
+        AccessVerifier accessVerifier = method.getAnnotation(AccessVerifier.class);
+        if(accessVerifier == null){
+            return null;
+        }
         String userNo = request.getParameter("userNo");
         String clientId = request.getParameter("clientId");
         if(StringUtils.isEmpty(userNo)||StringUtils.isEmpty(clientId)){
