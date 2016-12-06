@@ -201,3 +201,23 @@ Pagination.prototype.clear = function clear(){
 }
 
 $.ajaxSetup({type: "POST"});
+$(document).ajaxError(function(e, xhr, opts){
+    var resData;
+    try{
+        resData = $.parseJSON(xhr.responseText);
+    }catch(e){
+        console.warn(xhr);
+    }
+    if(!resData||!resData.t){
+        return ;
+    }
+    switch(resData.t){
+        case 10:
+            window.location.href = "login.html";
+            break;
+        default:
+            showAlert(resData.m);    
+    }
+}).ajaxComplete(function(e, xhr, opts){
+    console.log(xhr);
+});

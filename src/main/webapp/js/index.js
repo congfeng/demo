@@ -8,9 +8,6 @@ $(function(){
 		url:'/profile',
 		dataType:'json',
 		success:function(data){
-			if(data&&data.s == 0){
-				return;
-			}
 			var profile = data.profile;
 			$("#username-text").text(profile.name);
 			var menus = profile.menus;
@@ -101,7 +98,7 @@ $(function(){
 			return;
 		}
 		$.ajax({
-			url:'/user/resetpassword',
+			url:'/admin/resetpassword',
 			data:{'newpassword':$("#newpassword").val()},
 			dataType:'json',
 			success:function(data){

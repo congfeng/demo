@@ -5,11 +5,7 @@ package com.cf.code.common;
 
 import java.io.File;
 import java.io.IOException;
-import java.nio.file.FileSystems;
-import java.nio.file.Path;
 import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.UUID;
 
 import org.apache.commons.codec.binary.Base64;
@@ -17,14 +13,6 @@ import org.apache.commons.io.FileUtils;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.springframework.web.multipart.MultipartFile;
-
-import com.google.zxing.BarcodeFormat;
-import com.google.zxing.EncodeHintType;
-import com.google.zxing.MultiFormatWriter;
-import com.google.zxing.WriterException;
-import com.google.zxing.client.j2se.MatrixToImageWriter;
-import com.google.zxing.common.BitMatrix;
-import com.google.zxing.qrcode.decoder.ErrorCorrectionLevel;
 
 
 /**
@@ -75,19 +63,6 @@ public class FileUtil {
 		String filePath = getFilePath(prefix);
 		File fileDirs = getFileDirs(uploadFolder+"/"+filePath);
 		FileUtils.writeStringToFile(new File(fileDirs,fileName), fileData.toString());
-		return filePath+"/"+fileName;
-	}
-	
-	public static String uploadQrcode(String url,String uploadFolder,String prefix) throws IOException, WriterException{
-		String fileName = UUID.randomUUID()+".png";
-		String filePath = getFilePath(prefix);
-		File fileDirs = getFileDirs(uploadFolder+"/"+filePath);
-		Path path = FileSystems.getDefault().getPath(fileDirs.getPath(), fileName);
-        Map<EncodeHintType, Object> hints = new HashMap<EncodeHintType, Object>();  
-        hints.put(EncodeHintType.ERROR_CORRECTION, ErrorCorrectionLevel.H);  
-        hints.put(EncodeHintType.CHARACTER_SET, "UTF-8"); 
-        BitMatrix bitMatrix = new MultiFormatWriter().encode(url,BarcodeFormat.QR_CODE, 200, 200,hints);
-        MatrixToImageWriter.writeToPath(bitMatrix, "png", path);// 输出图像  
 		return filePath+"/"+fileName;
 	}
 	

@@ -3,12 +3,8 @@
  */
 package com.cf.code.core;
 
-import java.sql.SQLException;
-
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
-import org.h2.api.ErrorCode;
-import org.h2.tools.Server;
 
 import com.corundumstudio.socketio.Configuration;
 import com.corundumstudio.socketio.SocketIOServer;
@@ -33,26 +29,6 @@ public class MyContextLoader {
 	public static volatile SocketIOServer imServer;
 	
 	public void init(){
-		try {
-			Server.createTcpServer("-tcp", "-tcpAllowOthers", "-tcpPort", "8088" ).start();
-			log.info("h2 server tcp 启动成功");
-		} catch (SQLException e) {
-			if(e.getErrorCode() == ErrorCode.EXCEPTION_OPENING_PORT_2){
-				log.warn("h2 server tcp 端口已占用，可能已经启动");
-			}else{
-				log.error("h2 server tcp 启动失败", e);
-			}
-		}
-		try {
-			Server.createWebServer("-webAllowOthers","-webPort","8082").start();
-			log.info("h2 server web 启动成功");
-		} catch (SQLException e) {
-			if(e.getErrorCode() == ErrorCode.EXCEPTION_OPENING_PORT_2){
-				log.warn("h2 server web 端口已占用，可能已经启动");
-			}else{
-				log.error("h2 server web 启动失败", e);
-			}
-		}
 		try{
 			Configuration config = new Configuration();
 	        config.setHostname(imHost);

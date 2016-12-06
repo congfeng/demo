@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.cf.code.core.MyContextLoader;
+import com.cf.code.core.aop.AccessVerifier;
 import com.cf.code.core.exception.BusinessException;
 import com.cf.code.dao.MenuDao;
 import com.cf.code.dao.MsgDao;
@@ -23,7 +24,6 @@ import com.cf.code.dao.UserDao;
 import com.cf.code.entity.Profile;
 import com.cf.code.entity.User;
 import com.cf.code.service.ImService;
-import com.cf.code.web.access.AccessVerifier;
 
 /**
  * @Version: 1.0
@@ -48,7 +48,7 @@ public class ProfileController {
 	
 	@RequestMapping(value = {"login"}, method = { RequestMethod.GET,RequestMethod.POST})
 	@ResponseBody
-    public Profile login(Model model,HttpSession session,
+    public Object login(Model model,HttpSession session,
 			@RequestParam(required = true) String username,
 			@RequestParam(required = true) String password) throws BusinessException{
 		User user = userDaoRead.find(username);
@@ -69,14 +69,15 @@ public class ProfileController {
 	
 	@RequestMapping(value = {"logout"}, method = { RequestMethod.GET,RequestMethod.POST})
 	@ResponseBody
-    public void logout(HttpSession session){
+    public Object logout(HttpSession session){
 		session.removeAttribute("profile");
+		return null;
 	}
 	
 	@AccessVerifier
 	@RequestMapping(value = {""}, method = { RequestMethod.GET,RequestMethod.POST})
 	@ResponseBody
-    public Model init(@RequestParam(required = false)Profile profile,HttpSession session,Model model) {
+    public Object init(@RequestParam(required = false)Profile profile,HttpSession session,Model model) {
 		int msgCount = this.msgDaoRead.queryCount(null, null, null, 0, null, null);
 		model.addAttribute("profile",profile);
 		model.addAttribute("imAddress",MyContextLoader.getImAddress());

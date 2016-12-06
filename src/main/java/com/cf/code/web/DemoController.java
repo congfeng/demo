@@ -6,7 +6,6 @@ package com.cf.code.web;
 import java.io.File;
 import java.io.IOException;
 import java.util.Date;
-import java.util.List;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -28,13 +27,12 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.cf.code.common.DateUtil;
 import com.cf.code.common.StringUtil;
+import com.cf.code.core.aop.AccessVerifier;
 import com.cf.code.core.exception.BusinessException;
 import com.cf.code.core.exception.MsgSendException;
-import com.cf.code.core.net.HttpPostMsgSender;
 import com.cf.code.entity.Demo;
 import com.cf.code.entity.Profile;
 import com.cf.code.service.DemoService;
-import com.cf.code.web.access.AccessVerifier;
 
 /**
  *
@@ -54,7 +52,7 @@ public class DemoController {
 	
 	@RequestMapping(value = {""}, method = { RequestMethod.GET})
 	@ResponseBody
-    public List<Demo> list(@RequestParam(required = false) String timeStr) {
+    public Object list(@RequestParam(required = false) String timeStr) {
 		Date time = null;
 		if(StringUtil.isNullOrEmpty(timeStr)){
 			time = DateUtil.toParse(timeStr);
@@ -64,7 +62,7 @@ public class DemoController {
 	
 	@RequestMapping(value = {""}, method = { RequestMethod.POST})
 	@ResponseBody
-    public Model create(@RequestParam(required = true) String name,Model model) {
+    public Object create(@RequestParam(required = true) String name,Model model) {
 		Integer id = this.demoService.insert(name);
         model.addAttribute("create-id", id);  
         return model;
@@ -72,7 +70,7 @@ public class DemoController {
 
 	@RequestMapping(value = {"/{id}"}, method = { RequestMethod.GET})
 	@ResponseBody
-    public Demo get(@PathVariable Integer id) {
+    public Object get(@PathVariable Integer id) {
 		log.info("DemoController["+id+"]-"+this);
 		Demo demo1 = this.demoService.find(id);
         return demo1;
@@ -80,7 +78,7 @@ public class DemoController {
 	
 	@RequestMapping(value = {"/{id}"}, method = { RequestMethod.DELETE})
 	@ResponseBody
-    public Model delete(@PathVariable Integer id,Model model) {
+    public Object delete(@PathVariable Integer id,Model model) {
 		boolean b = this.demoService.delete(id);
         model.addAttribute("del-id", b+"");  
         return model;
@@ -88,7 +86,7 @@ public class DemoController {
 	
 	@RequestMapping(value = {"/{id}"}, method = { RequestMethod.PUT})
 	@ResponseBody
-    public Model update(@PathVariable Integer id,@RequestParam(required = true) String name,Model model) {
+    public Object update(@PathVariable Integer id,@RequestParam(required = true) String name,Model model) {
 		try {
 			this.demoService.update(id, name);
 			 model.addAttribute("update-id", id+"");  
@@ -101,7 +99,7 @@ public class DemoController {
 	@AccessVerifier
 	@RequestMapping(value = {"/testProfile"}, method = { RequestMethod.GET,RequestMethod.POST})
 	@ResponseBody
-    public Profile testProfile(@RequestParam(required = false)Profile profile,HttpSession session){
+    public Object testProfile(@RequestParam(required = false)Profile profile,HttpSession session){
 		return profile;
     }
 	
@@ -111,13 +109,13 @@ public class DemoController {
 	@AccessVerifier(check=false)
 	@RequestMapping(value = {"/testProfile2"}, method = { RequestMethod.GET,RequestMethod.POST})
 	@ResponseBody
-    public Profile testProfile2(@RequestParam(required = false)Profile profile,HttpSession session){
+    public Object testProfile2(@RequestParam(required = false)Profile profile,HttpSession session){
 		return profile;
     }
 	
 	@RequestMapping(value = {"/testAsync"}, method = { RequestMethod.GET,RequestMethod.POST})
 	@ResponseBody
-    public Model testAsync(HttpSession session,Model model) {
+    public Object testAsync(HttpSession session,Model model) {
 		this.demoService.it4Async();
 		System.out.println("--------testAsync-------");
 		HttpSession session2 = ((ServletRequestAttributes)RequestContextHolder.getRequestAttributes()).getRequest().getSession();
@@ -130,7 +128,7 @@ public class DemoController {
 	
 	@RequestMapping(value = {"/upload"}, method = { RequestMethod.GET,RequestMethod.POST})
 	@ResponseBody
-    public Model upload(Model model,
+    public Object upload(Model model,
     		@RequestParam(value = "file", required = false) Object fileObj,
     		@RequestParam(required = false) Integer sign) throws IllegalStateException, IOException {
 		MultipartFile file = null;
@@ -145,10 +143,11 @@ public class DemoController {
 	
 	@RequestMapping(value = {"/crossdomain/convert"}, method = { RequestMethod.GET,RequestMethod.POST})
 	@ResponseBody
-    public String crossdomainConvert(Model model,HttpServletRequest request,
+    public Object crossdomainConvert(Model model,HttpServletRequest request,
     		@RequestParam(value = "remoteUrl", required = true) String remoteUrl) throws MsgSendException{
-		HttpPostMsgSender sender = new HttpPostMsgSender();
-        return sender.send(remoteUrl, null);
+//		HttpPostMsgSender sender = new HttpPostMsgSender();
+//        return sender.send(remoteUrl, null);
+	    return null;
     }
 	
 }

@@ -24,19 +24,6 @@ nsApp.controller('DefaultController',function($scope,$routeParams) {
 }); 
 
 $(function(){
-	$(document).ajaxSuccess(function(e,xhr,c){
-		if(!xhr.responseJSON){
-			return ;
-		}
-		if(xhr.responseJSON.s == 0){
-			if(xhr.responseJSON.t == 1){
-				window.location.href = "login.html";
-			}else{
-				showAlert(xhr.responseJSON.m);
-			}
-		}
-	}).ajaxError(function(){
-		
-	});
+	
 });
   

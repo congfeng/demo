@@ -22,7 +22,7 @@ $(function(){
 			return;
 		}
 		$.ajax({
-			url:'/user/register',
+			url:'/admin/register',
 			data:{'username':$("#username").val(),'password':$("#password").val()},
 			dataType:'json',
 			success:function(data){

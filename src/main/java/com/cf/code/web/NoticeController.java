@@ -22,10 +22,10 @@ import com.cf.code.common.FileUtil;
 import com.cf.code.common.Pager;
 import com.cf.code.common.StringUtil;
 import com.cf.code.core.MyContextLoader;
+import com.cf.code.core.aop.AccessVerifier;
 import com.cf.code.dao.NoticeDao;
 import com.cf.code.entity.Notice;
 import com.cf.code.entity.Profile;
-import com.cf.code.web.access.AccessVerifier;
 
 /**
  * @Version: 1.0
