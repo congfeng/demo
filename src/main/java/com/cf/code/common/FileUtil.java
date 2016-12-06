@@ -71,7 +71,7 @@ public class FileUtil {
 	}
 	
 	private static String getFilePath(String prefix){
-		return prefix+"/"+DateUtil.format(new Date(),"yyyy"+"/"+"MM"+"/"+"dd");
+		return prefix+"/"+DateUtil.format(new Date(),"yyyyMMdd");
 	}
 	
 	
