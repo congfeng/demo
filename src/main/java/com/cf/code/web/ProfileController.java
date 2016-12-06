@@ -20,9 +20,7 @@ import com.cf.code.core.aop.AccessVerifier;
 import com.cf.code.core.exception.BusinessException;
 import com.cf.code.dao.MenuDao;
 import com.cf.code.dao.MsgDao;
-import com.cf.code.dao.UserDao;
 import com.cf.code.entity.Profile;
-import com.cf.code.entity.User;
 import com.cf.code.service.ImService;
 
 /**
@@ -33,9 +31,6 @@ import com.cf.code.service.ImService;
 @Controller
 @RequestMapping("/profile")
 public class ProfileController {
-	
-	@Resource(name = "userDaoRead")
-	UserDao userDaoRead;
 	
 	@Resource(name = "menuDaoRead")
 	MenuDao menuDaoRead;
@@ -51,18 +46,17 @@ public class ProfileController {
     public Object login(Model model,HttpSession session,
 			@RequestParam(required = true) String username,
 			@RequestParam(required = true) String password) throws BusinessException{
-		User user = userDaoRead.find(username);
-		if(user == null){
+		if(!username.equals("admin")){
 			throw new BusinessException("用户不存在");
 		}
-		if(!user.getPassword().equals(password)){
+		if(!password.equals("admin")){
 			throw new BusinessException("用户或密码错误");
 		}
-		List<String> menus = menuDaoRead.query(user.getId());
+		List<String> menus = menuDaoRead.query(0);
 		if(menus.isEmpty()){
 			throw new BusinessException("用户无访问权限");
 		}
-		Profile profile = new Profile(session.getId(), user.getId(), user.getUsername(),menus);
+		Profile profile = new Profile(session.getId(), 0, username,menus);
 		session.setAttribute("profile", profile);
         return profile;
     }
