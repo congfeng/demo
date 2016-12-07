@@ -18,6 +18,8 @@ public enum CommonStatus {
     Msg2(31,"2"),
     Community1(40,"2"),
     Community2(41,"2"),
+    CommunityUser1(40,"2"),
+    CommunityUser2(40,"2"),
     ;
     
     private CommonStatus(Integer value,String desc){

@@ -11,13 +11,13 @@ public class MsgComment {
 
     private Integer id;
     
-    private Integer msgId;
+    private Integer ct;
     
     private Integer userId;
     
-    private Integer ct;
+    private Integer msgId;
     
-    private Integer respondUserId;
+    private Integer opUserId;
     
     private String content;
 
@@ -53,15 +53,15 @@ public class MsgComment {
         this.ct = ct;
     }
 
-    public Integer getRespondUserId() {
-        return respondUserId;
-    }
+    public Integer getOpUserId() {
+		return opUserId;
+	}
 
-    public void setRespondUserId(Integer respondUserId) {
-        this.respondUserId = respondUserId;
-    }
+	public void setOpUserId(Integer opUserId) {
+		this.opUserId = opUserId;
+	}
 
-    public String getContent() {
+	public String getContent() {
         return content;
     }
 

@@ -11,9 +11,11 @@ public class Community {
 
 	private Integer id;
 	
-	private Integer userId;
-	
 	private Integer ct;
+	
+	private Byte status;
+	
+	private Integer userId;
 	
 	private String nick;
 	
@@ -22,8 +24,6 @@ public class Community {
 	private String portrait;
     
     private String cover;
-	
-	private Byte status;
 	
 	private Integer limitNum;
 

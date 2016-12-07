@@ -3,8 +3,8 @@
 <mapper namespace="com.cf.code.dao.CommunityDao">
 	
 	<insert id="insert" parameterType="com.cf.code.entity.Community">
-		INSERT INTO community(ct,user_id,nick,description,portrait,cover,limit_num,status)
-		VALUES (UNIX_TIMESTAMP(NOW()),#{userId},#{nick},#{description},#{portrait},#{cover},#{limitNum},#{status})
+		INSERT INTO community(ct,status,user_id,nick,description,portrait,cover,limit_num)
+		VALUES (UNIX_TIMESTAMP(NOW()),#{status},#{userId},#{nick},#{description},#{portrait},#{cover},#{limitNum})
 		<selectKey keyProperty="id" resultType="java.lang.Integer" order="AFTER" statementType="STATEMENT">
 			select last_insert_id()
 		</selectKey>

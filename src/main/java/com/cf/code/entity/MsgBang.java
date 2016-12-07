@@ -11,11 +11,11 @@ public class MsgBang {
 
     private Integer id;
     
-    private Integer msgId;
+    private Integer ct;
     
     private Integer userId;
     
-    private Integer ct;
+    private Integer msgId;
 
     public Integer getId() {
         return id;

@@ -2,26 +2,26 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.cf.code.dao.UserDao">
 	
-	<insert id="insert" parameterType="com.cf.code.entity.Community">
-        INSERT INTO community(ct,user_id,nick,description,portrait,cover,limit_num,status)
-        VALUES (UNIX_TIMESTAMP(NOW()),#{userId},#{nick},#{description},#{portrait},#{cover},#{limitNum},#{status})
+	<insert id="insert" parameterType="com.cf.code.entity.User">
+        INSERT INTO user(ct,status,phone,password,is_temple)
+        VALUES (UNIX_TIMESTAMP(NOW()),#{status},#{phone},#{password},#{isTemple})
         <selectKey keyProperty="id" resultType="java.lang.Integer" order="AFTER" statementType="STATEMENT">
             select last_insert_id()
         </selectKey>
     </insert>
-    
+			
     <delete id="delete">
-        DELETE FROM community WHERE id = #{id,jdbcType=INTEGER}
+        DELETE FROM user WHERE id = #{id,jdbcType=INTEGER}
     </delete>
     
     <update id="update">
-        UPDATE community 
+        UPDATE user 
            SET nick = #{nick}
          WHERE id = #{id,jdbcType=INTEGER}
     </update>
     
     <update id="updateStatus">
-        UPDATE community
+        UPDATE user
            SET status = #{status}
          WHERE id = #{id,jdbcType=INTEGER}
     </update>

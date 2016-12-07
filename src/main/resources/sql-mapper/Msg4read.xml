@@ -4,34 +4,40 @@
 	
 	<resultMap id="MsgRet" type="com.cf.code.entity.Msg">
 		<result property="id" column="id" />
-		<result property="title" column="title" />
+		<result property="ct" column="ct" />
+		<result property="status" column="status" />
+		<result property="userId" column="userId" />
+		<result property="communityId" column="community_id" />
+		<result property="scope" column="scope" />
+		<result property="bangNum" column="bang_num" />
+		<result property="shareNum" column="share_num" />
+		<result property="commentNum" column="comment_num" />
 		<result property="content" column="content" />
-		<result property="userName" column="user_name" />
-		<result property="userEmail" column="user_email" />
-		<result property="sendStatus" column="send_status" />
-		<result property="replyStatus" column="reply_status" />
-		<result property="createTime" column="create_time" />
-		<result property="updateTime" column="update_time" />
-		<result property="createTimeFormat" column="create_time_format" />
+		<result property="image1" column="image1" />
+		<result property="image2" column="image2" />
+		<result property="image3" column="image3" />
+		<result property="image4" column="image4" />
+		<result property="image5" column="image5" />
+		<result property="image6" column="image6" />
 	</resultMap>
 	
-	<select id="find" resultMap="CommunityRet">
+	<select id="find" resultMap="MsgRet">
         SELECT *
-          FROM community
+          FROM msg
          WHERE id = #{id,jdbcType=INTEGER}
     </select>
     
-    <select id="query" resultMap="CommunityRet" >
+    <select id="query" resultMap="MsgRet" >
        SELECT *
-         FROM community
+         FROM msg
         <include refid="query_where" />
         ORDER BY id ASC
         LIMIT 100
     </select>
     
-    <select id="queryPage" resultMap="CommunityRet" >
+    <select id="queryPage" resultMap="MsgRet" >
        SELECT *
-         FROM community
+         FROM msg
         <include refid="query_where" />
         ORDER BY id ASC
         LIMIT #{start},#{size}
@@ -39,7 +45,7 @@
   
     <select id="queryCount" resultType="int">
        SELECT COUNT(1)
-         FROM community
+         FROM msg
         <include refid="query_where" /> 
     </select>
     

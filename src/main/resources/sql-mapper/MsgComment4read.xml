@@ -4,29 +4,30 @@
 	
 	<resultMap id="MsgCommentRet" type="com.cf.code.entity.MsgComment">
 		<result property="id" column="id" />
-		<result property="username" column="username" />
-		<result property="password" column="password" />
-		<result property="createTime" column="create_time" />
-		<result property="createTimeFormat" column="create_time_format" />
+		<result property="ct" column="ct" />
+		<result property="userId" column="user_id" />
+		<result property="msgId" column="msg_id" />
+		<result property="opUserId" column="op_user_id" />
+		<result property="content" column="content" />
 	</resultMap>
-	
-	<select id="find" resultMap="CommunityRet">
+
+	<select id="find" resultMap="MsgCommentRet">
         SELECT *
-          FROM community
+          FROM msg_comment
          WHERE id = #{id,jdbcType=INTEGER}
     </select>
     
-    <select id="query" resultMap="CommunityRet" >
+    <select id="query" resultMap="MsgCommentRet" >
        SELECT *
-         FROM community
+         FROM msg_comment
         <include refid="query_where" />
         ORDER BY id ASC
         LIMIT 100
     </select>
     
-    <select id="queryPage" resultMap="CommunityRet" >
+    <select id="queryPage" resultMap="MsgCommentRet" >
        SELECT *
-         FROM community
+         FROM msg_comment
         <include refid="query_where" />
         ORDER BY id ASC
         LIMIT #{start},#{size}
@@ -34,7 +35,7 @@
   
     <select id="queryCount" resultType="int">
        SELECT COUNT(1)
-         FROM community
+         FROM msg_comment
         <include refid="query_where" /> 
     </select>
     

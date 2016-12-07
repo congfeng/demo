@@ -4,29 +4,40 @@
 	
 	<resultMap id="UserResult" type="com.cf.code.entity.User">
 		<result property="id" column="id" />
-		<result property="username" column="username" />
+		<result property="ct" column="ct" />
+		<result property="status" column="status" />
+		<result property="phone" column="phone" />
 		<result property="password" column="password" />
-		<result property="createTime" column="create_time" />
-		<result property="createTimeFormat" column="create_time_format" />
+		<result property="nick" column="nick" />
+		<result property="isTemple" column="is_temple" />
+		<result property="portrait" column="portrait" />
+		<result property="cover" column="cover" />
+		<result property="description" column="description" />
+		<result property="level" column="level" />
+		<result property="rankName" column="rank_name" />
+		<result property="score" column="score" />
+		<result property="merits" column="merits" />
+		<result property="prayNum" column="pray_num" />
+		<result property="clientId" column="client_id" />
 	</resultMap>
 	
-	<select id="find" resultMap="CommunityRet">
+	<select id="find" resultMap="UserResult">
         SELECT *
-          FROM community
+          FROM user
          WHERE id = #{id,jdbcType=INTEGER}
     </select>
     
-    <select id="query" resultMap="CommunityRet" >
+    <select id="query" resultMap="UserResult" >
        SELECT *
-         FROM community
+         FROM user
         <include refid="query_where" />
         ORDER BY id ASC
         LIMIT 100
     </select>
     
-    <select id="queryPage" resultMap="CommunityRet" >
+    <select id="queryPage" resultMap="UserResult" >
        SELECT *
-         FROM community
+         FROM user
         <include refid="query_where" />
         ORDER BY id ASC
         LIMIT #{start},#{size}
@@ -34,7 +45,7 @@
   
     <select id="queryCount" resultType="int">
        SELECT COUNT(1)
-         FROM community
+         FROM user
         <include refid="query_where" /> 
     </select>
     

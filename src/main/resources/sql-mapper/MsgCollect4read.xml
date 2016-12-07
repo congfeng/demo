@@ -4,29 +4,28 @@
 	
 	<resultMap id="MsgCollectRet" type="com.cf.code.entity.MsgCollect">
 		<result property="id" column="id" />
-		<result property="username" column="username" />
-		<result property="password" column="password" />
-		<result property="createTime" column="create_time" />
-		<result property="createTimeFormat" column="create_time_format" />
+		<result property="ct" column="ct" />
+		<result property="userId" column="user_id" />
+		<result property="msgId" column="msg_id" />
 	</resultMap>
 	
-	<select id="find" resultMap="CommunityRet">
+	<select id="find" resultMap="MsgCollectRet">
         SELECT *
-          FROM community
+          FROM msg_collect
          WHERE id = #{id,jdbcType=INTEGER}
     </select>
     
-    <select id="query" resultMap="CommunityRet" >
+    <select id="query" resultMap="MsgCollectRet" >
        SELECT *
-         FROM community
+         FROM msg_collect
         <include refid="query_where" />
         ORDER BY id ASC
         LIMIT 100
     </select>
     
-    <select id="queryPage" resultMap="CommunityRet" >
+    <select id="queryPage" resultMap="MsgCollectRet" >
        SELECT *
-         FROM community
+         FROM msg_collect
         <include refid="query_where" />
         ORDER BY id ASC
         LIMIT #{start},#{size}
@@ -34,7 +33,7 @@
   
     <select id="queryCount" resultType="int">
        SELECT COUNT(1)
-         FROM community
+         FROM msg_collect
         <include refid="query_where" /> 
     </select>
     

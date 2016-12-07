@@ -12,11 +12,11 @@ public class UserRelation {
 
     private Integer id;
     
+    private Integer ct;
+    
     private Integer userId;
     
     private Integer opUserId;
-    
-    private Integer ct;
     
     private Boolean isFriend;
     

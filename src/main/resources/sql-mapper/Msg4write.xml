@@ -2,26 +2,27 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.cf.code.dao.MsgDao">
 	
-	<insert id="insert" parameterType="com.cf.code.entity.Community">
-        INSERT INTO community(ct,user_id,nick,description,portrait,cover,limit_num,status)
-        VALUES (UNIX_TIMESTAMP(NOW()),#{userId},#{nick},#{description},#{portrait},#{cover},#{limitNum},#{status})
+	<insert id="insert" parameterType="com.cf.code.entity.Msg">
+        INSERT INTO msg(ct,status,user_id,community_id,scope,bang_num,share_num,comment_num,content,image1,image2,image3,image4,image5,image6)
+        VALUES (UNIX_TIMESTAMP(NOW()),#{status},#{userId},#{communityId},#{scope},#{bangNum},#{shareNum},#{commentNum}
+        	,#{content},#{image1},#{image2},#{image3},#{image4},#{image5},#{image6})
         <selectKey keyProperty="id" resultType="java.lang.Integer" order="AFTER" statementType="STATEMENT">
             select last_insert_id()
         </selectKey>
     </insert>
     
     <delete id="delete">
-        DELETE FROM community WHERE id = #{id,jdbcType=INTEGER}
+        DELETE FROM msg WHERE id = #{id,jdbcType=INTEGER}
     </delete>
     
     <update id="update">
-        UPDATE community 
-           SET nick = #{nick}
+        UPDATE msg 
+           SET scope = #{scope}
          WHERE id = #{id,jdbcType=INTEGER}
     </update>
     
     <update id="updateStatus">
-        UPDATE community
+        UPDATE msg
            SET status = #{status}
          WHERE id = #{id,jdbcType=INTEGER}
     </update>

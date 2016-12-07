@@ -9,13 +9,13 @@ package com.cf.code.entity;
  */
 public class MsgCollect {
 
-    private Integer id;
+	private Integer id;
     
-    private Integer msgId;
+    private Integer ct;
     
     private Integer userId;
     
-    private Integer ct;
+    private Integer msgId;
 
     public Integer getId() {
         return id;

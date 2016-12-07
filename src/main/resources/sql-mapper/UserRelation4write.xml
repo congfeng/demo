@@ -2,28 +2,22 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.cf.code.dao.UserRelationDao">
 	
-	<insert id="insert" parameterType="com.cf.code.entity.Community">
-        INSERT INTO community(ct,user_id,nick,description,portrait,cover,limit_num,status)
-        VALUES (UNIX_TIMESTAMP(NOW()),#{userId},#{nick},#{description},#{portrait},#{cover},#{limitNum},#{status})
+	<insert id="insert" parameterType="com.cf.code.entity.UserRelation">
+        INSERT INTO user_relation(ct,user_id,op_user_id,is_friend,is_opFriend,is_enemy)
+        VALUES (UNIX_TIMESTAMP(NOW()),#{userId},#{opUserId},#{isFriend},#{isOpFriend},#{isEnemy})
         <selectKey keyProperty="id" resultType="java.lang.Integer" order="AFTER" statementType="STATEMENT">
             select last_insert_id()
         </selectKey>
     </insert>
     
     <delete id="delete">
-        DELETE FROM community WHERE id = #{id,jdbcType=INTEGER}
+        DELETE FROM user_relation WHERE id = #{id,jdbcType=INTEGER}
     </delete>
     
     <update id="update">
-        UPDATE community 
-           SET nick = #{nick}
+        UPDATE user_relation 
+           SET is_friend = #{isFriend},is_opFriend = #{isOpFriend},is_enemy = #{isEnemy}
          WHERE id = #{id,jdbcType=INTEGER}
     </update>
-    
-    <update id="updateStatus">
-        UPDATE community
-           SET status = #{status}
-         WHERE id = #{id,jdbcType=INTEGER}
-    </update>
-	
+  	
 </mapper>

@@ -11,13 +11,13 @@ public class CommunityUser {
 
     private Integer id;
     
-    private Integer communityId;
-    
-    private Integer userId;
-    
     private Integer ct;
     
     private Byte status;
+    
+    private Integer userId;
+    
+    private Integer communityId;
     
     private Byte role;
 
