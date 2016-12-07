@@ -12,11 +12,11 @@ import com.cf.code.test.AbstractTestCase;
  */
 public class DemoDaoTestCase extends AbstractTestCase{
 
-//	public void testQuery(){
+	public void testQuery(){
 //		DemoDao demoDao = context.getBean("demoDaoRead", DemoDao.class);
 //    	List<Demo> demoList = demoDao.query(null, DemoType.TypeOne);
 //    	log.info(StringUtil.toJson(demoList.size()));
-//	}
+	}
 //	
 //
 //	public void testFind(){

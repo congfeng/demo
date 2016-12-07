@@ -15,34 +15,37 @@
 		<result property="createTimeFormat" column="create_time_format" />
 	</resultMap>
 	
-	<select id="find" resultMap="MsgRet">
-		SELECT id,title,content,user_name,user_email,send_status,reply_status,create_time,update_time,FORMATDATETIME(create_time,'yyyy-MM-dd HH:mm:ss') as create_time_format
-		  FROM msg
-		 WHERE id = #{id}
-	</select>
-	
-	<select id="query" resultMap="MsgRet" >
-       SELECT id,title,content,user_name,user_email,send_status,reply_status,create_time,update_time,FORMATDATETIME(create_time,'yyyy-MM-dd HH:mm:ss') as create_time_format
-	     FROM msg  
-		<include refid="query_where" />
-	    ORDER BY id ASC
-	    LIMIT #{start},#{size}
-  </select>
+	<select id="find" resultMap="CommunityRet">
+        SELECT *
+          FROM community
+         WHERE id = #{id,jdbcType=INTEGER}
+    </select>
+    
+    <select id="query" resultMap="CommunityRet" >
+       SELECT *
+         FROM community
+        <include refid="query_where" />
+        ORDER BY id ASC
+        LIMIT 100
+    </select>
+    
+    <select id="queryPage" resultMap="CommunityRet" >
+       SELECT *
+         FROM community
+        <include refid="query_where" />
+        ORDER BY id ASC
+        LIMIT #{start},#{size}
+    </select>
   
-  <select id="queryCount" resultType="int">
-	   SELECT COUNT(1)
-	     FROM msg  
-	    <include refid="query_where" /> 
-  </select>
-	
-	<sql id="query_where">
-		WHERE 1=1
-		<if test="sendStatus != null">AND send_status = #{sendStatus}</if>
-		<if test="replyStatus != null">AND reply_status = #{replyStatus}</if>
-	    <if test="title != null">AND title like CONCAT('%',#{title},'%')</if>
-	    <if test="userName != null">AND user_name like CONCAT('%',#{userName},'%')</if>
-      	<if test="createTimeStart != null">AND create_time >= #{createTimeStart}</if>
-      	<if test="createTimeEnd != null">AND create_time &lt;= #{createTimeEnd}</if>
-  </sql>
+    <select id="queryCount" resultType="int">
+       SELECT COUNT(1)
+         FROM community
+        <include refid="query_where" /> 
+    </select>
+    
+    <sql id="query_where">
+        WHERE 1=1
+        <if test="1 == 1">AND 1 = 1</if>
+    </sql>
 	
 </mapper>

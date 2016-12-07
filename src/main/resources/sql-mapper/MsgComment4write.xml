@@ -2,16 +2,28 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.cf.code.dao.MsgCommentDao">
 	
-	<insert id="insert" parameterType="com.cf.code.entity.MsgComment">
-		INSERT INTO user(username,password,create_time)
-		VALUES (#{username},#{password},now())
-		<selectKey keyProperty="id" resultType="java.lang.Integer" order="AFTER" statementType="STATEMENT">
-			select last_insert_id()
-		</selectKey>
-	</insert>
-	
-	<update id="updatePassword">
-	    update user set password = #{password,jdbcType=VARCHAR} where id = #{id,jdbcType=INTEGER}
-	</update>
+	<insert id="insert" parameterType="com.cf.code.entity.Community">
+        INSERT INTO community(ct,user_id,nick,description,portrait,cover,limit_num,status)
+        VALUES (UNIX_TIMESTAMP(NOW()),#{userId},#{nick},#{description},#{portrait},#{cover},#{limitNum},#{status})
+        <selectKey keyProperty="id" resultType="java.lang.Integer" order="AFTER" statementType="STATEMENT">
+            select last_insert_id()
+        </selectKey>
+    </insert>
+    
+    <delete id="delete">
+        DELETE FROM community WHERE id = #{id,jdbcType=INTEGER}
+    </delete>
+    
+    <update id="update">
+        UPDATE community 
+           SET nick = #{nick}
+         WHERE id = #{id,jdbcType=INTEGER}
+    </update>
+    
+    <update id="updateStatus">
+        UPDATE community
+           SET status = #{status}
+         WHERE id = #{id,jdbcType=INTEGER}
+    </update>
 	
 </mapper>

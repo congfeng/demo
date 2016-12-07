@@ -25,7 +25,7 @@ public class User {
     
     private String cover;
     
-    private String desc;
+    private String description;
     
     private Byte status;
     
@@ -99,15 +99,15 @@ public class User {
 		this.cover = cover;
 	}
 
-	public String getDesc() {
-		return desc;
-	}
+	public String getDescription() {
+        return description;
+    }
 
-	public void setDesc(String desc) {
-		this.desc = desc;
-	}
+    public void setDescription(String description) {
+        this.description = description;
+    }
 
-	public Byte getStatus() {
+    public Byte getStatus() {
 		return status;
 	}
 

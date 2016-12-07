@@ -3,12 +3,16 @@
 <mapper namespace="com.cf.code.dao.CommunityDao">
 	
 	<insert id="insert" parameterType="com.cf.code.entity.Community">
-		INSERT INTO community(ct,userId,nick,desc,portrait,cover,limitNum,status)
-		VALUES (UNIX_TIMESTAMP(NOW()),#{user_id},#{nick},#{desc},#{portrait},#{cover},#{limit_num},#{status})
+		INSERT INTO community(ct,user_id,nick,description,portrait,cover,limit_num,status)
+		VALUES (UNIX_TIMESTAMP(NOW()),#{userId},#{nick},#{description},#{portrait},#{cover},#{limitNum},#{status})
 		<selectKey keyProperty="id" resultType="java.lang.Integer" order="AFTER" statementType="STATEMENT">
 			select last_insert_id()
 		</selectKey>
 	</insert>
+	
+	<delete id="delete">
+        DELETE FROM community WHERE id = #{id,jdbcType=INTEGER}
+    </delete>
 	
 	<update id="update">
         UPDATE community 
@@ -21,5 +25,5 @@
            SET status = #{status}
          WHERE id = #{id,jdbcType=INTEGER}
     </update>
-    	
+    
 </mapper>

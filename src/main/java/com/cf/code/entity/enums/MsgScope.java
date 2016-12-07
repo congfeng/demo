@@ -8,19 +8,15 @@ package com.cf.code.entity.enums;
  *
  * @email congfeng@meicai.cn
  */
-public enum CommonStatus {
-
-    UserEnable(10,"1"),
-    UserDisable(11,"2"),
-    UserRelation1(20,"2"),
-    UserRelation2(21,"2"),
-    Msg1(30,"2"),
-    Msg2(31,"2"),
-    Community1(40,"2"),
-    Community2(41,"2"),
+public enum MsgScope {
+    
+    PUBLIC(10,"大厅"),
+    Community(11,"社区"),
+    PUBLICCommunity(12,"大厅和社区"),
+    Temple(13,"寺院"),
     ;
     
-    private CommonStatus(Integer value,String desc){
+    private MsgScope(Integer value,String desc){
         this.value = value.byteValue();
         this.desc = desc;
     };

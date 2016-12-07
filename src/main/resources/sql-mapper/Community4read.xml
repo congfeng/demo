@@ -7,7 +7,7 @@
 		<result property="userId" column="user_id" />
 		<result property="ct" column="ct" />
 		<result property="nick" column="nick" />
-		<result property="desc" column="desc" />
+		<result property="description" column="description" />
 		<result property="portrait" column="portrait" />
 		<result property="cover" column="cover" />
 		<result property="status" column="status" />

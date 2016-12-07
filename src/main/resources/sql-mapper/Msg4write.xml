@@ -2,24 +2,28 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.cf.code.dao.MsgDao">
 	
-	<insert id="insert" parameterType="com.cf.code.entity.Msg">
-		INSERT INTO msg(user_name,user_email,title,content,send_status,reply_status,create_time)
-		VALUES (#{userName},#{userEmail},#{title},#{content},#{sendStatus},#{replyStatus},now())
-		<selectKey keyProperty="id" resultType="java.lang.Integer" order="AFTER" statementType="STATEMENT">
-			select last_insert_id()
-		</selectKey>
-	</insert>
-	
-	<update id="updateSendStatus">
-	   UPDATE msg
-		  SET update_time = now(),send_status = #{newSendStatus}
-		WHERE id = #{id} AND send_status = #{oldSendStatus}
-	</update>
-	
-	<update id="updateReplyStatus">
-	   UPDATE msg
-		  SET update_time = now(),reply_status = #{newReplyStatus}
-		WHERE id = #{id} AND reply_status = #{oldReplyStatus}
-	</update>
+	<insert id="insert" parameterType="com.cf.code.entity.Community">
+        INSERT INTO community(ct,user_id,nick,description,portrait,cover,limit_num,status)
+        VALUES (UNIX_TIMESTAMP(NOW()),#{userId},#{nick},#{description},#{portrait},#{cover},#{limitNum},#{status})
+        <selectKey keyProperty="id" resultType="java.lang.Integer" order="AFTER" statementType="STATEMENT">
+            select last_insert_id()
+        </selectKey>
+    </insert>
+    
+    <delete id="delete">
+        DELETE FROM community WHERE id = #{id,jdbcType=INTEGER}
+    </delete>
+    
+    <update id="update">
+        UPDATE community 
+           SET nick = #{nick}
+         WHERE id = #{id,jdbcType=INTEGER}
+    </update>
+    
+    <update id="updateStatus">
+        UPDATE community
+           SET status = #{status}
+         WHERE id = #{id,jdbcType=INTEGER}
+    </update>
 	
 </mapper>

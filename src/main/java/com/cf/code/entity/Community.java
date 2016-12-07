@@ -17,7 +17,7 @@ public class Community {
 	
 	private String nick;
 	
-	private String desc;
+	private String description;
 	
 	private String portrait;
     
@@ -59,12 +59,12 @@ public class Community {
         this.nick = nick;
     }
 
-    public String getDesc() {
-        return desc;
+    public String getDescription() {
+        return description;
     }
 
-    public void setDesc(String desc) {
-        this.desc = desc;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public String getPortrait() {

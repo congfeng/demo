@@ -1,10 +1,10 @@
 package com.cf.code.test;
 
+import junit.framework.TestCase;
+
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-
-import junit.framework.TestCase;
 
 /**
  * 
@@ -24,8 +24,8 @@ public abstract class AbstractTestCase extends TestCase {
         if (context == null) {
             context = new ClassPathXmlApplicationContext(new String[] {
             		"classpath:datasource.xml",
-            		"classpath:dao.xml",
-                    "classpath:service.xml"});
+            		"classpath:spring-config/dao.xml",
+                    "classpath:spring-config/service.xml"});
             context.start();
         }
         init();
@@ -34,6 +34,7 @@ public abstract class AbstractTestCase extends TestCase {
     protected void init() {
 
     }
+    
     protected void tearDown() throws Exception {  
         super.tearDown();  
         context = null;  
