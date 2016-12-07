@@ -5,9 +5,7 @@ package com.cf.code.web;
 
 import java.io.IOException;
 import java.util.Date;
-import java.util.List;
 
-import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
@@ -23,8 +21,6 @@ import com.cf.code.common.Pager;
 import com.cf.code.common.StringUtil;
 import com.cf.code.core.MyContextLoader;
 import com.cf.code.core.aop.AccessVerifier;
-import com.cf.code.dao.NoticeDao;
-import com.cf.code.entity.Notice;
 import com.cf.code.entity.Profile;
 
 /**
@@ -36,11 +32,6 @@ import com.cf.code.entity.Profile;
 @RequestMapping("/notice")
 public class NoticeController {
 	
-	@Resource(name = "noticeDao")
-	NoticeDao noticeDao;
-	
-	@Resource(name = "noticeDaoRead")
-	NoticeDao noticeDaoRead;
 
 //	@AccessVerifier
 	@RequestMapping(value = {"list"}, method = { RequestMethod.GET,RequestMethod.POST})
@@ -70,13 +61,13 @@ public class NoticeController {
 		if(pageSize != null){
 			pager.setPageSize(pageSize);
 		}
-		int count = this.noticeDaoRead.queryCount(ntype, title, createTimeStart, createTimeEnd);
-		pager.setCount(count);
-		List<Notice> notices = this.noticeDaoRead.query(ntype, title, createTimeStart, createTimeEnd,
-				pager.getStartIndex(), pager.getPageSize()); 
-		model.addAttribute("notices", notices);   
-		model.addAttribute("pager", pager);
-		model.addAttribute("UploadBasePath", getUploadPath());
+//		int count = this.noticeDaoRead.queryCount(ntype, title, createTimeStart, createTimeEnd);
+//		pager.setCount(count);
+//		List<Notice> notices = this.noticeDaoRead.query(ntype, title, createTimeStart, createTimeEnd,
+//				pager.getStartIndex(), pager.getPageSize()); 
+//		model.addAttribute("notices", notices);   
+//		model.addAttribute("pager", pager);
+//		model.addAttribute("UploadBasePath", getUploadPath());
         return model;
     }
 	
@@ -85,7 +76,7 @@ public class NoticeController {
 	@ResponseBody
     public Model find(@RequestParam(required = false)Profile profile,HttpSession session,Model model,
     		@RequestParam(required = true) Integer id){
-		model.addAttribute("notice",this.noticeDaoRead.find(id));
+//		model.addAttribute("notice",this.noticeDaoRead.find(id));
 		model.addAttribute("UploadBasePath", getUploadPath());
 		return model;
     }
@@ -99,12 +90,12 @@ public class NoticeController {
     		@RequestParam(required = false) String content,
     		@RequestParam(value = "richText", required = false) Object richTextObj) throws IOException{
 		String richText = FileUtil.uploadRichText(richTextObj, getUploadFolder(session), "richText");
-		Notice notice = new Notice();
-		notice.setNoticeType(ntype);
-		notice.setTitle(title);
-		notice.setContent(content);
-		notice.setRichText(richText);
-		this.noticeDao.insert(notice);
+//		Notice notice = new Notice();
+//		notice.setNoticeType(ntype);
+//		notice.setTitle(title);
+//		notice.setContent(content);
+//		notice.setRichText(richText);
+//		this.noticeDao.insert(notice);
 		return model;
     }
 
@@ -113,13 +104,13 @@ public class NoticeController {
 	@ResponseBody
 	public Model delete(@RequestParam(required = false)Profile profile,HttpSession session,Model model,
     		@RequestParam(required = true) Integer id) throws IOException{
-		Notice n = this.noticeDaoRead.find(id);
-		if(!this.noticeDao.delete(id)){
-			return model;
-		}
-		if(!StringUtil.isNullOrEmpty(n.getRichText())){
-			FileUtil.deleteFile(getUploadFolder(session)+"/"+n.getRichText());
-		}
+//		Notice n = this.noticeDaoRead.find(id);
+//		if(!this.noticeDao.delete(id)){
+//			return model;
+//		}
+//		if(!StringUtil.isNullOrEmpty(n.getRichText())){
+//			FileUtil.deleteFile(getUploadFolder(session)+"/"+n.getRichText());
+//		}
 		return model;
     }
 	
@@ -131,12 +122,12 @@ public class NoticeController {
     		@RequestParam(required = false) String title,
     		@RequestParam(required = false) String content,
     		@RequestParam(value = "richText", required = false) Object richTextObj) throws IOException{
-		Notice n = this.noticeDaoRead.find(id);
-		String richText = FileUtil.uploadRichText(richTextObj, getUploadFolder(session), "richText");
-		boolean b = this.noticeDao.update(id, title, content, richText);
-		if(b&&!StringUtil.isNullOrEmpty(n.getRichText())){
-			FileUtil.deleteFile(getUploadFolder(session)+"/"+n.getRichText());
-		}
+//		Notice n = this.noticeDaoRead.find(id);
+//		String richText = FileUtil.uploadRichText(richTextObj, getUploadFolder(session), "richText");
+//		boolean b = this.noticeDao.update(id, title, content, richText);
+//		if(b&&!StringUtil.isNullOrEmpty(n.getRichText())){
+//			FileUtil.deleteFile(getUploadFolder(session)+"/"+n.getRichText());
+//		}
 		return model;
     }
 	

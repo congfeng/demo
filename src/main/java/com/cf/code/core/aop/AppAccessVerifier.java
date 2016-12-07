@@ -6,8 +6,11 @@ package com.cf.code.core.aop;
 import java.lang.reflect.Method;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.apache.commons.lang.StringUtils;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 
 import com.cf.code.core.exception.AccessException;
 import com.cf.code.entity.Profile;
@@ -26,12 +29,16 @@ public class AppAccessVerifier extends WebAdvice{
         if(accessVerifier == null){
             return null;
         }
-        String userNo = request.getParameter("userNo");
         String clientId = request.getParameter("clientId");
-        if(StringUtils.isEmpty(userNo)||StringUtils.isEmpty(clientId)){
+        if(StringUtils.isEmpty(clientId)){
             throw new AccessException("参数缺失");
         }
-        return new Profile(userNo, 0, clientId, null);
+        HttpSession session = ((ServletRequestAttributes)RequestContextHolder.getRequestAttributes()).getRequest().getSession();
+        Profile profile = (Profile)session.getAttribute(clientId);
+        if(profile == null&&accessVerifier.check()){
+            throw new AccessException("未登陆");
+        }
+        return profile;
     }
     
     

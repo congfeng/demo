@@ -3,7 +3,6 @@
  */
 package com.cf.code.entity;
 
-import java.util.Date;
 
 /**
  * @Version: 1.0
@@ -16,13 +15,11 @@ public class User {
  
     private String phone;
     
-    private String username;
-    
     private String password;
     
     private String nick;
     
-    private Byte userType;
+    private Boolean isTemple;
     
     private String portrait;
     
@@ -42,7 +39,9 @@ public class User {
     
     private Integer prayNum;
     
-    private Integer createTime;
+    private Integer ct;
+    
+    private String clientId;
 
 	public Integer getId() {
 		return id;
@@ -76,15 +75,15 @@ public class User {
 		this.nick = nick;
 	}
 
-	public Byte getUserType() {
-		return userType;
-	}
+	public Boolean getIsTemple() {
+        return isTemple;
+    }
 
-	public void setUserType(Byte userType) {
-		this.userType = userType;
-	}
+    public void setIsTemple(Boolean isTemple) {
+        this.isTemple = isTemple;
+    }
 
-	public String getPortrait() {
+    public String getPortrait() {
 		return portrait;
 	}
 
@@ -156,20 +155,20 @@ public class User {
 		this.prayNum = prayNum;
 	}
 
-	public Integer getCreateTime() {
-		return createTime;
-	}
+    public Integer getCt() {
+        return ct;
+    }
 
-	public void setCreateTime(Integer createTime) {
-		this.createTime = createTime;
-	}
+    public void setCt(Integer ct) {
+        this.ct = ct;
+    }
 
-	public String getUsername() {
-		return username;
-	}
+    public String getClientId() {
+        return clientId;
+    }
 
-	public void setUsername(String username) {
-		this.username = username;
-	}
+    public void setClientId(String clientId) {
+        this.clientId = clientId;
+    }
     
 }

@@ -10,16 +10,6 @@
         http://www.springframework.org/schema/context/spring-context-3.0.xsd"
 	default-autowire="no">
 	
-	<bean id="demoDaoRead" class="org.mybatis.spring.mapper.MapperFactoryBean">
-		<property name="mapperInterface" value="com.cf.code.dao.DemoDao" />
-		<property name="sqlSessionFactory" ref="ReadSqlSessionFactory" />
-	</bean>
-	
-	<bean id="demoDao" class="org.mybatis.spring.mapper.MapperFactoryBean">
-		<property name="mapperInterface" value="com.cf.code.dao.DemoDao" />
-		<property name="sqlSessionFactory" ref="WriteSqlSessionFactory" />
-	</bean>	
-	
 	<bean id="dictionaryDaoRead" class="org.mybatis.spring.mapper.MapperFactoryBean">
 		<property name="mapperInterface" value="com.cf.code.dao.DictionaryDao" />
 		<property name="sqlSessionFactory" ref="ReadSqlSessionFactory" />
@@ -29,45 +19,81 @@
 		<property name="mapperInterface" value="com.cf.code.dao.UserDao" />
 		<property name="sqlSessionFactory" ref="ReadSqlSessionFactory" />
 	</bean>
-	
 	<bean id="userDao" class="org.mybatis.spring.mapper.MapperFactoryBean">
 		<property name="mapperInterface" value="com.cf.code.dao.UserDao" />
 		<property name="sqlSessionFactory" ref="WriteSqlSessionFactory" />
 	</bean>
 	
-	<bean id="menuDaoRead" class="org.mybatis.spring.mapper.MapperFactoryBean">
-		<property name="mapperInterface" value="com.cf.code.dao.MenuDao" />
-		<property name="sqlSessionFactory" ref="ReadSqlSessionFactory" />
-	</bean>
+	<bean id="userRelationDaoRead" class="org.mybatis.spring.mapper.MapperFactoryBean">
+        <property name="mapperInterface" value="com.cf.code.dao.UserRelationDao" />
+        <property name="sqlSessionFactory" ref="ReadSqlSessionFactory" />
+    </bean>
+    <bean id="userRelationDao" class="org.mybatis.spring.mapper.MapperFactoryBean">
+        <property name="mapperInterface" value="com.cf.code.dao.UserRelationDao" />
+        <property name="sqlSessionFactory" ref="WriteSqlSessionFactory" />
+    </bean>
 	
-	<bean id="noticeDaoRead" class="org.mybatis.spring.mapper.MapperFactoryBean">
-		<property name="mapperInterface" value="com.cf.code.dao.NoticeDao" />
-		<property name="sqlSessionFactory" ref="ReadSqlSessionFactory" />
-	</bean>
-	
-	<bean id="noticeDao" class="org.mybatis.spring.mapper.MapperFactoryBean">
-		<property name="mapperInterface" value="com.cf.code.dao.NoticeDao" />
-		<property name="sqlSessionFactory" ref="WriteSqlSessionFactory" />
-	</bean>
-	
-	<bean id="msgDaoRead" class="org.mybatis.spring.mapper.MapperFactoryBean">
-		<property name="mapperInterface" value="com.cf.code.dao.MsgDao" />
-		<property name="sqlSessionFactory" ref="ReadSqlSessionFactory" />
-	</bean>
-	
-	<bean id="msgDao" class="org.mybatis.spring.mapper.MapperFactoryBean">
-		<property name="mapperInterface" value="com.cf.code.dao.MsgDao" />
-		<property name="sqlSessionFactory" ref="WriteSqlSessionFactory" />
-	</bean>
-	
-	<bean id="msgReceiverDaoRead" class="org.mybatis.spring.mapper.MapperFactoryBean">
-		<property name="mapperInterface" value="com.cf.code.dao.MsgReceiverDao" />
-		<property name="sqlSessionFactory" ref="ReadSqlSessionFactory" />
-	</bean>
-	
-	<bean id="msgReceiverDao" class="org.mybatis.spring.mapper.MapperFactoryBean">
-		<property name="mapperInterface" value="com.cf.code.dao.MsgReceiverDao" />
-		<property name="sqlSessionFactory" ref="WriteSqlSessionFactory" />
-	</bean>
-		
+	<bean id="communityDaoRead" class="org.mybatis.spring.mapper.MapperFactoryBean">
+        <property name="mapperInterface" value="com.cf.code.dao.CommunityDao" />
+        <property name="sqlSessionFactory" ref="ReadSqlSessionFactory" />
+    </bean>
+    <bean id="communityDao" class="org.mybatis.spring.mapper.MapperFactoryBean">
+        <property name="mapperInterface" value="com.cf.code.dao.CommunityDao" />
+        <property name="sqlSessionFactory" ref="WriteSqlSessionFactory" />
+    </bean>
+    
+    <bean id="communityUserDaoRead" class="org.mybatis.spring.mapper.MapperFactoryBean">
+        <property name="mapperInterface" value="com.cf.code.dao.CommunityUserDao" />
+        <property name="sqlSessionFactory" ref="ReadSqlSessionFactory" />
+    </bean>
+    <bean id="communityUserDao" class="org.mybatis.spring.mapper.MapperFactoryBean">
+        <property name="mapperInterface" value="com.cf.code.dao.CommunityUserDao" />
+        <property name="sqlSessionFactory" ref="WriteSqlSessionFactory" />
+    </bean>
+    
+    <bean id="msgDaoRead" class="org.mybatis.spring.mapper.MapperFactoryBean">
+        <property name="mapperInterface" value="com.cf.code.dao.MsgDao" />
+        <property name="sqlSessionFactory" ref="ReadSqlSessionFactory" />
+    </bean>
+    <bean id="msgDao" class="org.mybatis.spring.mapper.MapperFactoryBean">
+        <property name="mapperInterface" value="com.cf.code.dao.MsgDao" />
+        <property name="sqlSessionFactory" ref="WriteSqlSessionFactory" />
+    </bean>
+    
+    <bean id="msgBangDaoRead" class="org.mybatis.spring.mapper.MapperFactoryBean">
+        <property name="mapperInterface" value="com.cf.code.dao.MsgBangDao" />
+        <property name="sqlSessionFactory" ref="ReadSqlSessionFactory" />
+    </bean>
+    <bean id="msgBangDao" class="org.mybatis.spring.mapper.MapperFactoryBean">
+        <property name="mapperInterface" value="com.cf.code.dao.MsgBangDao" />
+        <property name="sqlSessionFactory" ref="WriteSqlSessionFactory" />
+    </bean>
+    
+    <bean id="msgCollectDaoRead" class="org.mybatis.spring.mapper.MapperFactoryBean">
+        <property name="mapperInterface" value="com.cf.code.dao.MsgCollectDao" />
+        <property name="sqlSessionFactory" ref="ReadSqlSessionFactory" />
+    </bean>
+    <bean id="msgCollectDao" class="org.mybatis.spring.mapper.MapperFactoryBean">
+        <property name="mapperInterface" value="com.cf.code.dao.MsgCollectDao" />
+        <property name="sqlSessionFactory" ref="WriteSqlSessionFactory" />
+    </bean>
+    
+    <bean id="msgCommentDaoRead" class="org.mybatis.spring.mapper.MapperFactoryBean">
+        <property name="mapperInterface" value="com.cf.code.dao.MsgCommentDao" />
+        <property name="sqlSessionFactory" ref="ReadSqlSessionFactory" />
+    </bean>
+    <bean id="msgCommentDao" class="org.mybatis.spring.mapper.MapperFactoryBean">
+        <property name="mapperInterface" value="com.cf.code.dao.MsgCommentDao" />
+        <property name="sqlSessionFactory" ref="WriteSqlSessionFactory" />
+    </bean>
+    
+    <bean id="msgShareDaoRead" class="org.mybatis.spring.mapper.MapperFactoryBean">
+        <property name="mapperInterface" value="com.cf.code.dao.MsgShareDao" />
+        <property name="sqlSessionFactory" ref="ReadSqlSessionFactory" />
+    </bean>
+    <bean id="msgShareDao" class="org.mybatis.spring.mapper.MapperFactoryBean">
+        <property name="mapperInterface" value="com.cf.code.dao.MsgShareDao" />
+        <property name="sqlSessionFactory" ref="WriteSqlSessionFactory" />
+    </bean>
+    
 </beans>

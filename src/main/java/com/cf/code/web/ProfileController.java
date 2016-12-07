@@ -3,8 +3,6 @@
  */
 package com.cf.code.web;
 
-import java.util.List;
-
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 
@@ -18,7 +16,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.cf.code.core.MyContextLoader;
 import com.cf.code.core.aop.AccessVerifier;
 import com.cf.code.core.exception.BusinessException;
-import com.cf.code.dao.MenuDao;
 import com.cf.code.dao.MsgDao;
 import com.cf.code.entity.Profile;
 import com.cf.code.service.ImService;
@@ -31,9 +28,6 @@ import com.cf.code.service.ImService;
 @Controller
 @RequestMapping("/profile")
 public class ProfileController {
-	
-	@Resource(name = "menuDaoRead")
-	MenuDao menuDaoRead;
 	
 	@Resource(name = "msgDaoRead")
 	MsgDao msgDaoRead;
@@ -52,11 +46,7 @@ public class ProfileController {
 		if(!password.equals("admin")){
 			throw new BusinessException("用户或密码错误");
 		}
-		List<String> menus = menuDaoRead.query(0);
-		if(menus.isEmpty()){
-			throw new BusinessException("用户无访问权限");
-		}
-		Profile profile = new Profile(session.getId(), 0, username,menus);
+		Profile profile = new Profile(session.getId(), 0, username,null);
 		session.setAttribute("profile", profile);
         return profile;
     }
@@ -72,10 +62,9 @@ public class ProfileController {
 	@RequestMapping(value = {""}, method = { RequestMethod.GET,RequestMethod.POST})
 	@ResponseBody
     public Object init(@RequestParam(required = false)Profile profile,HttpSession session,Model model) {
-		int msgCount = this.msgDaoRead.queryCount(null, null, null, 0, null, null);
 		model.addAttribute("profile",profile);
 		model.addAttribute("imAddress",MyContextLoader.getImAddress());
-		model.addAttribute("msgCount",msgCount);
+		model.addAttribute("msgCount",10);
         return model;
     }
 	

@@ -52,7 +52,6 @@ public class UserController {
 		}
 		User user = new User();
 		user.setPhone(phone);
-		user.setUsername(phone);
 		user.setPassword(password);
 		this.userDao.insert(user);
     }
