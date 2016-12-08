@@ -4,7 +4,6 @@
 package com.cf.code.entity;
 
 import java.io.Serializable;
-import java.util.List;
 
 /**
  * @Version: 1.0
@@ -13,11 +12,9 @@ import java.util.List;
  */
 public class Profile implements Serializable{
 
-	public Profile(String token,Integer relatedId,String name,List<String> menus){
-		this.token = token;
-		this.relatedId = relatedId;
-		this.name = name;
-		this.menus = menus;
+	public Profile(Integer userId,String clientId){
+	    this.userId = userId;
+	    this.clientId = clientId;
 	}
 	
 	/**
@@ -25,44 +22,24 @@ public class Profile implements Serializable{
 	 */
 	private static final long serialVersionUID = 5082406578385226552L;
 
-	private Integer relatedId;
+	private Integer userId;
  
-	private String token;
+	private String clientId;
+
+    public Integer getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Integer userId) {
+        this.userId = userId;
+    }
+
+    public String getClientId() {
+        return clientId;
+    }
+
+    public void setClientId(String clientId) {
+        this.clientId = clientId;
+    }
 	
-    private String name;
-
-    private List<String> menus;
-    
-	public Integer getRelatedId() {
-		return relatedId;
-	}
-
-	public void setRelatedId(Integer relatedId) {
-		this.relatedId = relatedId;
-	}
-
-	public String getToken() {
-		return token;
-	}
-
-	public void setToken(String token) {
-		this.token = token;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public List<String> getMenus() {
-		return menus;
-	}
-
-	public void setMenus(List<String> menus) {
-		this.menus = menus;
-	}
-		
 }

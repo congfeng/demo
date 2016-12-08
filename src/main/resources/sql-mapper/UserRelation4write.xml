@@ -3,8 +3,8 @@
 <mapper namespace="com.cf.code.dao.UserRelationDao">
 	
 	<insert id="insert" parameterType="com.cf.code.entity.UserRelation">
-        INSERT INTO user_relation(ct,user_id,op_user_id,is_friend,is_opFriend,is_enemy)
-        VALUES (UNIX_TIMESTAMP(NOW()),#{userId},#{opUserId},#{isFriend},#{isOpFriend},#{isEnemy})
+        INSERT INTO user_relation(ct,ut,user_id,op_user_id,is_friend,is_op_friend,is_enemy)
+        VALUES (UNIX_TIMESTAMP(NOW()),UNIX_TIMESTAMP(NOW()),#{userId},#{opUserId},#{isFriend},#{isOpFriend},#{isEnemy})
         <selectKey keyProperty="id" resultType="java.lang.Integer" order="AFTER" statementType="STATEMENT">
             select last_insert_id()
         </selectKey>
@@ -16,7 +16,10 @@
     
     <update id="update">
         UPDATE user_relation 
-           SET is_friend = #{isFriend},is_opFriend = #{isOpFriend},is_enemy = #{isEnemy}
+           SET ut = UNIX_TIMESTAMP(NOW())
+           <if test="isFriend != null">,is_friend = #{isFriend}</if>
+           <if test="isOpFriend != null">,is_op_friend = #{isOpFriend}</if>
+           <if test="isEnemy != null">,is_enemy = #{isEnemy}</if>
          WHERE id = #{id,jdbcType=INTEGER}
     </update>
   	

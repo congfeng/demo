@@ -16,6 +16,8 @@ public interface Constant {
 		public static final String Type = "t";
 		public static final String Msg = "m";
 	}
-
+	public static final String UserId = "userId";
+	public static final String ClientId = "clientId";
+	
 }
 

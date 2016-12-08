@@ -13,6 +13,8 @@ public class Community {
 	
 	private Integer ct;
 	
+	private Integer ut;
+	
 	private Byte status;
 	
 	private Integer userId;
@@ -35,20 +37,36 @@ public class Community {
         this.id = id;
     }
 
-    public Integer getUserId() {
-        return userId;
-    }
-
-    public void setUserId(Integer userId) {
-        this.userId = userId;
-    }
-
     public Integer getCt() {
         return ct;
     }
 
     public void setCt(Integer ct) {
         this.ct = ct;
+    }
+
+    public Integer getUt() {
+        return ut;
+    }
+
+    public void setUt(Integer ut) {
+        this.ut = ut;
+    }
+
+    public Byte getStatus() {
+        return status;
+    }
+
+    public void setStatus(Byte status) {
+        this.status = status;
+    }
+
+    public Integer getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Integer userId) {
+        this.userId = userId;
     }
 
     public String getNick() {
@@ -83,14 +101,6 @@ public class Community {
         this.cover = cover;
     }
 
-    public Byte getStatus() {
-        return status;
-    }
-
-    public void setStatus(Byte status) {
-        this.status = status;
-    }
-
     public Integer getLimitNum() {
         return limitNum;
     }
@@ -98,5 +108,5 @@ public class Community {
     public void setLimitNum(Integer limitNum) {
         this.limitNum = limitNum;
     }
-    
+
 }

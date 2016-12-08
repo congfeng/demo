@@ -64,8 +64,8 @@ public abstract class WebAdvice implements MethodInterceptor{
             }
             return ret;
         }catch(BusinessException e){
-            String msg = "服务失败："+e.getMessage();
-            log.warn(msg);
+            String msg = e.getMessage();
+            log.warn("服务失败：" + msg);
             return returnException(rt,30,msg);
         }catch(Exception e){
             String msg = "服务异常,日志检索码:" + UUID.randomUUID();

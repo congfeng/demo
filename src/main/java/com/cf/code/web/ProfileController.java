@@ -46,7 +46,7 @@ public class ProfileController {
 		if(!password.equals("admin")){
 			throw new BusinessException("用户或密码错误");
 		}
-		Profile profile = new Profile(session.getId(), 0, username,null);
+		Profile profile = new Profile(0,"admin");
 		session.setAttribute("profile", profile);
         return profile;
     }

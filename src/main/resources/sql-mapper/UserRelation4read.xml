@@ -5,6 +5,7 @@
 	<resultMap id="UserRelationRet" type="com.cf.code.entity.UserRelation">
 		<result property="id" column="id" />
 		<result property="ct" column="ct" />
+		<result property="ut" column="ut" />
 		<result property="userId" column="user_id" />
 		<result property="opUserId" column="op_user_id" />
 		<result property="isFriend" column="is_friend" />

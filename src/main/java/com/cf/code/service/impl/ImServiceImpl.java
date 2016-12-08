@@ -37,7 +37,7 @@ public class ImServiceImpl implements ImService{
 		if(MyContextLoader.imServer == null){
 			return ;
 		}
-		final int msgCount = this.msgDaoRead.queryCount(null, null, null, 0, null, null);
+		final int msgCount = 100;
 		MyContextLoader.imServer.getBroadcastOperations().sendEvent("mychatevent", new HashMap<String,Object>(){{
 			this.put("isAdd", isAdd);
 			this.put("msgCount", msgCount);

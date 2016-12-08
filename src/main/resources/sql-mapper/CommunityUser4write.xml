@@ -3,8 +3,8 @@
 <mapper namespace="com.cf.code.dao.CommunityUserDao">
 	
 	<insert id="insert" parameterType="com.cf.code.entity.CommunityUser">
-        INSERT INTO community_user(ct,status,user_id,community_id,role)
-        VALUES (UNIX_TIMESTAMP(NOW()),#{status},#{userId},#{communityId},#{role})
+        INSERT INTO community_user(ct,ut,status,user_id,community_id,role)
+        VALUES (UNIX_TIMESTAMP(NOW()),UNIX_TIMESTAMP(NOW()),#{status},#{userId},#{communityId},#{role})
         <selectKey keyProperty="id" resultType="java.lang.Integer" order="AFTER" statementType="STATEMENT">
             select last_insert_id()
         </selectKey>
@@ -16,13 +16,15 @@
     
     <update id="update">
         UPDATE community_user 
-           SET role = #{role}
+           SET ut = UNIX_TIMESTAMP(NOW())
+           ,role = #{role}
          WHERE id = #{id,jdbcType=INTEGER}
     </update>
     
     <update id="updateStatus">
         UPDATE community_user
-           SET status = #{status}
+           SET ut = UNIX_TIMESTAMP(NOW())
+           ,status = #{status}
          WHERE id = #{id,jdbcType=INTEGER}
     </update>
 	

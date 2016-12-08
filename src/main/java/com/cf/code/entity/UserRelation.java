@@ -14,6 +14,8 @@ public class UserRelation {
     
     private Integer ct;
     
+    private Integer ut;
+    
     private Integer userId;
     
     private Integer opUserId;
@@ -78,6 +80,14 @@ public class UserRelation {
 
     public void setIsEnemy(Boolean isEnemy) {
         this.isEnemy = isEnemy;
+    }
+
+    public Integer getUt() {
+        return ut;
+    }
+
+    public void setUt(Integer ut) {
+        this.ut = ut;
     }
     
 }

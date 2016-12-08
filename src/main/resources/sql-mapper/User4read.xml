@@ -5,16 +5,17 @@
 	<resultMap id="UserResult" type="com.cf.code.entity.User">
 		<result property="id" column="id" />
 		<result property="ct" column="ct" />
+		<result property="ut" column="ut" />
 		<result property="status" column="status" />
 		<result property="phone" column="phone" />
 		<result property="password" column="password" />
-		<result property="nick" column="nick" />
 		<result property="isTemple" column="is_temple" />
+		<result property="nick" column="nick" />
 		<result property="portrait" column="portrait" />
 		<result property="cover" column="cover" />
 		<result property="description" column="description" />
+		<result property="levelName" column="level_name" />
 		<result property="level" column="level" />
-		<result property="rankName" column="rank_name" />
 		<result property="score" column="score" />
 		<result property="merits" column="merits" />
 		<result property="prayNum" column="pray_num" />
@@ -53,5 +54,18 @@
         WHERE 1=1
         <if test="1 == 1">AND 1 = 1</if>
     </sql>
+    
+    <select id="findByPhone" resultMap="UserResult">
+        SELECT *
+          FROM user
+         WHERE phone = #{phone}
+    </select>
+    
+    <select id="findByClientId" resultMap="UserResult">
+        SELECT *
+          FROM user
+         WHERE id = #{id,jdbcType=INTEGER}
+           AND client_id = #{clientId}
+    </select>
 	
 </mapper>

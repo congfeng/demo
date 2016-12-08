@@ -12,14 +12,20 @@ package com.cf.code.entity;
 public class User {
 
 	private Integer id;
+	
+	private Integer ct;
+	
+	private Integer ut;
+	
+	private Byte status;
  
     private String phone;
     
     private String password;
     
-    private String nick;
-    
     private Boolean isTemple;
+    
+    private String nick;
     
     private String portrait;
     
@@ -27,19 +33,15 @@ public class User {
     
     private String description;
     
-    private Byte status;
+    private String levelName;
     
     private Integer level;
     
-    private String rankName;
-
     private Integer score;
     
     private Integer merits;
     
-    private Integer prayNum;
-    
-    private Integer ct;
+    private Long prayNum;
     
     private String clientId;
 
@@ -123,15 +125,15 @@ public class User {
 		this.level = level;
 	}
 
-	public String getRankName() {
-		return rankName;
-	}
+	public String getLevelName() {
+        return levelName;
+    }
 
-	public void setRankName(String rankName) {
-		this.rankName = rankName;
-	}
+    public void setLevelName(String levelName) {
+        this.levelName = levelName;
+    }
 
-	public Integer getScore() {
+    public Integer getScore() {
 		return score;
 	}
 
@@ -147,13 +149,13 @@ public class User {
 		this.merits = merits;
 	}
 
-	public Integer getPrayNum() {
-		return prayNum;
-	}
+    public Long getPrayNum() {
+        return prayNum;
+    }
 
-	public void setPrayNum(Integer prayNum) {
-		this.prayNum = prayNum;
-	}
+    public void setPrayNum(Long prayNum) {
+        this.prayNum = prayNum;
+    }
 
     public Integer getCt() {
         return ct;
@@ -169,6 +171,14 @@ public class User {
 
     public void setClientId(String clientId) {
         this.clientId = clientId;
+    }
+
+    public Integer getUt() {
+        return ut;
+    }
+
+    public void setUt(Integer ut) {
+        this.ut = ut;
     }
     
 }

@@ -15,6 +15,8 @@ public class Msg {
     
     private Integer ct;
     
+    private Integer ut;
+    
     private Byte status;
     
     private Integer userId;
@@ -51,36 +53,20 @@ public class Msg {
         this.id = id;
     }
 
-    public String getContent() {
-        return content;
+    public Integer getCt() {
+        return ct;
     }
 
-    public void setContent(String content) {
-        this.content = content;
+    public void setCt(Integer ct) {
+        this.ct = ct;
     }
 
-    public Integer getBangNum() {
-        return bangNum;
+    public Integer getUt() {
+        return ut;
     }
 
-    public void setBangNum(Integer bangNum) {
-        this.bangNum = bangNum;
-    }
-
-    public Integer getShareNum() {
-        return shareNum;
-    }
-
-    public void setShareNum(Integer shareNum) {
-        this.shareNum = shareNum;
-    }
-
-    public Integer getCommentNum() {
-        return commentNum;
-    }
-
-    public void setCommentNum(Integer commentNum) {
-        this.commentNum = commentNum;
+    public void setUt(Integer ut) {
+        this.ut = ut;
     }
 
     public Byte getStatus() {
@@ -115,12 +101,36 @@ public class Msg {
         this.scope = scope;
     }
 
-    public Integer getCt() {
-        return ct;
+    public Integer getBangNum() {
+        return bangNum;
     }
 
-    public void setCt(Integer ct) {
-        this.ct = ct;
+    public void setBangNum(Integer bangNum) {
+        this.bangNum = bangNum;
+    }
+
+    public Integer getShareNum() {
+        return shareNum;
+    }
+
+    public void setShareNum(Integer shareNum) {
+        this.shareNum = shareNum;
+    }
+
+    public Integer getCommentNum() {
+        return commentNum;
+    }
+
+    public void setCommentNum(Integer commentNum) {
+        this.commentNum = commentNum;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
     }
 
     public String getImage1() {

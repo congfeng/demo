@@ -39,7 +39,8 @@
     
     <sql id="query_where">
         WHERE 1=1
-        <if test="1 == 1">AND 1 = 1</if>
+        <if test="msgId != null">AND msg_id = #{msgId}</if>
+        <if test="userId != null">AND user_id = #{userId}</if>
     </sql>
 	
 </mapper>

@@ -3,27 +3,42 @@
 <mapper namespace="com.cf.code.dao.UserDao">
 	
 	<insert id="insert" parameterType="com.cf.code.entity.User">
-        INSERT INTO user(ct,status,phone,password,is_temple)
-        VALUES (UNIX_TIMESTAMP(NOW()),#{status},#{phone},#{password},#{isTemple})
+        INSERT INTO user(ct,ut,status,phone,password,is_temple
+            ,level_name,level,score,merits,pray_num,client_id)
+        VALUES (UNIX_TIMESTAMP(NOW()),UNIX_TIMESTAMP(NOW()),#{status},#{phone},#{password},#{isTemple}
+            ,#{levelName},#{level},#{score},#{merits},#{prayNum},#{clientId})
         <selectKey keyProperty="id" resultType="java.lang.Integer" order="AFTER" statementType="STATEMENT">
             select last_insert_id()
         </selectKey>
     </insert>
-			
+    
     <delete id="delete">
         DELETE FROM user WHERE id = #{id,jdbcType=INTEGER}
     </delete>
     
     <update id="update">
         UPDATE user 
-           SET nick = #{nick}
+           SET ut = UNIX_TIMESTAMP(NOW())
+           <if test="password != null">,password = #{password}</if>
+           <if test="nick != null">,nick = #{nick}</if>
+           <if test="portrait != null">,portrait = #{portrait}</if>
+           <if test="cover != null">,cover = #{cover}</if>
+           <if test="description != null">,description = #{description}</if>
          WHERE id = #{id,jdbcType=INTEGER}
     </update>
     
     <update id="updateStatus">
         UPDATE user
-           SET status = #{status}
+           SET ut = UNIX_TIMESTAMP(NOW())
+           ,status = #{status}
          WHERE id = #{id,jdbcType=INTEGER}
     </update>
 	
+	<update id="updateClientId">
+        UPDATE user 
+           SET ut = UNIX_TIMESTAMP(NOW())
+           ,client_id = #{clientId}
+         WHERE id = #{id,jdbcType=INTEGER}
+    </update>
+    
 </mapper>

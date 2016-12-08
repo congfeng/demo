@@ -1,0 +1,7 @@
+
+注册：
+http://localhost/app/user/register?phone=13521735685&password=123456
+登录：
+http://localhost/app/user/login?phone=13521735685&password=123456
+修改密码：
+http://localhost/app/user/resetpassword?userId=6&clientId=1481188087384&newpassword=d

@@ -4,13 +4,14 @@
 	
 	<resultMap id="CommunityRet" type="com.cf.code.entity.Community">
 		<result property="id" column="id" />
-		<result property="userId" column="user_id" />
 		<result property="ct" column="ct" />
+        <result property="ut" column="ut" />
+        <result property="status" column="status" />
+		<result property="userId" column="user_id" />
 		<result property="nick" column="nick" />
 		<result property="description" column="description" />
 		<result property="portrait" column="portrait" />
 		<result property="cover" column="cover" />
-		<result property="status" column="status" />
 		<result property="limitNum" column="limit_num" />
 	</resultMap>
 	
