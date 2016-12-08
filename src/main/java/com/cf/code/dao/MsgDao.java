@@ -31,5 +31,7 @@ public interface MsgDao {
     public List<Msg> queryPage(@Param("start") Integer start,@Param("size") Integer size);
     
     public int queryCount();
-    updateCounter
+    
+    public void updateCounter(@Param("bangNum") Integer bangNum,@Param("shareNum") Integer shareNum,@Param("commentNum") Integer commentNum);
+    
 }

@@ -92,4 +92,12 @@ public class MsgDaoTest extends AbstractTestCase{
         log.info(count);
     }
     
+    public void testUpdateCounter(){
+    	Integer bangNum = null;
+    	Integer shareNum = -10;
+    	Integer commentNum = 90;
+        msgDaoRead.updateCounter(bangNum, shareNum, commentNum);
+        log.info("end");
+    }
+    
 }
