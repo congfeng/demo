@@ -3,10 +3,14 @@
  */
 package com.cf.code.web.app;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 
+import org.apache.commons.lang.ObjectUtils;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -73,9 +77,9 @@ public class MsgController {
     MsgShareDao msgShareDaoRead;
     
     @AccessVerifier
-    @RequestMapping(value = {"create"}, method = { RequestMethod.GET,RequestMethod.POST})
+    @RequestMapping(value = {"add"}, method = { RequestMethod.GET,RequestMethod.POST})
     @ResponseBody
-    public Object create(@RequestParam(required = false)Profile profile
+    public Object add(@RequestParam(required = false)Profile profile
             ,@RequestParam(required = true) String scope
             ,@RequestParam(required = false) Integer communityId
             ,@RequestParam(required = false) String content
@@ -94,9 +98,7 @@ public class MsgController {
         } catch (Exception e) {
             throw new BusinessException("scope非法");
         }
-        if(communityId == null){
-            communityId = 0;
-        }
+        communityId = (Integer) ObjectUtils.defaultIfNull(communityId, 0);
         Msg msg = new Msg();
         msg.setStatus(CommonStatus.MsgEnable.value);
         msg.setUserId(profile.getUserId());
@@ -130,11 +132,37 @@ public class MsgController {
     }
     
     @AccessVerifier
-    @RequestMapping(value = {"query"}, method = { RequestMethod.GET,RequestMethod.POST})
+    @RequestMapping(value = {"list"}, method = { RequestMethod.GET,RequestMethod.POST})
     @ResponseBody
-    public Object query(@RequestParam(required = false)Profile profile
-            ,@RequestParam(required = true) String newpassword){
-        return true;
+    public Object list(Model model
+            ,@RequestParam(required = true) String scope
+            ,@RequestParam(required = false) Integer userId
+            ,@RequestParam(required = false) Integer communityId
+            ,@RequestParam(required = false) Integer lastId
+            ,@RequestParam(required = false) Integer limit) throws BusinessException{
+        MsgScope msgScope = null;
+        try {
+            msgScope = MsgScope.valueOf(scope);
+        } catch (Exception e) {
+            throw new BusinessException("scope非法");
+        }
+        communityId = (Integer) ObjectUtils.defaultIfNull(communityId, 0);
+        limit = (Integer) ObjectUtils.defaultIfNull(limit, 20);
+        Byte[] scopes = new Byte[]{msgScope.value};
+        if(msgScope.equals(MsgScope.PUBLIC)){
+            scopes = new Byte[]{MsgScope.PUBLIC.value,MsgScope.PUBLICCommunity.value};
+        }else if(msgScope.equals(MsgScope.Community)){
+            scopes = new Byte[]{MsgScope.Community.value,MsgScope.PUBLICCommunity.value};
+        }
+        List<Msg> msgs = msgDaoRead.query(scopes, userId, communityId, lastId, limit);
+        for(Msg msg:msgs){
+            lastId = msg.getId();
+            List<MsgComment> msgComments = msgCommentDaoRead.queryByMsgId(lastId);
+            msg.setMsgComments(msgComments);
+        }
+        model.addAttribute("msgs", msgs);
+        model.addAttribute("lastId", lastId);
+        return model;
     }
     
     @AccessVerifier
@@ -160,6 +188,7 @@ public class MsgController {
         msgBang.setMsgId(msgId);
         msgBang.setUserId(profile.getUserId());
         msgBangDao.insert(msgBang);
+        msgDao.updateCounter(msgId,1, null, null);
         return true;
     }
     
@@ -173,13 +202,14 @@ public class MsgController {
         msgShare.setMsgId(msgId);
         msgShare.setUserId(profile.getUserId());
         msgShareDao.insert(msgShare);
+        msgDao.updateCounter(msgId,null, 1, null);
         return true;
     }
     
     @AccessVerifier
-    @RequestMapping(value = {"comment/create"}, method = { RequestMethod.GET,RequestMethod.POST})
+    @RequestMapping(value = {"comment/add"}, method = { RequestMethod.GET,RequestMethod.POST})
     @ResponseBody
-    public Object commentCreate(@RequestParam(required = false)Profile profile
+    public Object commentAdd(@RequestParam(required = false)Profile profile
             ,@RequestParam(required = true) Integer msgId
             ,@RequestParam(required = true) String content
             ,@RequestParam(required = false) Integer opUserId) throws BusinessException{
@@ -190,6 +220,7 @@ public class MsgController {
         msgComment.setContent(content);
         msgComment.setOpUserId(opUserId);
         msgCommentDao.insert(msgComment);
+        msgDao.updateCounter(msgId,null, null, 1);
         return msgComment;
     }
     
@@ -206,13 +237,14 @@ public class MsgController {
             throw new BusinessException("不能删除别人的评论");
         }
         msgCommentDao.delete(commentId);
+        msgDao.updateCounter(msgComment.getMsgId(),null, null, -1);
         return true;
     }
     
     @AccessVerifier
-    @RequestMapping(value = {"collect/create"}, method = { RequestMethod.GET,RequestMethod.POST})
+    @RequestMapping(value = {"collect/add"}, method = { RequestMethod.GET,RequestMethod.POST})
     @ResponseBody
-    public Object collectCreate(@RequestParam(required = false)Profile profile,
+    public Object collectAdd(@RequestParam(required = false)Profile profile,
             @RequestParam(required = true) Integer msgId) throws BusinessException{
         Msg msg = msgService.load(msgId);
         MsgCollect msgCollect = new MsgCollect();

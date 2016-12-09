@@ -39,16 +39,16 @@ public class AppAccessVerifier extends WebAdvice{
         String userId = request.getParameter(Constant.UserId);
         String clientId = request.getParameter(Constant.ClientId);
         if(StringUtils.isEmpty(userId)){
-            throw new AccessException("参数缺失[userId]");
+            throw new AccessException("参数缺失["+Constant.UserId+"]");
         }
         Integer uId = null;
         try {
             uId = Integer.valueOf(userId);
         } catch (Exception e) {
-            throw new AccessException("参数类型错误[userId]");
+            throw new AccessException("参数类型错误["+Constant.UserId+"]");
         }
         if(StringUtils.isEmpty(clientId)){
-            throw new AccessException("参数缺失[clientId]");
+            throw new AccessException("参数缺失["+Constant.ClientId+"]");
         }
         HttpSession session = ((ServletRequestAttributes)RequestContextHolder.getRequestAttributes()).getRequest().getSession();
         Profile profile = (Profile)session.getAttribute(userId);

@@ -66,4 +66,10 @@ public class MsgCommentDaoTest extends AbstractTestCase{
         log.info(count);
     }
     
+    public void testQueryByMsgId(){
+        Integer msgId = 1;
+        List<MsgComment> msgCommentList = msgCommentDaoRead.queryByMsgId(msgId);
+        log.info(StringUtil.toJson(msgCommentList));
+    }
+    
 }

@@ -28,4 +28,6 @@ public interface MsgCommentDao {
     
     public int queryCount();
     
+    public List<MsgComment> queryByMsgId(@Param("msgId") Integer msgId);
+    
 }

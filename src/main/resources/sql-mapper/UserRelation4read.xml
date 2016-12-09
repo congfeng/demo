@@ -43,7 +43,18 @@
     
     <sql id="query_where">
         WHERE 1=1
-        <if test="1 == 1">AND 1 = 1</if>
+        <if test="userId != null">AND user_id = #{userId}</if>
+        <if test="opUserId != null">AND op_user_id = #{opUserId}</if>
+        <if test="isFriend != null">AND is_friend = #{isFriend}</if>
+        <if test="isOpFriend != null">AND is_op_friend = #{isOpFriend}</if>
+        <if test="isEnemy != null">AND is_enemy = #{isEnemy}</if>
     </sql>
+    
+    <select id="findByUser" resultMap="UserRelationRet">
+        SELECT *
+          FROM user_relation
+         WHERE user_id = #{userId}
+           AND op_user_id = #{opUserId}
+    </select>
 	
 </mapper>

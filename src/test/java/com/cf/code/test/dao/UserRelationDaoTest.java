@@ -59,20 +59,42 @@ public class UserRelationDaoTest extends AbstractTestCase{
     }
     
     public void testQuery(){
-        List<UserRelation> userRelationList = userRelationDaoRead.query();
+        Integer userId = null;
+        Integer opUserId = null;
+        Boolean isFriend = false;
+        Boolean isOpFriend = null;
+        Boolean isEnemy = null;
+        List<UserRelation> userRelationList = userRelationDaoRead.query(userId, opUserId,isFriend, isOpFriend, isEnemy);
         log.info(StringUtil.toJson(userRelationList));
     }
     
     public void testQueryPage(){
+        Integer userId = null;
+        Integer opUserId = null;
+        Boolean isFriend = null;
+        Boolean isOpFriend = null;
+        Boolean isEnemy = null;
         Integer start = 0;
         Integer size = 5;
-        List<UserRelation> userRelationList = userRelationDaoRead.queryPage(start, size);
+        List<UserRelation> userRelationList = userRelationDaoRead.queryPage(userId, opUserId,isFriend, isOpFriend, isEnemy, start, size);
         log.info(StringUtil.toJson(userRelationList));
     }
     
     public void testQueryCount(){
-        int count = userRelationDaoRead.queryCount();
+        Integer userId = null;
+        Integer opUserId = null;
+        Boolean isFriend = null;
+        Boolean isOpFriend = null;
+        Boolean isEnemy = null;
+        int count = userRelationDaoRead.queryCount(userId, opUserId,isFriend, isOpFriend, isEnemy);
         log.info(count);
+    }
+    
+    public void testFindByUser(){
+        Integer userId = 1;
+        Integer opUserId = 2;
+        UserRelation userRelation = userRelationDaoRead.findByUser(userId, opUserId);
+        log.info(userRelation);
     }
     
 }

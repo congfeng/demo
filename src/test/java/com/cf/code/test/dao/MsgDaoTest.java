@@ -5,6 +5,8 @@ package com.cf.code.test.dao;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.cf.code.common.StringUtil;
 import com.cf.code.dao.MsgDao;
 import com.cf.code.entity.Msg;
@@ -76,8 +78,16 @@ public class MsgDaoTest extends AbstractTestCase{
     }
     
     public void testQuery(){
-        List<Msg> msgList = msgDaoRead.query();
+        Byte[] scopes = new Byte[]{MsgScope.PUBLIC.value,MsgScope.PUBLICCommunity.value};
+        Integer userId = 1;
+        Integer communityId = null;
+        Integer lastId = 17;
+        Integer limit = 3;
+        List<Msg> msgList = msgDaoRead.query(scopes, userId, communityId, lastId, limit);
         log.info(StringUtil.toJson(msgList));
+        for(Msg msg:msgList){
+            log.info(msg.getId());
+        }
     }
     
     public void testQueryPage(){
@@ -93,10 +103,11 @@ public class MsgDaoTest extends AbstractTestCase{
     }
     
     public void testUpdateCounter(){
+        Integer id = 5;
     	Integer bangNum = null;
     	Integer shareNum = -10;
     	Integer commentNum = 90;
-        msgDaoRead.updateCounter(bangNum, shareNum, commentNum);
+        msgDao.updateCounter(id,bangNum, shareNum, commentNum);
         log.info("end");
     }
     

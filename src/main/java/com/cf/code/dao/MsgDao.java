@@ -26,12 +26,15 @@ public interface MsgDao {
 
     public Msg find(@Param("id") Integer id);
     
-    public List<Msg> query();
+    public List<Msg> query(@Param("scopes") Byte[] scopes,
+            @Param("userId") Integer userId,@Param("communityId") Integer communityId,
+            @Param("lastId") Integer lastId,@Param("limit") Integer limit);
     
     public List<Msg> queryPage(@Param("start") Integer start,@Param("size") Integer size);
     
     public int queryCount();
     
-    public void updateCounter(@Param("bangNum") Integer bangNum,@Param("shareNum") Integer shareNum,@Param("commentNum") Integer commentNum);
+    public void updateCounter(@Param("id") Integer id,@Param("bangNum") Integer bangNum,
+            @Param("shareNum") Integer shareNum,@Param("commentNum") Integer commentNum);
     
 }

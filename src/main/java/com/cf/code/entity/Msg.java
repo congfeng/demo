@@ -3,6 +3,8 @@
  */
 package com.cf.code.entity;
 
+import java.util.List;
+
 
 /**
  * @Version: 1.0
@@ -44,6 +46,8 @@ public class Msg {
     private String image5;
     
     private String image6;
+    
+    List<MsgComment> msgComments;
 
     public Integer getId() {
         return id;
@@ -179,6 +183,14 @@ public class Msg {
 
     public void setImage6(String image6) {
         this.image6 = image6;
+    }
+
+    public List<MsgComment> getMsgComments() {
+        return msgComments;
+    }
+
+    public void setMsgComments(List<MsgComment> msgComments) {
+        this.msgComments = msgComments;
     }
     
 }

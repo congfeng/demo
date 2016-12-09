@@ -32,8 +32,8 @@
        SELECT *
          FROM msg
         <include refid="query_where" />
-        ORDER BY id ASC
-        LIMIT 100
+        ORDER BY id DESC
+        LIMIT #{limit}
     </select>
     
     <select id="queryPage" resultMap="MsgRet" >
@@ -52,7 +52,15 @@
     
     <sql id="query_where">
         WHERE 1=1
-        <if test="1 == 1">AND 1 = 1</if>
+        <if test="scopes != null and scopes.length > 0"> 
+            AND scope in
+            <foreach collection="scopes" index="index" item="scope" open="(" separator="," close=")">   
+                #{scope}
+            </foreach>
+        </if>
+        <if test="userId != null">AND user_id = #{userId}</if>
+        <if test="communityId != null">AND community_id = #{communityId}</if>
+        <if test="lastId != null">AND id &lt; #{lastId}</if>
     </sql>
 	
 </mapper>

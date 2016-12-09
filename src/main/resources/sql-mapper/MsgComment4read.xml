@@ -43,5 +43,12 @@
         WHERE 1=1
         <if test="1 == 1">AND 1 = 1</if>
     </sql>
+    
+    <select id="queryByMsgId" resultMap="MsgCommentRet" >
+       SELECT *
+         FROM msg_comment
+        WHERE msg_id = #{msgId}
+        ORDER BY id ASC
+    </select>
 	
 </mapper>
