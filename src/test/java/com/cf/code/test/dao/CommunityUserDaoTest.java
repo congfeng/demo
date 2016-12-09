@@ -30,7 +30,7 @@ public class CommunityUserDaoTest extends AbstractTestCase{
     public void testInsert(){
         CommunityUser communityUser = new CommunityUser();
 //        必须
-        communityUser.setStatus(CommonStatus.CommunityUser1.value);
+        communityUser.setStatus(CommonStatus.CommunityUserApply.value);
         communityUser.setUserId(1);
         communityUser.setCommunityId(1);
         communityUser.setRole(CommunityUserRole.Creator.value);
@@ -53,7 +53,7 @@ public class CommunityUserDaoTest extends AbstractTestCase{
     
     public void testUpdateStatus(){
         Integer id = 2;
-        Byte status = CommonStatus.CommunityUser1.value;
+        Byte status = CommonStatus.CommunityUserEnable.value;
         boolean b = communityUserDao.updateStatus(id, status);
         log.info(b);
     }

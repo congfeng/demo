@@ -10,9 +10,9 @@ package com.cf.code.entity.enums;
  */
 public enum CommunityUserRole {
 
-    Creator(10,"1"),
-    Manager(11,"2"),
-    User(20,"2"),
+    Creator(10,"创建者"),
+    Manager(11,"管理员"),
+    User(20,"用户"),
     ;
     
     private CommunityUserRole(Integer value,String desc){

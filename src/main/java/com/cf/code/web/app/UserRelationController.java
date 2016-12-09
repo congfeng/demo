@@ -99,8 +99,25 @@ public class UserRelationController {
     @RequestMapping(value = {"enemy/add"}, method = { RequestMethod.GET,RequestMethod.POST})
     @ResponseBody
     public Object enemyAdd(@RequestParam(required = false)Profile profile,
-            @RequestParam(required = true) Integer opUserId){
-//        this.userDao.update(profile.getUserId(), newpassword, null, null, null, null);
+            @RequestParam(required = true) Integer opUserId) throws BusinessException{
+    	User opUser = userDaoRead.find(opUserId);
+        if(opUser == null){
+            throw new BusinessException("对方的用户不存在");
+        }
+        UserRelation opUserRelation = userRelationDao.findByUser(opUserId, profile.getUserId());
+        Boolean isOpFriend = (opUserRelation != null&&opUserRelation.getIsFriend());
+        UserRelation userRelation = userRelationDao.findByUser(profile.getUserId(),opUserId);
+        if(userRelation == null){
+        	userRelation = new UserRelation();
+            userRelation.setUserId(profile.getUserId());
+            userRelation.setOpUserId(opUserId);
+            userRelation.setIsFriend(false);
+            userRelation.setIsOpFriend(isOpFriend);
+            userRelation.setIsEnemy(true);
+            userRelationDao.insert(userRelation);
+        }else{
+        	userRelationDao.update(userRelation.getId(), null, null, true);
+        }
         return true;
     }
     
@@ -108,9 +125,18 @@ public class UserRelationController {
     @RequestMapping(value = {"enemy/delete"}, method = { RequestMethod.GET,RequestMethod.POST})
     @ResponseBody
     public Object enemyDelete(@RequestParam(required = false)Profile profile,
-            @RequestParam(required = true) Integer opUserId){
-//        this.userDao.update(profile.getUserId(), newpassword, null, null, null, null);
-        return true;
+            @RequestParam(required = true) Integer opUserId) throws BusinessException{
+    	User opUser = userDaoRead.find(opUserId);
+        if(opUser == null){
+            throw new BusinessException("对方的用户不存在");
+        }
+        UserRelation userRelation = userRelationDao.findByUser(profile.getUserId(),opUserId);
+        if(userRelation == null||!userRelation.getIsEnemy()){
+            return false;
+        }else{
+            userRelationDao.update(userRelation.getId(), null, null, false);
+            return true;
+        }
     }
     
 }
