@@ -11,8 +11,6 @@ package com.cf.code.entity.enums;
 public enum MsgScope {
     
     PUBLIC(10,"大厅"),
-    Community(11,"社区"),
-    PUBLICCommunity(12,"大厅和社区"),
     Temple(13,"寺院"),
     ;
     

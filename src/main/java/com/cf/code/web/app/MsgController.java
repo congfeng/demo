@@ -149,11 +149,6 @@ public class MsgController {
         communityId = (Integer) ObjectUtils.defaultIfNull(communityId, 0);
         limit = (Integer) ObjectUtils.defaultIfNull(limit, 20);
         Byte[] scopes = new Byte[]{msgScope.value};
-        if(msgScope.equals(MsgScope.PUBLIC)){
-            scopes = new Byte[]{MsgScope.PUBLIC.value,MsgScope.PUBLICCommunity.value};
-        }else if(msgScope.equals(MsgScope.Community)){
-            scopes = new Byte[]{MsgScope.Community.value,MsgScope.PUBLICCommunity.value};
-        }
         List<Msg> msgs = msgDaoRead.query(scopes, userId, communityId, lastId, limit);
         for(Msg msg:msgs){
             lastId = msg.getId();

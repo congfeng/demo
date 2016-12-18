@@ -5,3 +5,24 @@ http://localhost/app/user/register?phone=13521735685&password=123456
 http://localhost/app/user/login?phone=13521735685&password=123456
 修改密码：
 http://localhost/app/user/resetpassword?userId=6&clientId=1481188087384&newpassword=d
+
+
+
+1. 查询当天首页
+   是否斋日
+   佛诞日（哪个佛）
+   每日一禅（图片、文字、音乐等信息）
+2. 查询佛历/黄历（可能以月为单位查询）
+3. 查询藏历（可能以月为单位查询）
+4. 签到
+5. 记录（类别、时间、次数、内容、祈福币）
+7. 记录功德回向（类别、对方姓名、回向文）
+
+   
+
+
+
+
+
+
+   
