@@ -35,7 +35,7 @@ public class MsgDaoTest extends AbstractTestCase{
         msg.setStatus(CommonStatus.MsgEnable.value);
         msg.setUserId(1);
         msg.setCommunityId(0);
-        msg.setScope(MsgScope.PUBLICCommunity.value);
+        msg.setScope(MsgScope.PUBLIC.value);
         msg.setBangNum(0);
         msg.setShareNum(0);
         msg.setCommentNum(0);
@@ -78,7 +78,7 @@ public class MsgDaoTest extends AbstractTestCase{
     }
     
     public void testQuery(){
-        Byte[] scopes = new Byte[]{MsgScope.PUBLIC.value,MsgScope.PUBLICCommunity.value};
+        Byte[] scopes = new Byte[]{MsgScope.PUBLIC.value,MsgScope.PUBLIC.value};
         Integer userId = 1;
         Integer communityId = null;
         Integer lastId = 17;
