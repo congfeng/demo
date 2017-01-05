@@ -3,7 +3,9 @@
  */
 package com.cf.code.web.app;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 import javax.annotation.Resource;
 
@@ -265,4 +267,60 @@ public class MsgController {
         return true;
     }
     
+    @RequestMapping(value = {"test"}, method = { RequestMethod.GET,RequestMethod.POST})
+    @ResponseBody
+    public Object test(Model model
+            ,@RequestParam(required = false) Integer sizeMsg
+            ,@RequestParam(required = false) Integer sizeComment
+            ,@RequestParam(required = false) Integer wordCountMsg
+            ,@RequestParam(required = false) Integer wordCountComment){
+        List<Msg> msgs = new ArrayList<Msg>();
+        for(int i=0;i<sizeMsg;i++){
+            Msg msg = new Msg();
+            msg.setBangNum(20);
+            msg.setCommentNum(20);
+            msg.setShareNum(20);
+            msg.setCt((int)(System.currentTimeMillis()/1000));
+            msg.setUt((int)(System.currentTimeMillis()/1000));
+            msg.setScope((byte)1);
+            msg.setStatus((byte)1);
+            msg.setUserId(100000);
+            msg.setCommunityId(100010000);
+            msg.setId(10001000);
+            msg.setImage1(UUID.randomUUID().toString());
+            msg.setImage2(UUID.randomUUID().toString());
+            msg.setImage3(UUID.randomUUID().toString());
+            msg.setImage4(UUID.randomUUID().toString());
+            msg.setImage5(UUID.randomUUID().toString());
+            msg.setImage6(UUID.randomUUID().toString());
+            StringBuilder msgContent = new StringBuilder();
+            for(int ii=0;ii<wordCountMsg;ii++){
+                msgContent.append("字");
+            }
+            msg.setContent(msgContent.toString());
+            List<MsgComment> msgComments = new ArrayList<MsgComment>();
+            for(int j=0;j<sizeComment;j++){
+                MsgComment msgComment = new MsgComment();
+                StringBuilder msgCommentContent = new StringBuilder();
+                for(int jj=0;jj<wordCountComment;jj++){
+                    msgCommentContent.append("评");
+                }
+                msgComment.setCt((int)(System.currentTimeMillis()/1000));
+                msgComment.setId(100010000);
+                msgComment.setMsgId(10001000);
+                msgComment.setUserId(100000);
+                msgComment.setOpUserId(100000);
+                msgComment.setContent(msgCommentContent.toString());
+                msgComments.add(msgComment);
+            }
+            msg.setMsgComments(msgComments);
+            msgs.add(msg);
+        }
+        model.addAttribute("msgs", msgs);
+        model.addAttribute("sizeMsg", sizeMsg);
+        model.addAttribute("sizeComment", sizeComment);
+        model.addAttribute("wordCountMsg", wordCountMsg);
+        model.addAttribute("wordCountComment", wordCountComment);
+        return model;
+    }
 }
