@@ -13,6 +13,8 @@ $(document).on("pageInit","#index",function(e, pageId, $page) {
 });
 
 $(document).on("pageInit",function(e, pageId, $page) {
+    //alert(window.location.search);
+    //getQueryString
 	console.log(pageId);
 	$page.append(pswpHTML());
 	initPhotoSwipeFromDOM('.my-gallery');
