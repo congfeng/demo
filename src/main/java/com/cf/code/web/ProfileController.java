@@ -18,7 +18,6 @@ import com.cf.code.core.aop.AccessVerifier;
 import com.cf.code.core.exception.BusinessException;
 import com.cf.code.dao.MsgDao;
 import com.cf.code.entity.Profile;
-import com.cf.code.service.ImService;
 
 /**
  * @Version: 1.0
@@ -31,9 +30,6 @@ public class ProfileController {
 	
 	@Resource(name = "msgDaoRead")
 	MsgDao msgDaoRead;
-	
-	@Resource(name = "imService")
-	ImService imService;
 	
 	@RequestMapping(value = {"login"}, method = { RequestMethod.GET,RequestMethod.POST})
 	@ResponseBody

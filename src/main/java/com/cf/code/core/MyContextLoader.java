@@ -6,9 +6,6 @@ package com.cf.code.core;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 
-import com.corundumstudio.socketio.Configuration;
-import com.corundumstudio.socketio.SocketIOServer;
-
 /**
  * @Version: 1.0
  * @Author: 丛峰
@@ -26,19 +23,7 @@ public class MyContextLoader {
 	
 	private static volatile Integer imPort;
 	
-	public static volatile SocketIOServer imServer;
-	
 	public void init(){
-		try{
-			Configuration config = new Configuration();
-	        config.setHostname(imHost);
-	        config.setPort(imPort);
-	        imServer = new SocketIOServer(config);
-	        imServer.start();
-	        log.info("im 启动成功");
-		}catch(Exception e){
-			log.error("im 启动失败", e);
-		}
 		Runtime.getRuntime().addShutdownHook(new Thread(new Runnable() {
 			@Override
 			public void run() {
@@ -48,10 +33,7 @@ public class MyContextLoader {
 	}
 
 	public void destroy(){
-//		if(ImServer != null){
-//			ImServer.stop();
-//			log.info("im 关闭成功");
-//		}
+		
 	}
 
 	public void setUploadFolder(String uploadFolder) {

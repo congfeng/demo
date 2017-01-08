@@ -10,13 +10,11 @@
 	<!-- 扫描文件（自动将service层注入） -->
 	<context:component-scan base-package="com.cf.code.service.**" />
 	
-	<!-- 
 	<bean id="MyContextLoader" class="com.cf.code.core.MyContextLoader" scope="singleton"  init-method="init"  destroy-method="destroy">
 		<property name="uploadFolder" value="${pom.upload.folder}"/>
 		<property name="uploadPath" value="${pom.upload.path}"/>
 		<property name="imHost" value="${pom.im.host}"/>
 		<property name="imPort" value="${pom.im.port}"/>
-	</bean> 
-	-->
+	</bean>
 	
 </beans>
