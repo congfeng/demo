@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/beans 
+		http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+	<!-- ============ 定时设置 ============ 
+    	每10秒：*/10 * * * * ?
+    	每10分钟：0 */10 * * * ?
+		每天0:00运行： 0 0 0 * * ?  
+		每天1:00运行： 0 0 1 * * ?   
+		每1个小时执行一次    0 0 * * * ?  
+		每5分钟： 0 0/5 * * * ? *
+		每一分钟：0 0/1 * * * ? *
+		每30分钟：0 0/30 * * * ? *
+    -->
+    
+	<bean id="EmptyJob" class="com.cf.code.job.EmptyJob"/>
+	
+	<!-- job执行工作 -->
+	<bean id="jobDetail_EmptyJob" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+ 		<property name="targetObject" ref="EmptyJob" />
+ 		<property name="targetMethod" value="doit" />
+ 		<property name="concurrent" value="false" />
+	</bean>
+	
+	<bean id="cronTrigger_EmptyJob" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+		<property name="jobDetail" ref="jobDetail_EmptyJob" />
+		<property name="cronExpression" value="0 0/1 * * * ? *" />
+	</bean>
+	
+	<!-- 定时任务主配置 -->
+	<bean id="EmptyScheduler" class="org.springframework.scheduling.quartz.SchedulerFactoryBean" scope="singleton">
+		<property name="startupDelay" value="60" />
+		<property name="autoStartup" value="true"/> 
+		<property name="triggers">
+			<list>
+				<ref local="cronTrigger_EmptyJob" />
+			</list>
+		</property>
+	</bean>
+
+</beans>
