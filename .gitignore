@@ -7,3 +7,4 @@
 /logs/
 /.settings/
 envs/prd.properties
+envs/test.properties
