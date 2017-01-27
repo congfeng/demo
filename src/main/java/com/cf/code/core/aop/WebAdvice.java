@@ -20,6 +20,7 @@ import org.springframework.http.converter.json.MappingJacksonValue;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
+import com.cf.code.common.Constant.TransmitField;
 import com.cf.code.core.exception.AccessException;
 import com.cf.code.core.exception.BusinessException;
 
@@ -80,10 +81,11 @@ public abstract class WebAdvice implements MethodInterceptor{
             response.sendError(HttpServletResponse.SC_SERVICE_UNAVAILABLE,m);
             return null;
         }
-        response.setStatus(HttpServletResponse.SC_SERVICE_UNAVAILABLE);
+//        response.setStatus(HttpServletResponse.SC_SERVICE_UNAVAILABLE);
         Map<String, Object> result = new HashMap<String, Object>();
-        result.put("t", t);
-        result.put("m", m);
+        result.put(TransmitField.Type, t);
+        result.put(TransmitField.Msg, m);
+        result.put(TransmitField.Status,503);
         return result;
     }
     

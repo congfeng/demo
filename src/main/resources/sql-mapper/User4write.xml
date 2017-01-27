@@ -12,6 +12,14 @@
         </selectKey>
     </insert>
     
+	<insert id="insertWx" parameterType="com.cf.code.entity.User">
+        INSERT INTO user(ct,ut,union_id)
+        VALUES (UNIX_TIMESTAMP(NOW()),UNIX_TIMESTAMP(NOW()),#{unionId})
+        <selectKey keyProperty="id" resultType="java.lang.Integer" order="AFTER" statementType="STATEMENT">
+            select last_insert_id()
+        </selectKey>
+    </insert>
+    
     <delete id="delete">
         DELETE FROM user WHERE id = #{id,jdbcType=INTEGER}
     </delete>

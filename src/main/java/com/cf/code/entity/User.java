@@ -44,6 +44,8 @@ public class User {
     private Long prayNum;
     
     private String clientId;
+    
+    private String unionId;
 
 	public Integer getId() {
 		return id;
@@ -180,5 +182,13 @@ public class User {
     public void setUt(Integer ut) {
         this.ut = ut;
     }
+
+	public String getUnionId() {
+		return unionId;
+	}
+
+	public void setUnionId(String unionId) {
+		this.unionId = unionId;
+	}
     
 }

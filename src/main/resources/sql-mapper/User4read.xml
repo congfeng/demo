@@ -20,6 +20,7 @@
 		<result property="merits" column="merits" />
 		<result property="prayNum" column="pray_num" />
 		<result property="clientId" column="client_id" />
+		<result property="unionId" column="union_id" />
 	</resultMap>
 	
 	<select id="find" resultMap="UserResult">
@@ -66,6 +67,12 @@
           FROM user
          WHERE id = #{id,jdbcType=INTEGER}
            AND client_id = #{clientId}
+    </select>
+    
+    <select id="findByUnionId" resultMap="UserResult">
+        SELECT *
+          FROM user
+         WHERE union_id = #{unionId}
     </select>
 	
 </mapper>

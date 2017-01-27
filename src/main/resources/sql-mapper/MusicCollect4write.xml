@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cf.code.dao.MusicCollectDao">
+	
+	<insert id="insert" parameterType="com.cf.code.entity.MusicCollect">
+        INSERT INTO music_collect(ct,user_id,music_id,name,author,size,category)
+        VALUES (UNIX_TIMESTAMP(NOW()),#{userId},#{musicId},#{name},#{author},#{size},#{category})
+        <selectKey keyProperty="id" resultType="java.lang.Integer" order="AFTER" statementType="STATEMENT">
+            select last_insert_id()
+        </selectKey>
+    </insert>
+    
+	<insert id="inserts" parameterType="java.util.List">
+        INSERT INTO music_collect(ct,user_id,music_id,name,author,size,category)
+        VALUES 
+        <foreach collection ="mcList" item="mc" index="index" separator =",">
+            (UNIX_TIMESTAMP(NOW()),#{mc.userId},#{mc.musicId},#{mc.name},#{mc.author},#{mc.size},#{mc.category})
+        </foreach >
+    </insert>
+    
+    <delete id="delete">
+        DELETE FROM music_collect WHERE id = #{id,jdbcType=INTEGER}
+    </delete>
+    
+    <delete id="delete2">
+        DELETE FROM music_collect 
+        WHERE user_id = #{userId,jdbcType=INTEGER} AND music_id = #{musicId,jdbcType=INTEGER}
+    </delete>
+	
+</mapper>

@@ -18,6 +18,8 @@ public interface UserDao {
 
     public void insert(User user);
     
+    public void insertWx(User user);
+    
     public void delete(@Param("id") Integer id);
     
     public boolean update(@Param("id") Integer id,@Param("password") String password,@Param("nick") String nick
@@ -38,5 +40,8 @@ public interface UserDao {
     public User findByPhone(@Param("phone") String phone);
     
     public User findByClientId(@Param("id") Integer id,@Param("clientId") String clientId);
+    
+    public User findByUnionId(@Param("unionId") String unionId);
+    
     
 }

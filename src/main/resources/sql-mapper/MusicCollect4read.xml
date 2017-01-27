@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cf.code.dao.MusicCollectDao">
+	
+	<resultMap id="MusicCollectRet" type="com.cf.code.entity.MusicCollect">
+		<result property="id" column="id" />
+		<result property="userId" column="user_id" />
+		<result property="musicId" column="music_id" />
+		<result property="name" column="name" />
+		<result property="author" column="author" />
+		<result property="size" column="size" />
+		<result property="category" column="category" />
+	</resultMap>
+    
+    <select id="queryByUser" resultMap="MusicCollectRet" >
+       SELECT *
+         FROM music_collect
+        WHERE user_id = #{userId}
+        LIMIT 1000
+    </select>
+    
+    <select id="queryCountByMusic" resultType="int" >
+       SELECT count(1)
+         FROM music_collect
+        WHERE music_id = #{musicId}
+    </select>
+	
+</mapper>
