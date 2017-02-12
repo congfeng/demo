@@ -25,9 +25,14 @@
  		<property name="targetMethod" value="doit" />
  		<property name="concurrent" value="false" />
 	</bean>
-	<bean id="jobDetail_MusicJob" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+	<bean id="jobDetail_MusicJob_updateCollects" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
  		<property name="targetObject" ref="MusicJob" />
- 		<property name="targetMethod" value="doit" />
+ 		<property name="targetMethod" value="updateCollects" />
+ 		<property name="concurrent" value="false" />
+	</bean>
+	<bean id="jobDetail_MusicJob_updateMusicList" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+ 		<property name="targetObject" ref="MusicJob" />
+ 		<property name="targetMethod" value="updateMusicList" />
  		<property name="concurrent" value="false" />
 	</bean>
 	
@@ -35,8 +40,12 @@
 		<property name="jobDetail" ref="jobDetail_EmptyJob" />
 		<property name="cronExpression" value="0 0/1 * * * ? *" />
 	</bean>
-	<bean id="cronTrigger_MusicJob" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
-		<property name="jobDetail" ref="jobDetail_MusicJob" />
+	<bean id="cronTrigger_MusicJob_updateCollects" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+		<property name="jobDetail" ref="jobDetail_MusicJob_updateCollects" />
+		<property name="cronExpression" value="0 0/1 * * * ? *" />
+	</bean>
+	<bean id="cronTrigger_MusicJob_updateMusicList" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+		<property name="jobDetail" ref="jobDetail_MusicJob_updateMusicList" />
 		<property name="cronExpression" value="0 0/1 * * * ? *" />
 	</bean>
 	
@@ -47,7 +56,8 @@
 		<property name="triggers">
 			<list>
 				<ref bean="cronTrigger_EmptyJob" />
-				<ref bean="cronTrigger_MusicJob" />
+				<ref bean="cronTrigger_MusicJob_updateCollects" />
+				<ref bean="cronTrigger_MusicJob_updateMusicList" />
 			</list>
 		</property>
 	</bean>

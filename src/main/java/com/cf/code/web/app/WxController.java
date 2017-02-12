@@ -63,10 +63,10 @@ public class WxController {
 	@Resource(name = "musicCollectDaoRead")
 	MusicCollectDao musicCollectDaoRead;
 	
-	@Value("#{sys.appid}")
+	@Value("#{sys.AppId}")
 	String AppID;
 	
-	@Value("#{sys.appsecret}")
+	@Value("#{sys.AppSecret}")
 	String AppSecret;
 	
 	@RequestMapping(value = {"login"}, method = { RequestMethod.GET,RequestMethod.POST})
