@@ -125,3 +125,4 @@ INSERT INTO music(name,author,size,category) VALUES
 ('心经梵唱','test','12mb',30),
 ('黄财神心咒','祖古·白玛奥色上师','12mb',30),
 ('故郷の原风景上师 - 大悲咒','祖古·白玛奥色宗次郎','12mb',30);
+dddd
