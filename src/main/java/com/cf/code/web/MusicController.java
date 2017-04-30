@@ -63,5 +63,31 @@ public class MusicController {
         return model;
     }
 	
+	@RequestMapping(value = {"find"}, method = { RequestMethod.GET,RequestMethod.POST})
+    @ResponseBody
+    public Object find(Model model,HttpSession session,
+            @RequestParam(required = true) Integer id){
+		Music music = this.musicDaoRead.find(id);
+	    model.addAttribute(music);
+        return model;
+    }
+	
+	@RequestMapping(value = {"delete"}, method = { RequestMethod.GET,RequestMethod.POST})
+    @ResponseBody
+    public Object delete(Model model,HttpSession session,
+            @RequestParam(required = true) Integer id){
+		this.musicDao.delete(id);
+        return model;
+    }
+	
+	@RequestMapping(value = {"update"}, method = { RequestMethod.GET,RequestMethod.POST})
+    @ResponseBody
+    public Object update(Model model,HttpSession session,
+            @RequestParam(required = true) Integer id,
+            @RequestParam(required = true) String name,
+            @RequestParam(required = true) String author){
+		this.musicDao.update(id, name, author);
+        return model;
+    }
 	
 }
