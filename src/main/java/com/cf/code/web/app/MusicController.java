@@ -26,7 +26,7 @@ import com.cf.code.entity.MusicCollect;
  * @author congfeng
  *
  */
-@Controller
+@Controller("App/MusicController")
 @RequestMapping("/app/music")
 public class MusicController {
 

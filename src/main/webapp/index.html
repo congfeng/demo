@@ -26,15 +26,14 @@
 	<script src="http://cdn.bootcss.com/bootstrap-fileinput/4.3.1/js/fileinput.min.js"></script>
 	<script src="http://cdn.bootcss.com/bootstrap-fileinput/4.3.1/js/fileinput_locale_zh.min.js"></script>
 	<script src="http://cdn.bootcss.com/jquery.form/3.51/jquery.form.min.js"></script>
-	<script src="http://cdn.bootcss.com/socket.io/1.4.5/socket.io.min.js"></script>
 	<script src="http://cdn.bootcss.com/messenger/1.4.2/js/messenger.min.js"></script>
 	<script src="/resources/layer/layer.js" type="text/javascript"></script> 
 	
    	<script src="/js/common.js"></script>  
    	<script src="/js/app.js"></script>
-   	<script src="/js/noticemanage.js"></script>
-   	<script src="/js/noticeadd.js"></script>
-   	<script src="/js/noticeupdate.js"></script>
+   	<script src="/js/MusicController.js"></script>
+   	<script src="/js/MusicAddController.js"></script>
+   	<script src="/js/MusicUpdateController.js"></script>
 		
     <!-- Demo page code -->
     
@@ -105,20 +104,13 @@
     <div class="row row-margin-lr">
         <div class="col-md-3">
             <div class="sidebar-nav">
-              	<div id="product-menu-header" class="nav-header" data-toggle="collapse" data-target="#product-menu"><i class='iconfont'>&#xe605;</i>&nbsp;&nbsp;审核管理</div>
-                <ul id="product-menu" class="nav nav-list collapse in">
-                    <li id="product-type1"><a href="#/productmanage?type=1">sy审核</a></li>
-               	</ul>
-            	<div id="notice-menu-header" class="nav-header" data-toggle="collapse" data-target="#notice-menu"><i class='iconfont'>&#xe615;</i>&nbsp;&nbsp;投诉管理</div>
-            	<ul id="notice-menu" class="nav nav-list collapse in">
-              		<li id="notice-type1"><a href="#/noticemanage?type=1">会员投诉</a></li>
-              		<li id="notice-type3"><a href="#/noticemanage?type=3">社区投诉</a></li>
-		           	<li id="notice-type2"><a href="#/noticemanage?type=2">图文投诉</a></li>
-		     	</ul>
-		     	<div id="msg-menu-header" class="nav-header" data-toggle="collapse" data-target="#msg-menu"><i class='iconfont'>&#xe615;</i>&nbsp;&nbsp;信件管理<span class="label label-info msg-count-info"></span></div>
-            	<ul id="msg-menu" class="nav nav-list collapse in">
-              		<li id="msg-receiver"><a href="#/msgreceiver">邮箱设置</a></li>
-		           	<li id="msg-list"><a href="#/msglist">收件箱</a></li>
+		     	<div id="music-menu-header" class="nav-header" data-toggle="collapse" data-target="#music-menu"><i class='iconfont'>&#xe615;</i>&nbsp;&nbsp;音乐管理</div>
+            	<ul id="music-menu" class="nav nav-list collapse in">
+              		<li id="music-category10"><a href="#/music?category=10">佛歌</a></li>
+              		<li id="music-category20"><a href="#/music?category=20">梵乐</a></li>
+		           	<li id="music-category30"><a href="#/music?category=30">经咒</a></li>
+		           	<li id="music-category40"><a href="#/music?category=40">赞偈</a></li>
+		           	<li id="music-category50"><a href="#/music?category=50">禅音</a></li>
 		     	</ul>
         	</div>
     	</div>
@@ -127,7 +119,7 @@
     </div>
 
     
-    <footer style="margin-top:0;padding-top:0;position:fixed;bottom:0;width:100%;">
+    <footer style="margin-top:0;padding-top:0;width:100%;">
         <hr>
         <p class="pull-right">右侧底部信息</p>
         <p>&copy; 左侧底部信息 <a href="#">链接</a></p>

@@ -29,8 +29,6 @@
 	
 	<task:annotation-driven />
 	
-	<bean class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping"/> 
-	
 	<bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
 		 <property name="messageConverters"> 
 		 	<list>

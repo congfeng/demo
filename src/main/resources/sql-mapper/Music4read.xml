@@ -6,6 +6,7 @@
 		<result property="id" column="id" />
 		<result property="name" column="name" />
 		<result property="author" column="author" />
+		<result property="filename" column="filename" />
 		<result property="size" column="size" />
 		<result property="category" column="category" />
 		<result property="collects" column="collects" />

@@ -15,6 +15,8 @@ public class Music {
 	
 	private String author;
 	
+	private String filename;
+	
 	private String size;
 	
 	private Byte category;
@@ -67,6 +69,14 @@ public class Music {
 
 	public void setCollects(Integer collects) {
 		this.collects = collects;
+	}
+
+	public String getFilename() {
+		return filename;
+	}
+
+	public void setFilename(String filename) {
+		this.filename = filename;
 	}
 	
 }
