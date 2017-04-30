@@ -1,0 +1,35 @@
+<ul class="breadcrumb">
+	<li>音乐管理</li>
+	<li>{{categoryName}}</li>
+</ul>
+<div class="btn-toolbar" style="margin-bottom:10px;">
+    <a class="btn btn-primary" href="#/music/add?category={{category}}">+&nbsp;&nbsp;添加音乐</a>
+  	<div class="btn-group"></div>
+</div>
+<div class="well">
+    <table class="table">
+      <thead>
+        <tr>
+          <th style="width: 60px;">#</th>
+          <th>歌曲名称</th>
+          <th>演唱者</th>
+          <th style="width: 100px;">收藏数量</th>
+          <th style="width: 60px;">编辑</th>
+          <th style="width: 60px;">删除</th>
+        </tr>
+      </thead>
+      <tbody class="table_data">
+      	<tr>
+      		<td>0</td>
+      		<td>有可能</td>
+          	<td>曾轶可</td>
+          	<td>9999</td>
+          	<td><a class="delete-btn" href="#/music/update?id=0"><i style="font-size:30px;" class="iconfont">&#xe641;</i></a></td>
+          	<td><a class="delete-btn"><i style="font-size:30px;" class="iconfont">&#xe642;</i></a></td>
+      	</tr>
+      </tbody>
+      <tfoot class="table_info"></tfoot>
+    </table>
+	<span class="table_datas_count"></span>
+</div>
+<ul class="pagination"></ul>
