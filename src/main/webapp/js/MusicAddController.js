@@ -12,19 +12,19 @@ nsApp.controller('MusicAddController',function($scope,$routeParams) {
 		removeClass: "btn btn-danger",
 		removeLabel: "删除",
 		maxFileCount: 1,
-		maxFileSize: 1000,
+		//maxFileSize: 1000,
 		//allowedFileExtensions: ["mp3","mp4", "gif", "png" , "bmp"],
 		allowedFileTypes: ["audio"]
     });
 	$("#add-btn").click(function(){
-		if(_.isEmpty($("#title").val())){
+		if(_.isEmpty($("#name").val())){
 			layer.open({
-				content : '公告标题不能为空',
+				content : '歌曲名称不能为空',
 				btn : [ '确定' ]
 			});
 			return;
 		}
-		$("#noticeform").ajaxSubmit({
+		$("#musicform").ajaxSubmit({
 			type:'post',
             url:'/music/add',
             success:function(data){

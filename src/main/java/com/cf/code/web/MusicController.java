@@ -3,6 +3,7 @@
  */
 package com.cf.code.web;
 
+import java.io.IOException;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -16,11 +17,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
+import com.cf.code.common.FileUtil;
 import com.cf.code.common.Pager;
 import com.cf.code.dao.MusicCollectDao;
 import com.cf.code.dao.MusicDao;
 import com.cf.code.entity.Music;
+import com.cf.code.service.OssService;
 
 /**
  * @author congfeng
@@ -44,6 +48,9 @@ public class MusicController {
 	@Resource(name = "musicCollectDaoRead")
 	MusicCollectDao musicCollectDaoRead;
 	
+	@Resource(name = "ossService")
+	OssService ossService;
+	
 	@RequestMapping(value = {"list"}, method = { RequestMethod.GET,RequestMethod.POST})
     @ResponseBody
     public Object list(Model model,HttpSession session,
@@ -63,12 +70,33 @@ public class MusicController {
         return model;
     }
 	
+	@RequestMapping(value = {"add"}, method = { RequestMethod.GET,RequestMethod.POST})
+    @ResponseBody
+    public Object add(Model model,HttpSession session,
+    		@RequestParam(required = true) Byte category,
+            @RequestParam(required = true) String name,
+            @RequestParam(required = false) String author,
+            @RequestParam(value = "music", required = true) MultipartFile musicFile) throws IOException{
+		String fileName = musicFile.getOriginalFilename();
+		String size = FileUtil.getDataSize(musicFile.getSize());
+		byte[] data = musicFile.getBytes();
+		ossService.uploadMusic(category, fileName, data);
+		Music music = new Music();
+		music.setCategory(category);
+		music.setName(name);
+		music.setAuthor(author);
+		music.setFilename(fileName);
+		music.setSize(size);
+		musicDao.insert(music);
+        return model;
+    }
+	
 	@RequestMapping(value = {"find"}, method = { RequestMethod.GET,RequestMethod.POST})
     @ResponseBody
     public Object find(Model model,HttpSession session,
             @RequestParam(required = true) Integer id){
 		Music music = this.musicDaoRead.find(id);
-	    model.addAttribute(music);
+	    model.addAttribute("music",music);
         return model;
     }
 	

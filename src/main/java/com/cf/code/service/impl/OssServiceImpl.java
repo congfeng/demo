@@ -77,5 +77,11 @@ public class OssServiceImpl implements OssService{
 		byte[] content = JSONObject.toJSONBytes(musics);
 		this.ossClient.putObject(Bucket4Music,key, new ByteArrayInputStream(content));
 	}
+
+	@Override
+	public void uploadMusic(Byte category,String fileName,byte[] data) {
+		String key = category+"/"+fileName;
+		this.ossClient.putObject(Bucket4Music,key, new ByteArrayInputStream(data));
+	}
 	
 }

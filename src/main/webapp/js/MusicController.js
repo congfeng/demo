@@ -25,8 +25,9 @@ nsApp.controller('MusicController',function($scope,$routeParams) {
 				var table_data = "";
 				$.each(data.musics,function(i,music){
 					table_data += "<tr><td>"+(i+1)+"</td>"
-						+"<td>"+music.name+"</td>"
+						+"<td><a class='name-btn' data-index='"+i+"'>"+music.name+"</a></td>"
 						+"<td>"+music.author+"</td>"
+						+"<td>"+music.size+"</td>"
 						+"<td>"+music.collects+"</td>"
 						+"<td><a class='musicupdate-btn' data-musicid='"+music.id+"'><i style='font-size:30px;' class='iconfont'>&#xe641;</i></a></td>"
 						+"<td><a class='musicdelete-btn' data-musicid='"+music.id+"'><i style='font-size:30px;' class='iconfont'>&#xe642;</i></a></td>"
@@ -35,6 +36,11 @@ nsApp.controller('MusicController',function($scope,$routeParams) {
 				$(".table_data").html(table_data);
 				$(".table_datas_count").html('共有'+data.pager.count+'首音乐');
 				page.refresh(data.pager);
+				$('.name-btn').click(function(){
+					var musicUrl = "http://lx-music.oss-cn-beijing.aliyuncs.com/"+category+"/";
+					var index = $(this).data('index');
+					$('audio').attr('src',musicUrl+data.musics[index].filename)[0].play();
+				});
 				$('.musicupdate-btn').click(function(){
 					window.location.href = "#/music/update?category="+category+"&id="+$(this).data('musicid');
 				});

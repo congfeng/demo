@@ -16,4 +16,6 @@ public interface OssService {
 
 	public void uploadMusicList(MusicCategory mc,List<Music> musics,Integer pageNo);
 	
+	public void uploadMusic(Byte category,String fileName,byte[] data);
+	
 }

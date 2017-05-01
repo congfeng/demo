@@ -13,56 +13,31 @@ nsApp.controller('MusicUpdateController',function($scope,$routeParams) {
 			if(data&&data.s == 0){
 				return;
 			}
-			var notice = data.notice;
-			if(_.isEmpty(notice)){
-				showAlert('公告不存在');
-				return ;
-			}
-			$('#title').val(notice.title);
-			$('#content').val(notice.content);
-			createTimeFormat = notice.createTimeFormat;
-			if(!_.isEmpty(notice.richText)){
-				if(_.startsWith(data.UploadBasePath,'http')){
-					$.ajax({
-						url:'/demo/crossdomain/convert',
-						data:{'remoteUrl':data.UploadBasePath+notice.richText},
-						success:function(richText){
-							ue.ready(function(){
-								ue.setContent(richText);
-						    });
-						}
-					});	
-				}else{
-					$.ajax({
-						url:data.UploadBasePath+notice.richText,
-						//dataType:'json',
-						success:function(richText){
-							ue.ready(function(){
-								ue.setContent(richText);
-						    });
-						}
-					});
-				}
-			}
+			var music = data.music;
+			$('#name').val(music.name);
+			$('#author').val(music.author);
+			$('#filename').val(music.filename);
+			var musicUrl = "http://lx-music.oss-cn-beijing.aliyuncs.com/"+category+"/";
+			$('audio').attr('src',musicUrl+music.filename);
 		}
 	});
-	$(".noticeupdate-btn").click(function(){
-		if(_.isEmpty($("#title").val())){
+	$("#update-btn").click(function(){
+		if(_.isEmpty($("#name").val())){
 			layer.open({
-				content : '公告标题不能为空',
+				content : '歌曲名称不能为空',
 				btn : [ '确定' ]
 			});
 			return;
 		}
-		$("#noticeupdateform").ajaxSubmit({
+		$("#musicform").ajaxSubmit({
 			type:'post',
-            url:'/notice/update',
+            url:'/music/update',
             success:function(data){
               	if(data&&data.s == 0){
 					return;
 				}
 				showAlert('保存成功');
-				window.location.href = "#/noticemanage?type="+type;
+				window.location.href = "#/music?category="+category;
             }
 		});
 	});
