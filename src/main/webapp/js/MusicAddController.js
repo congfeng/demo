@@ -2,8 +2,21 @@ nsApp.controller('MusicAddController',function($scope,$routeParams) {
 	var category = $routeParams.category;
 	$scope.category = category;
 	$scope.categoryName = ['佛歌','梵乐','经咒','赞偈','禅音'][category/10-1];
-	
-	$(".noticeadd-btn").click(function(){
+	$("#music").fileinput({
+		language: "zh",
+		showCaption: false,
+        showUpload: false,
+        showClose: false,
+        browseClass: "btn btn-success",
+		browseLabel: "请选择音乐",
+		removeClass: "btn btn-danger",
+		removeLabel: "删除",
+		maxFileCount: 1,
+		maxFileSize: 1000,
+		//allowedFileExtensions: ["mp3","mp4", "gif", "png" , "bmp"],
+		allowedFileTypes: ["audio"]
+    });
+	$("#add-btn").click(function(){
 		if(_.isEmpty($("#title").val())){
 			layer.open({
 				content : '公告标题不能为空',
@@ -13,13 +26,13 @@ nsApp.controller('MusicAddController',function($scope,$routeParams) {
 		}
 		$("#noticeform").ajaxSubmit({
 			type:'post',
-            url:'/notice/add',
+            url:'/music/add',
             success:function(data){
               	if(data&&data.s == 0){
 					return;
 				}
 				showAlert('保存成功');
-				window.location.href = "#/noticemanage?type="+type;
+				window.location.href = "#/music?category="+category;
             }
 		});
 	});
