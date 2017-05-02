@@ -24,6 +24,14 @@ nsApp.controller('MusicAddController',function($scope,$routeParams) {
 			});
 			return;
 		}
+		if(_.isEmpty($('#music').val())){
+			layer.open({
+				content : '音乐文件不能为空',
+				btn : [ '确定' ]
+			});
+			return;
+		}
+		
 		$("#musicform").ajaxSubmit({
 			type:'post',
             url:'/music/add',

@@ -27,9 +27,10 @@ public interface MusicDao {
     
     public Music find(@Param("id") Integer id);
     
-    public List<Music> query(@Param("category") Byte category);
+    public List<Music> query1(@Param("category") Byte category,
+    		@Param("start") Integer start,@Param("size") Integer size);
     
-    public List<Music> queryPage(@Param("category") Byte category,
+    public List<Music> query2(@Param("category") Byte category,
     		@Param("start") Integer start,@Param("size") Integer size);
     
     public int queryCount(@Param("category") Byte category);

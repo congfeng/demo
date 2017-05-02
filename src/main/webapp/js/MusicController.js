@@ -1,11 +1,7 @@
 nsApp.controller('MusicController',function($scope,$routeParams) {  
-	var id = $routeParams.id; 
 	var category = $routeParams.category;
-	$scope.id = id;
 	$scope.category = category;
 	$scope.categoryName = ['佛歌','梵乐','经咒','赞偈','禅音'][category/10-1];
-	console.log('id='+id);
-	console.log('category='+category);
 	var page;
 	var query = function(pageNo){
 		$.ajax({
@@ -24,8 +20,8 @@ nsApp.controller('MusicController',function($scope,$routeParams) {
 				$(".pagination").show();
 				var table_data = "";
 				$.each(data.musics,function(i,music){
-					table_data += "<tr><td>"+(i+1)+"</td>"
-						+"<td><a class='name-btn' data-index='"+i+"'>"+music.name+"</a></td>"
+					table_data += "<tr><td>"+(pageNo*10-10+i+1)+"</td>"
+						+"<td><a href='javascript:void(0);' class='name-btn' data-index='"+i+"'>"+music.name+"</a></td>"
 						+"<td>"+music.author+"</td>"
 						+"<td>"+music.size+"</td>"
 						+"<td>"+music.collects+"</td>"

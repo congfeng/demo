@@ -49,17 +49,22 @@ public class MusicDaoTest extends AbstractTestCase{
     }
     
     public void testUpdateMusicList(){
-		for(MusicCategory mc:MusicCategory.values()){
+    	for(MusicCategory mc:MusicCategory.values()){
 			Integer pageNo = 0;
 			Integer pageSize = 5;
 			List<Music> musics = null;
 			do{
-				musics = musicDaoRead.queryPage(mc.value, pageSize*pageNo, pageSize);
+				musics = musicDaoRead.query1(mc.value, pageSize*pageNo, pageSize);
 				log.info(mc + "-" + pageNo + "-" + JSONObject.toJSONBytes(musics));
 				pageNo++;
+				for(Music music:musics){
+					Integer musicId = music.getId();
+					int collects = musicCollectDaoRead.queryCountByMusic(musicId);
+					if(music.getCollects().intValue() != collects){
+						musicDao.updateCollects(musicId, collects);
+					}
+				}
 			}while(musics.size() > 0);
-//			List<Music> musics = musicDaoRead.queryPage(mc.value);
-//			ossService.uploadMusicList(mc, musics, 1);
 		}
 	}
     

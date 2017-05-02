@@ -75,7 +75,7 @@ public abstract class WebAdvice implements MethodInterceptor{
         }
     }
     
-    private Map<String, Object> returnException(Class<?> rt,int t,String m) throws IOException{
+    protected Map<String, Object> returnException(Class<?> rt,int t,String m) throws IOException{
         HttpServletResponse response = ((ServletRequestAttributes)RequestContextHolder.getRequestAttributes()).getResponse();
         if(rt != Map.class&&rt != Object.class){
             response.sendError(HttpServletResponse.SC_SERVICE_UNAVAILABLE,m);

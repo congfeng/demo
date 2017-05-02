@@ -40,7 +40,7 @@ import com.cf.code.entity.enums.MusicCategory;
 /**
  * @author congfeng
  */
-@Controller
+@Controller("App/WxController")
 @RequestMapping("/app/wx")
 public class WxController {
 	

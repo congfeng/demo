@@ -51,7 +51,7 @@ public class MusicController {
             @RequestParam(required = true) Integer pageNo){
 		Integer size = 20;
 		Integer start = pageNo*size;
-		List<Music> musics = musicDaoRead.queryPage(category, start, size);
+		List<Music> musics = musicDaoRead.query2(category, start, size);
 	    model.addAttribute(musics);
         return model;
     }

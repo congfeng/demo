@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * @Email: 3024992@qq.com
  *
  */
-@Controller
+@Controller("DemoController")
 @RequestMapping("/demo")
 public class DemoController {
 //	

@@ -3,7 +3,6 @@
  */
 package com.cf.code.web;
 
-import java.io.IOException;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -63,7 +62,7 @@ public class MusicController {
 		pager.setPageNo(pageNo);
 		int count = this.musicDaoRead.queryCount(category);
 		pager.setCount(count);
-		List<Music> musics = musicDaoRead.queryPage(category, pager.getStartIndex(), pager.getPageSize());
+		List<Music> musics = musicDaoRead.query1(category, pager.getStartIndex(), pager.getPageSize());
 	    model.addAttribute(musics);
 	    model.addAttribute("musics", musics); 
 	    model.addAttribute("pager", pager);
@@ -76,7 +75,7 @@ public class MusicController {
     		@RequestParam(required = true) Byte category,
             @RequestParam(required = true) String name,
             @RequestParam(required = false) String author,
-            @RequestParam(value = "music", required = true) MultipartFile musicFile) throws IOException{
+            @RequestParam(value = "music", required = true) MultipartFile musicFile) throws Exception{
 		String fileName = musicFile.getOriginalFilename();
 		String size = FileUtil.getDataSize(musicFile.getSize());
 		byte[] data = musicFile.getBytes();

@@ -17,7 +17,7 @@ import com.cf.code.entity.Profile;
  * @Author: 丛峰
  * @Email: 3024992@qq.com
  */
-@Controller
+@Controller("IndexController")
 @RequestMapping("/")
 public class IndexController {
 

@@ -41,7 +41,7 @@ import com.cf.code.service.MsgService;
  *
  * @email congfeng@meicai.cn
  */
-@Controller
+@Controller("App/MsgController")
 @RequestMapping("/app/msg")
 public class MsgController {
 

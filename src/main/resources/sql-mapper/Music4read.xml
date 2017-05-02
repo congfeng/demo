@@ -18,15 +18,15 @@
          WHERE id = #{id,jdbcType=INTEGER}
     </select>
     
-    <select id="query" resultMap="MusicRet" >
+    <select id="query1" resultMap="MusicRet" >
        SELECT *
          FROM music
         <include refid="query_where" />
-        ORDER BY id DESC
-        LIMIT 10000
+        ORDER BY id ASC
+        LIMIT #{start},#{size}
     </select>
     
-    <select id="queryPage" resultMap="MusicRet" >
+    <select id="query2" resultMap="MusicRet" >
        SELECT *
          FROM music
         <include refid="query_where" />

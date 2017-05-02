@@ -26,7 +26,7 @@ import com.cf.code.entity.UserRelation;
  *
  * @email congfeng@meicai.cn
  */
-@Controller
+@Controller("App/UserRelationController")
 @RequestMapping("/app/userrelation")
 public class UserRelationController {
 

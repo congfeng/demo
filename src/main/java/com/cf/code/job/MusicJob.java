@@ -38,12 +38,20 @@ public class MusicJob {
 	
 	public void updateCollects(){
 		for(MusicCategory mc:MusicCategory.values()){
-			List<Music> musics = musicDaoRead.query(mc.value);
-			for(Music music:musics){
-				Integer musicId = music.getId();
-				int collects = musicCollectDaoRead.queryCountByMusic(musicId);
-				musicDao.updateCollects(musicId, collects);
-			}
+			Integer pageNo = 0;
+			Integer pageSize = 20;
+			List<Music> musics = null;
+			do{
+				musics = musicDaoRead.query1(mc.value, pageSize*pageNo, pageSize);
+				pageNo++;
+				for(Music music:musics){
+					Integer musicId = music.getId();
+					int collects = musicCollectDaoRead.queryCountByMusic(musicId);
+					if(music.getCollects().intValue() != collects){
+						musicDao.updateCollects(musicId, collects);
+					}
+				}
+			}while(musics.size() > 0);
 		}
 	}
 	
@@ -53,7 +61,7 @@ public class MusicJob {
 			Integer pageSize = 20;
 			List<Music> musics = null;
 			do{
-				musics = musicDaoRead.queryPage(mc.value, pageSize*pageNo, pageSize);
+				musics = musicDaoRead.query1(mc.value, pageSize*pageNo, pageSize);
 				ossService.uploadMusicList(mc, musics, pageNo++);
 			}while(musics.size() > 0);
 		}

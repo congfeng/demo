@@ -24,7 +24,7 @@ import com.cf.code.entity.Profile;
  * @Author: 丛峰
  * @Email: 3024992@qq.com
  */
-@Controller
+@Controller("ProfileController")
 @RequestMapping("/profile")
 public class ProfileController {
 	

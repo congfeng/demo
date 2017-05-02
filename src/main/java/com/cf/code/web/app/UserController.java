@@ -27,7 +27,7 @@ import com.cf.code.entity.enums.CommonStatus;
  * @Author: 丛峰
  * @Email: 3024992@qq.com
  */
-@Controller
+@Controller("App/UserController")
 @RequestMapping("/app/user")
 public class UserController {
 
