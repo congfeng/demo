@@ -61,7 +61,7 @@ public class MusicJob {
 			Integer pageSize = 20;
 			List<Music> musics = null;
 			do{
-				musics = musicDaoRead.query1(mc.value, pageSize*pageNo, pageSize);
+				musics = musicDaoRead.query2(mc.value, pageSize*pageNo, pageSize);
 				ossService.uploadMusicList(mc, musics, pageNo++);
 			}while(musics.size() > 0);
 		}

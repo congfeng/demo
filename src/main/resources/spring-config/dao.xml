@@ -96,4 +96,13 @@
         <property name="sqlSessionFactory" ref="WriteSqlSessionFactory" />
     </bean>
     
+    <bean id="operationLogDaoRead" class="org.mybatis.spring.mapper.MapperFactoryBean">
+        <property name="mapperInterface" value="com.cf.code.dao.OperationLogDao" />
+        <property name="sqlSessionFactory" ref="ReadSqlSessionFactory" />
+    </bean>
+    <bean id="operationLogDao" class="org.mybatis.spring.mapper.MapperFactoryBean">
+        <property name="mapperInterface" value="com.cf.code.dao.OperationLogDao" />
+        <property name="sqlSessionFactory" ref="WriteSqlSessionFactory" />
+    </bean>
+    
 </beans>

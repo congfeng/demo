@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cf.code.dao.OperationLogDao">
+    
+    <insert id="insert" parameterType="com.cf.code.entity.OperationLog">
+        INSERT INTO operation_log(`user_id`,`user_name`,`related_no`,`related_name`,`type`,`status`,`desc`,`time`)
+        VALUES (#{userId},#{userName},#{relatedNo},#{relatedName},#{type},#{status},#{desc},UNIX_TIMESTAMP(now()))
+    </insert>
+	
+</mapper>

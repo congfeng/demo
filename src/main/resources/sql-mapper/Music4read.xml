@@ -15,7 +15,8 @@
 	<select id="find" resultMap="MusicRet">
         SELECT *
           FROM music
-         WHERE id = #{id,jdbcType=INTEGER}
+         WHERE is_deleted = 0
+           AND id = #{id,jdbcType=INTEGER}
     </select>
     
     <select id="query1" resultMap="MusicRet" >
@@ -41,7 +42,8 @@
     </select>
     
     <sql id="query_where">
-        WHERE category = #{category}
+        WHERE is_deleted = 0
+          AND category = #{category}
     </sql>
 	
 </mapper>

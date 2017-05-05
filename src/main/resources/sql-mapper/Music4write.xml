@@ -3,27 +3,34 @@
 <mapper namespace="com.cf.code.dao.MusicDao">
     
     <insert id="insert" parameterType="com.cf.code.entity.Music">
-        INSERT INTO music(name,author,filename,size,category)
-        VALUES (#{name},#{author},#{filename},#{size},#{category})
+        INSERT INTO music(name,author,filename,size,category,c_t,u_t)
+        VALUES (#{name},#{author},#{filename},#{size},#{category},UNIX_TIMESTAMP(now()),UNIX_TIMESTAMP(now()))
         <selectKey keyProperty="id" resultType="java.lang.Integer" order="AFTER" statementType="STATEMENT">
             select last_insert_id()
         </selectKey>
     </insert>
     
-    <delete id="delete">
-        DELETE FROM music WHERE id = #{id,jdbcType=INTEGER}
-    </delete>
+    <update id="delete">
+        UPDATE music
+           SET u_t = UNIX_TIMESTAMP(now())
+			  ,is_deleted = 0
+         WHERE id = #{id,jdbcType=INTEGER}
+    </update>
     
     <update id="updateCollects">
         UPDATE music
-           SET collects = #{collects}
-         WHERE id = #{id,jdbcType=INTEGER}
+           SET u_t = UNIX_TIMESTAMP(now())
+			  ,collects = #{collects}
+         WHERE is_deleted = 0
+           AND id = #{id,jdbcType=INTEGER}
     </update>
     
     <update id="update">
         UPDATE music
-           SET name = #{name},author = #{author}
-         WHERE id = #{id,jdbcType=INTEGER}
+           SET u_t = UNIX_TIMESTAMP(now())
+			  ,name = #{name},author = #{author}
+         WHERE is_deleted = 0
+           AND id = #{id,jdbcType=INTEGER}
     </update>
 	
 </mapper>

@@ -10,6 +10,9 @@ CREATE TABLE `music` (
   `size` varchar(12) NOT NULL DEFAULT '',
   `category` tinyint(4) NOT NULL DEFAULT '0',
   `collects` int(11) NOT NULL DEFAULT '0',
+  `is_deleted` tinyint(1) NOT NULL DEFAULT '0',
+  `c_t` int(11) NOT NULL DEFAULT '0',
+  `u_t` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='音乐明细';
 
@@ -52,6 +55,22 @@ CREATE TABLE `user` (
   `union_id` varchar(60) NOT NULL DEFAULT '',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='用户';
+
+-- ----------------------------
+--  Table structure for `operation_log`
+-- ----------------------------
+CREATE TABLE `operation_log` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) NOT NULL DEFAULT '0',
+  `user_name` varchar(32) NOT NULL DEFAULT '',
+  `related_no` varchar(32) NOT NULL DEFAULT '',
+  `related_name` varchar(32) NOT NULL DEFAULT '',
+  `type` tinyint(4) NOT NULL DEFAULT '0',
+  `status` tinyint(4) NOT NULL DEFAULT '0',
+  `time` int(11) NOT NULL DEFAULT '0',
+  `desc` varchar(256) NOT NULL DEFAULT '',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='操作日志';
 
 -- ----------------------------
 --  Records of `music`
