@@ -4,7 +4,7 @@
 -- ----------------------------
 CREATE TABLE `music` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(32) NOT NULL DEFAULT '',
+  `name` varchar(64) NOT NULL DEFAULT '',
   `author` varchar(32) NOT NULL DEFAULT '',
   `filename` varchar(256) NOT NULL DEFAULT '',
   `size` varchar(12) NOT NULL DEFAULT '',
@@ -64,7 +64,7 @@ CREATE TABLE `operation_log` (
   `user_id` int(11) NOT NULL DEFAULT '0',
   `user_name` varchar(32) NOT NULL DEFAULT '',
   `related_no` varchar(32) NOT NULL DEFAULT '',
-  `related_name` varchar(32) NOT NULL DEFAULT '',
+  `related_name` varchar(64) NOT NULL DEFAULT '',
   `type` tinyint(4) NOT NULL DEFAULT '0',
   `status` tinyint(4) NOT NULL DEFAULT '0',
   `time` int(11) NOT NULL DEFAULT '0',

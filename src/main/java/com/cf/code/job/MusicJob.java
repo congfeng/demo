@@ -57,6 +57,7 @@ public class MusicJob {
 	
 	public void updateMusicList(){
 		for(MusicCategory mc:MusicCategory.values()){
+//			int latestTime = this.musicDaoRead.queryLatestTime(mc.value);
 			Integer pageNo = 0;
 			Integer pageSize = 20;
 			List<Music> musics = null;

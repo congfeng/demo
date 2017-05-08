@@ -5,6 +5,7 @@ package com.cf.code.test.dao;
 
 import java.util.List;
 
+import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.cf.code.dao.MusicCollectDao;
 import com.cf.code.dao.MusicDao;
@@ -36,6 +37,37 @@ public class MusicDaoTest extends AbstractTestCase{
     	musicDaoRead = context.getBean("musicDaoRead", MusicDao.class);
     	musicCollectDao = context.getBean("musicCollectDao", MusicCollectDao.class);
     	musicCollectDaoRead = context.getBean("musicCollectDaoRead", MusicCollectDao.class);
+    }
+    
+    public void testInsert(){
+    	Music music = new Music();
+		music.setCategory(MusicCategory.FanYue.value);
+		music.setName("test");
+		music.setAuthor("1");
+		music.setFilename("2");
+		music.setSize("3");
+		musicDao.insert(music);
+        log.info(JSON.toJSONString(music));
+    }
+    
+    public void testDelete(){
+    	this.musicDao.delete(227);
+        log.info("");
+    }
+    
+    public void testUpdateCollects(){
+    	boolean b = musicDao.updateCollects(228, 100);
+        log.info(b);
+    }
+    
+    public void testUpdate(){
+    	boolean b = this.musicDao.update(228, "", "");
+        log.info(b);
+    }
+    
+    public void testQueryLatestTime(){
+    	int latestTime = this.musicDaoRead.queryLatestTime(MusicCategory.FanYue.value);
+        log.info(latestTime);
     }
     
     public void testQueryCountByMusic(){

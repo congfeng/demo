@@ -35,4 +35,6 @@ public interface MusicDao {
     
     public int queryCount(@Param("category") Byte category);
     
+    public int queryLatestTime(@Param("category") Byte category);
+    
 }

@@ -19,6 +19,12 @@
            AND id = #{id,jdbcType=INTEGER}
     </select>
     
+	<select id="queryLatestTime" resultType="int">
+       SELECT max(u_t)
+         FROM music
+        <include refid="query_where" /> 
+    </select>
+    
     <select id="query1" resultMap="MusicRet" >
        SELECT *
          FROM music
