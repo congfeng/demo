@@ -27,4 +27,6 @@ public interface MusicCollectDao {
     
     public int queryCountByMusic(@Param("musicId") Integer musicId);
     
+    public int queryLatestTime(@Param("category") Byte category);
+    
 }

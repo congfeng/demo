@@ -9,6 +9,7 @@ package com.cf.code.entity.enums;
  */
 public enum OpStatus {
 
+	Init(0,"初始化"),
     Success(10,"操作成功"),
     Failure(20,"操作失败"),
     Exception(30,"操作异常"),

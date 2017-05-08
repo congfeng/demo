@@ -50,6 +50,18 @@ public class MusicDaoTest extends AbstractTestCase{
         log.info(JSON.toJSONString(music));
     }
     
+    public void testInsertMC(){
+    	MusicCollect mc = new MusicCollect();
+		mc.setUserId(0);
+		mc.setMusicId(10);
+		mc.setName("");
+		mc.setAuthor("");
+		mc.setSize("");
+		mc.setCategory(MusicCategory.ChanYin.value);
+		musicCollectDao.insert(mc);
+        log.info(JSON.toJSONString(mc));
+    }
+    
     public void testDelete(){
     	this.musicDao.delete(227);
         log.info("");

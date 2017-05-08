@@ -14,6 +14,8 @@ import com.cf.code.dao.MusicCollectDao;
 import com.cf.code.dao.MusicDao;
 import com.cf.code.entity.Music;
 import com.cf.code.entity.enums.MusicCategory;
+import com.cf.code.entity.enums.OpType;
+import com.cf.code.service.OpLogService;
 import com.cf.code.service.OssService;
 
 /**
@@ -33,12 +35,21 @@ public class MusicJob {
 	@Resource(name = "musicCollectDaoRead")
 	MusicCollectDao musicCollectDaoRead;
 	
+	@Resource(name = "opLogService")
+	OpLogService opLogService;
+	
 	@Resource(name = "ossService")
 	OssService ossService;
 	
 	public void updateCollects(){
-		for(MusicCategory mc:MusicCategory.values()){
-			Integer pageNo = 0;
+		int opLatestTime = opLogService.getOpLatestTime(OpType.UpdateMusicColletNum);
+    	int opId = opLogService.saveOp4Init(OpType.UpdateMusicColletNum);
+    	for(MusicCategory mc:MusicCategory.values()){
+    		int latestTime = this.musicCollectDaoRead.queryLatestTime(mc.value);
+    		if(latestTime <= opLatestTime){
+    			continue ;
+    		}
+    		Integer pageNo = 0;
 			Integer pageSize = 20;
 			List<Music> musics = null;
 			do{
@@ -53,11 +64,17 @@ public class MusicJob {
 				}
 			}while(musics.size() > 0);
 		}
+    	opLogService.opSuccess(opId);
 	}
 	
 	public void updateMusicList(){
+		int opLatestTime = opLogService.getOpLatestTime(OpType.UpdateMusicList);
+    	int opId = opLogService.saveOp4Init(OpType.UpdateMusicList);
 		for(MusicCategory mc:MusicCategory.values()){
-//			int latestTime = this.musicDaoRead.queryLatestTime(mc.value);
+			int latestTime = this.musicDaoRead.queryLatestTime(mc.value);
+			if(latestTime <= opLatestTime){
+    			continue ;
+    		}
 			Integer pageNo = 0;
 			Integer pageSize = 20;
 			List<Music> musics = null;
@@ -66,6 +83,7 @@ public class MusicJob {
 				ossService.uploadMusicList(mc, musics, pageNo++);
 			}while(musics.size() > 0);
 		}
+		opLogService.opSuccess(opId);
 	}
 	
 }

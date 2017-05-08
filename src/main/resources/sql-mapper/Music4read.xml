@@ -20,7 +20,7 @@
     </select>
     
 	<select id="queryLatestTime" resultType="int">
-       SELECT max(u_t)
+       SELECT IFNULL(MAX(u_t),0)
          FROM music
         <include refid="query_where" /> 
     </select>

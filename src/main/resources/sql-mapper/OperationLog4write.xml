@@ -5,6 +5,15 @@
     <insert id="insert" parameterType="com.cf.code.entity.OperationLog">
         INSERT INTO operation_log(`user_id`,`user_name`,`related_no`,`related_name`,`type`,`status`,`desc`,`time`)
         VALUES (#{userId},#{userName},#{relatedNo},#{relatedName},#{type},#{status},#{desc},UNIX_TIMESTAMP(now()))
+    	<selectKey keyProperty="id" resultType="java.lang.Integer" order="AFTER" statementType="STATEMENT">
+            select last_insert_id()
+        </selectKey>
     </insert>
 	
+    <update id="updateStatus">
+        UPDATE operation_log
+           SET `status` = #{status}
+         WHERE `id` = #{id,jdbcType=INTEGER}
+    </update>
+    
 </mapper>

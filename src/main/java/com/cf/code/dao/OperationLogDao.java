@@ -17,4 +17,6 @@ public interface OperationLogDao {
     
     public OperationLog findLatest(@Param("type") Integer type,@Param("status") Integer status);
     
+    public void updateStatus(@Param("id") Integer id,@Param("status") Integer status);
+    
 }

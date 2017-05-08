@@ -24,5 +24,11 @@
          FROM music_collect
         WHERE music_id = #{musicId}
     </select>
+    
+    <select id="queryLatestTime" resultType="int">
+       SELECT IFNULL(MAX(c_t),0)
+         FROM music_collect
+        WHERE category = #{category}
+    </select>
 	
 </mapper>
