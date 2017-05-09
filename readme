@@ -81,4 +81,38 @@ http://localhost/app/user/resetpassword?userId=6&clientId=1481188087384&newpassw
 帮助中心都加哪些帮助说明
 是否考虑在“我的”加信息角标？或者在想其他办法？或者重点不在这里不加角标？
 
+tomcat改动
+0. 清理webapp
+1. conf/logging.properties
+	注释掉管理日志等	
+2. bin/catalina.sh
+	JAVA_OPTS="-server -Xms1024m -Xmx2048m -XX: PermSize=256M -XX:MaxNewSize=256m -XX:MaxPermSize=256m"
+3. conf/server.xml
+	http://www.cnblogs.com/meetrice/p/5695127.html
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 
+
+
+
+
+	

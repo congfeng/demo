@@ -73,6 +73,7 @@
         SELECT *
           FROM user
          WHERE union_id = #{unionId}
+         LIMIT 1
     </select>
 	
 </mapper>
