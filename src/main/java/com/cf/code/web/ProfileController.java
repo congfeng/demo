@@ -3,7 +3,6 @@
  */
 package com.cf.code.web;
 
-import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
@@ -13,10 +12,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.cf.code.core.MyContextLoader;
 import com.cf.code.core.aop.AccessVerifier;
 import com.cf.code.core.exception.BusinessException;
-import com.cf.code.dao.MsgDao;
 import com.cf.code.entity.Profile;
 
 /**
@@ -27,9 +24,6 @@ import com.cf.code.entity.Profile;
 @Controller("ProfileController")
 @RequestMapping("/profile")
 public class ProfileController {
-	
-	@Resource(name = "msgDaoRead")
-	MsgDao msgDaoRead;
 	
 	@RequestMapping(value = {"login"}, method = { RequestMethod.GET,RequestMethod.POST})
 	@ResponseBody
@@ -59,8 +53,6 @@ public class ProfileController {
 	@ResponseBody
     public Object init(@RequestParam(required = false)Profile profile,HttpSession session,Model model) {
 		model.addAttribute("profile",profile);
-		model.addAttribute("imAddress",MyContextLoader.getImAddress());
-		model.addAttribute("msgCount",10);
         return model;
     }
 	

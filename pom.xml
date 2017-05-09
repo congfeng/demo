@@ -87,11 +87,6 @@
             <artifactId>log4j</artifactId>
         </dependency>
         <dependency>
-            <groupId>javax.mail</groupId>
-            <artifactId>mail</artifactId>
-            <version>1.4.1</version>
-        </dependency>
-        <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>fastjson</artifactId>
         </dependency>
@@ -153,6 +148,7 @@
 					</gitDescribe>
 	          	</configuration>
 	      	</plugin>
+	      	<!-- 
 	      	<plugin>
 	           	<groupId>org.mortbay.jetty</groupId>
 	           	<artifactId>jetty-maven-plugin</artifactId>
@@ -169,6 +165,7 @@
 	                </connectors>
 	           	</configuration>
 	      	</plugin>
+	      	 -->
 		</plugins>
   	</build>
   	
