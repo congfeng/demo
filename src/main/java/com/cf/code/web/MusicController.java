@@ -23,7 +23,7 @@ import com.cf.code.common.Pager;
 import com.cf.code.dao.MusicCollectDao;
 import com.cf.code.dao.MusicDao;
 import com.cf.code.entity.Music;
-import com.cf.code.service.OssService;
+import com.cf.code.service.CloudService;
 
 /**
  * @author congfeng
@@ -47,8 +47,8 @@ public class MusicController {
 	@Resource(name = "musicCollectDaoRead")
 	MusicCollectDao musicCollectDaoRead;
 	
-	@Resource(name = "ossService")
-	OssService ossService;
+	@Resource(name = "cloudCosService")
+	CloudService cloudService;
 	
 	@RequestMapping(value = {"list"}, method = { RequestMethod.GET,RequestMethod.POST})
     @ResponseBody
@@ -79,7 +79,7 @@ public class MusicController {
 		String fileName = musicFile.getOriginalFilename();
 		String size = FileUtil.getDataSize(musicFile.getSize());
 		byte[] data = musicFile.getBytes();
-		ossService.uploadMusic(category, fileName, data);
+		cloudService.uploadMusic(category, fileName, data);
 		Music music = new Music();
 		music.setCategory(category);
 		music.setName(name);

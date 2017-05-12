@@ -15,8 +15,8 @@ import com.cf.code.dao.MusicDao;
 import com.cf.code.entity.Music;
 import com.cf.code.entity.enums.MusicCategory;
 import com.cf.code.entity.enums.OpType;
+import com.cf.code.service.CloudService;
 import com.cf.code.service.OpLogService;
-import com.cf.code.service.OssService;
 
 /**
  * @author congfeng
@@ -38,8 +38,9 @@ public class MusicJob {
 	@Resource(name = "opLogService")
 	OpLogService opLogService;
 	
-	@Resource(name = "ossService")
-	OssService ossService;
+//	@Resource(name = "cloudCosService")
+	@Resource(name = "cloudOssService")
+	CloudService cloudService;
 	
 	public void updateCollects(){
 		int opLatestTime = opLogService.getOpLatestTime(OpType.UpdateMusicColletNum);
@@ -80,7 +81,7 @@ public class MusicJob {
 			List<Music> musics = null;
 			do{
 				musics = musicDaoRead.query2(mc.value, pageSize*pageNo, pageSize);
-				ossService.uploadMusicList(mc, musics, pageNo++);
+				cloudService.uploadMusicList(mc, musics, pageNo++);
 			}while(musics.size() > 0);
 		}
 		opLogService.opSuccess(opId);

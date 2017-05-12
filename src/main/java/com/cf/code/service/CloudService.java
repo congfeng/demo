@@ -12,7 +12,7 @@ import com.cf.code.entity.enums.MusicCategory;
  * @author congfeng
  *
  */
-public interface OssService {
+public interface CloudService {
 
 	public void uploadMusicList(MusicCategory mc,List<Music> musics,Integer pageNo);
 	

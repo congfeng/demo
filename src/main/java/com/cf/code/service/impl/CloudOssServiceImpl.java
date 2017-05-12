@@ -19,16 +19,16 @@ import com.aliyun.oss.ClientConfiguration;
 import com.aliyun.oss.OSSClient;
 import com.cf.code.entity.Music;
 import com.cf.code.entity.enums.MusicCategory;
-import com.cf.code.service.OssService;
+import com.cf.code.service.CloudService;
 
 /**
  * @author congfeng
  *
  */
-@Service("ossService")
-public class OssServiceImpl implements OssService{
+@Service("cloudOssService")
+public class CloudOssServiceImpl implements CloudService{
 
-	private static Logger log = LogManager.getLogger(OssServiceImpl.class);
+	private static Logger log = LogManager.getLogger(CloudOssServiceImpl.class);
 	
 	private static final String MusicListPrefix = "musiclist_";
 	
