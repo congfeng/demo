@@ -68,6 +68,7 @@ public class MusicController {
 		mc.setName(music.getName());
 		mc.setAuthor(music.getAuthor());
 		mc.setSize(music.getSize());
+		mc.setFilename(music.getFilename());
 		mc.setCategory(music.getCategory());
 		musicCollectDao.insert(mc);
         return model;

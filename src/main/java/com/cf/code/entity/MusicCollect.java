@@ -22,7 +22,9 @@ public class MusicCollect {
 	private Byte category;
 	
 	private Integer userId;
-
+	
+	private String filename;
+	
 	public Integer getId() {
 		return id;
 	}
@@ -77,6 +79,14 @@ public class MusicCollect {
 
 	public void setUserId(Integer userId) {
 		this.userId = userId;
+	}
+	
+	public String getFilename() {
+		return filename;
+	}
+
+	public void setFilename(String filename) {
+		this.filename = filename;
 	}
 
 	@Override

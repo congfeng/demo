@@ -116,6 +116,7 @@ public class WxController {
 				mcollect.setName(music.getName());
 				mcollect.setAuthor(music.getAuthor());
 				mcollect.setSize(music.getSize());
+				mcollect.setFilename(music.getFilename());
 				mcollects.add(mcollect);
 				mcollectsNew.add(mcollect);
 			}

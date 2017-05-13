@@ -27,6 +27,7 @@ CREATE TABLE `music_collect` (
   `author` varchar(32) NOT NULL DEFAULT '',
   `size` varchar(12) NOT NULL DEFAULT '',
   `category` tinyint(4) NOT NULL DEFAULT '0',
+  `filename` varchar(256) NOT NULL DEFAULT '',
   `user_id` int(11) NOT NULL DEFAULT '0',
   `c_t` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
@@ -239,7 +240,7 @@ INSERT INTO music(name,author,filename,size,category) VALUES
 ('离骚','管平湖','管平湖 - 离骚.mp3','23.86MB',50),
 ('汉传大悲咒-最好听的大悲咒','未知','汉传大悲咒-最好听的大悲咒.mp3','4.67MB',50),
 ('六字大明咒','黑鸭子','黑鸭子 - 六字大明咒.mp3','5.78MB',50),
-('英雄的黎明 (《三国志》动画电影开篇曲)','横山菁児','横山菁児 (よこやま せいじ) - 英雄的黎明 (《三国志》动画电影开篇曲).mp3','8.24MB',50),
+('英雄的黎明','横山菁児','横山菁児 (よこやま せいじ) - 英雄的黎明 (《三国志》动画电影开篇曲).mp3','8.24MB',50),
 ('梵唱大悲咒 - 古筝版纯音乐','华语群星','华语群星 - 梵唱大悲咒 - 古筝版纯音乐.mp3','23.16MB',50),
 ('金刚经 佛光山版','未知','金刚经 佛光山版 净口业真言 金刚经 44分钟.mp3','100.73MB',50),
 ('经文 佛说阿弥陀经','寺院','经文 佛说阿弥陀经 寺院版 唱颂.mp3','11.03MB',50),

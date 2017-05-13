@@ -10,6 +10,7 @@
 		<result property="author" column="author" />
 		<result property="size" column="size" />
 		<result property="category" column="category" />
+		<result property="filename" column="filename" />
 	</resultMap>
     
     <select id="queryByUser" resultMap="MusicCollectRet" >

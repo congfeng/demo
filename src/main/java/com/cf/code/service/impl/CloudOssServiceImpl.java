@@ -30,7 +30,7 @@ public class CloudOssServiceImpl implements CloudService{
 
 	private static Logger log = LogManager.getLogger(CloudOssServiceImpl.class);
 	
-	private static final String MusicListPrefix = "musiclist_";
+	private static final String MusicServerPath = "querymusic";
 	
 	@Value("#{sys.Endpoint}")
 	String Endpoint;
@@ -73,7 +73,7 @@ public class CloudOssServiceImpl implements CloudService{
 
 	@Override
 	public void uploadMusicList(MusicCategory mc,List<Music> musics,Integer pageNo) {
-		String key = mc.value+"/"+MusicListPrefix+pageNo;
+		String key = MusicServerPath + "/" + mc.value + "_" + pageNo;
 		byte[] content = JSONObject.toJSONBytes(musics);
 		this.ossClient.putObject(Bucket4Music,key, new ByteArrayInputStream(content));
 	}
