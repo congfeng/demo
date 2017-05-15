@@ -33,7 +33,7 @@ nsApp.controller('MusicController',function($scope,$routeParams) {
 				$(".table_datas_count").html('共有'+data.pager.count+'首音乐');
 				page.refresh(data.pager);
 				$('.name-btn').click(function(){
-					var musicUrl = "http://lx-music.oss-cn-beijing.aliyuncs.com/"+category+"/";
+					var musicUrl = "https://lxmusic-1253712051.cossh.myqcloud.com/"+category+"/";
 					var index = $(this).data('index');
 					$('audio').attr('src',musicUrl+data.musics[index].filename)[0].play();
 				});
