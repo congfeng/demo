@@ -78,7 +78,7 @@ public class CloudCosServiceImpl implements CloudService{
 
 	@Override
 	public void uploadMusic(Byte category,String fileName,byte[] data) {
-		String cosPath = category+"/"+fileName;
+		String cosPath = "/" + category + "/" + fileName;
 		UploadFileRequest request = new UploadFileRequest(CosBucket4Music, cosPath, data);
 		this.cosClient.uploadFile(request);
 	}
