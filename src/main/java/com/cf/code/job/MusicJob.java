@@ -38,8 +38,8 @@ public class MusicJob {
 	@Resource(name = "opLogService")
 	OpLogService opLogService;
 	
-//	@Resource(name = "cloudCosService")
-	@Resource(name = "cloudOssService")
+//	@Resource(name = "cloudOssService")
+	@Resource(name = "cloudCosService")
 	CloudService cloudService;
 	
 	public void updateCollects(){

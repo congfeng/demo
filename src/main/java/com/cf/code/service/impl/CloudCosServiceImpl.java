@@ -19,6 +19,7 @@ import com.cf.code.entity.enums.MusicCategory;
 import com.cf.code.service.CloudService;
 import com.qcloud.cos.COSClient;
 import com.qcloud.cos.ClientConfig;
+import com.qcloud.cos.request.UploadFileRequest;
 import com.qcloud.cos.sign.Credentials;
 
 /**
@@ -30,7 +31,7 @@ public class CloudCosServiceImpl implements CloudService{
 
 	private static Logger log = LogManager.getLogger(CloudCosServiceImpl.class);
 	
-	private static final String MusicListPrefix = "musiclist_";
+	private static final String MusicServerPath = "querymusic";
 	
 	@Value("#{sys.CosRegion}")
 	String CosRegion;
@@ -44,11 +45,16 @@ public class CloudCosServiceImpl implements CloudService{
 	@Value("#{sys.CosSecretKey}")
 	String CosSecretKey;
 	
+	@Value("#{sys.CosBucket4Music}")
+	String CosBucket4Music;
+	
+	@Value("#{sys.CosBucket4Server}")
+	String CosBucket4Server;
+	
 	private COSClient cosClient;
 	
 	@PostConstruct
 	private void init(){
-		
 		Credentials cred = new Credentials(CosAppId, CosSecretId, CosSecretKey);
 		ClientConfig clientConfig = new ClientConfig();
         clientConfig.setRegion(CosRegion);
@@ -64,15 +70,17 @@ public class CloudCosServiceImpl implements CloudService{
 
 	@Override
 	public void uploadMusicList(MusicCategory mc,List<Music> musics,Integer pageNo) {
-		String key = mc.value+"/"+MusicListPrefix+pageNo;
+		String cosPath = "/" + MusicServerPath + "/" + mc.value + "_" + pageNo;
 		byte[] content = JSONObject.toJSONBytes(musics);
-//		this.cosClient.updateFile(arg0)
+		UploadFileRequest request = new UploadFileRequest(CosBucket4Server, cosPath, content);
+		this.cosClient.uploadFile(request);
 	}
 
 	@Override
 	public void uploadMusic(Byte category,String fileName,byte[] data) {
-		String key = category+"/"+fileName;
-//		this.cosClient.updateFile(arg0)
+		String cosPath = category+"/"+fileName;
+		UploadFileRequest request = new UploadFileRequest(CosBucket4Music, cosPath, data);
+		this.cosClient.uploadFile(request);
 	}
 	
 }
