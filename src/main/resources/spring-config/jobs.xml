@@ -52,7 +52,7 @@
 	<!-- 定时任务主配置 -->
 	<bean id="EmptyScheduler" class="org.springframework.scheduling.quartz.SchedulerFactoryBean" scope="singleton">
 		<property name="startupDelay" value="60" />
-		<property name="autoStartup" value="false"/> 
+		<property name="autoStartup" value="true"/> 
 		<property name="triggers">
 			<list>
 				<ref bean="cronTrigger_EmptyJob" />

@@ -216,7 +216,11 @@ $(document).ajaxError(function(e, xhr, opts){
             window.location.href = "login.html";
             break;
         default:
-            showAlert(resData.m);    
+        	layer.open({
+        		title: '操作失败',
+				content : resData.m,
+				btn : [ '确定' ]
+			});
     }
 }).ajaxComplete(function(e, xhr, opts){
     console.log(xhr);
