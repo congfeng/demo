@@ -18,4 +18,6 @@ public interface CloudService {
 	
 	public void uploadMusic(Byte category,String fileName,byte[] data);
 	
+	public void deleteMusic(Byte category,String fileName);
+	
 }

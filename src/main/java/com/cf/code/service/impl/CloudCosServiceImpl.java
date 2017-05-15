@@ -19,6 +19,7 @@ import com.cf.code.entity.enums.MusicCategory;
 import com.cf.code.service.CloudService;
 import com.qcloud.cos.COSClient;
 import com.qcloud.cos.ClientConfig;
+import com.qcloud.cos.request.DelFileRequest;
 import com.qcloud.cos.request.UploadFileRequest;
 import com.qcloud.cos.sign.Credentials;
 
@@ -72,6 +73,8 @@ public class CloudCosServiceImpl implements CloudService{
 	public void uploadMusicList(MusicCategory mc,List<Music> musics,Integer pageNo) {
 		String cosPath = "/" + MusicServerPath + "/" + mc.value + "_" + pageNo;
 		byte[] content = JSONObject.toJSONBytes(musics);
+		DelFileRequest delFileRequest = new DelFileRequest(CosBucket4Server, cosPath);
+		this.cosClient.delFile(delFileRequest);
 		UploadFileRequest request = new UploadFileRequest(CosBucket4Server, cosPath, content);
 		this.cosClient.uploadFile(request);
 	}
@@ -81,6 +84,13 @@ public class CloudCosServiceImpl implements CloudService{
 		String cosPath = "/" + category + "/" + fileName;
 		UploadFileRequest request = new UploadFileRequest(CosBucket4Music, cosPath, data);
 		this.cosClient.uploadFile(request);
+	}
+
+	@Override
+	public void deleteMusic(Byte category, String fileName) {
+		String cosPath = "/" + category + "/" + fileName;
+		DelFileRequest delFileRequest = new DelFileRequest(CosBucket4Music, cosPath);
+		this.cosClient.delFile(delFileRequest);
 	}
 	
 }

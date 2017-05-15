@@ -20,6 +20,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.cf.code.common.FileUtil;
 import com.cf.code.common.Pager;
+import com.cf.code.core.exception.BusinessException;
 import com.cf.code.dao.MusicCollectDao;
 import com.cf.code.dao.MusicDao;
 import com.cf.code.entity.Music;
@@ -102,8 +103,14 @@ public class MusicController {
 	@RequestMapping(value = {"delete"}, method = { RequestMethod.GET,RequestMethod.POST})
     @ResponseBody
     public Object delete(Model model,HttpSession session,
-            @RequestParam(required = true) Integer id){
+            @RequestParam(required = true) Integer id) throws BusinessException{
+		int num = this.musicCollectDaoRead.queryCountByMusic(id);
+		if(num > 0){
+			throw new BusinessException("已被用户收藏");
+		}
+		Music music = this.musicDaoRead.find(id);
 		this.musicDao.delete(id);
+		this.cloudService.deleteMusic(music.getCategory(), music.getFilename());
         return model;
     }
 	

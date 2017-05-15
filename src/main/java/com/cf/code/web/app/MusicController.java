@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.cf.code.core.exception.BusinessException;
 import com.cf.code.dao.MusicCollectDao;
 import com.cf.code.dao.MusicDao;
 import com.cf.code.entity.Music;
@@ -60,8 +61,11 @@ public class MusicController {
     @ResponseBody
     public Object collect(Model model,HttpSession session,
             @RequestParam(required = true) Integer userId,
-            @RequestParam(required = true) Integer musicId){
+            @RequestParam(required = true) Integer musicId) throws BusinessException{
 		Music music = musicDaoRead.find(musicId);
+		if(music == null){
+			throw new BusinessException("音乐不存在");
+		}
 		MusicCollect mc = new MusicCollect();
 		mc.setUserId(userId);
 		mc.setMusicId(musicId);

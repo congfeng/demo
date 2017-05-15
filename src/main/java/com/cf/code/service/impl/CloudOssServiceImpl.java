@@ -83,5 +83,11 @@ public class CloudOssServiceImpl implements CloudService{
 		String key = category+"/"+fileName;
 		this.ossClient.putObject(Bucket4Music,key, new ByteArrayInputStream(data));
 	}
+
+	@Override
+	public void deleteMusic(Byte category, String fileName) {
+		// TODO Auto-generated method stub
+		
+	}
 	
 }

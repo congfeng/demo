@@ -43,6 +43,7 @@ nsApp.controller('MusicController',function($scope,$routeParams) {
 				$('.musicdelete-btn').click(function(){
 					var id = $(this).data('musicid');
 					toIF("确定需要删除么？",function(){
+						var index = layer.load('',{shade: [0.5, '#393D49']});
 						$.ajax({
 							url:'/music/delete',
 							data:{'id':id},
@@ -53,7 +54,10 @@ nsApp.controller('MusicController',function($scope,$routeParams) {
 								}
 								showAlert('删除成功');
 								query(1);
-							}
+							},
+							complete:function(){
+				            	layer.close(index);
+				            }
 						});	
 					});
 				});

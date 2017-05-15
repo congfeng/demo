@@ -31,7 +31,7 @@ nsApp.controller('MusicAddController',function($scope,$routeParams) {
 			});
 			return;
 		}
-		
+		var index = layer.load('',{shade: [0.5, '#393D49']});
 		$("#musicform").ajaxSubmit({
 			type:'post',
             url:'/music/add',
@@ -41,6 +41,9 @@ nsApp.controller('MusicAddController',function($scope,$routeParams) {
 				}
 				showAlert('保存成功');
 				window.location.href = "#/music?category="+category;
+            },
+            complete:function(){
+            	layer.close(index);
             }
 		});
 	});
