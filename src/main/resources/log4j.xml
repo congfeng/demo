@@ -18,7 +18,7 @@
 		</layout>
 	</appender>
 	
-	<logger name="com.jisheng.peisong" additivity="false">
+	<logger name="com.cf.code" additivity="false">
 		<level value="${pom.log.level}" />
 		<appender-ref ref="file-log"/>
 	</logger>
