@@ -1,7 +1,7 @@
 nsApp.controller('MusicController',function($scope,$routeParams) {  
 	var category = $routeParams.category;
 	$scope.category = category;
-	$scope.categoryName = ['佛歌','梵乐','经咒','赞偈','禅音'][category/10-1];
+	$scope.categoryName = ['佛歌','梵乐','经咒','赞偈','忏仪'][category/10-1];
 	var page;
 	var query = function(pageNo){
 		$.ajax({
