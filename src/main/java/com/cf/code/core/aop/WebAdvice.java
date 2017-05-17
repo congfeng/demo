@@ -31,14 +31,14 @@ import com.cf.code.core.exception.BusinessException;
  */
 public abstract class WebAdvice implements MethodInterceptor{
 
-    private static final Logger log = Logger.getLogger(WebAdvice.class);
+    protected static final Logger log = Logger.getLogger(WebAdvice.class);
     
     @Override
     public Object invoke(MethodInvocation mi) throws Throwable {
-        Method method = mi.getMethod();
+    	Method method = mi.getMethod();
         Class<?>[] pts = method.getParameterTypes();
         Class<?> rt = method.getReturnType();
-        HttpServletRequest request = ((ServletRequestAttributes)RequestContextHolder.getRequestAttributes()).getRequest();
+    	HttpServletRequest request = ((ServletRequestAttributes)RequestContextHolder.getRequestAttributes()).getRequest();
         try{
             Object accessProfile = access(method,request);
             if(accessProfile != null){
@@ -81,7 +81,7 @@ public abstract class WebAdvice implements MethodInterceptor{
             response.sendError(HttpServletResponse.SC_SERVICE_UNAVAILABLE,m);
             return null;
         }
-//        response.setStatus(HttpServletResponse.SC_SERVICE_UNAVAILABLE);
+        response.setStatus(HttpServletResponse.SC_SERVICE_UNAVAILABLE);
         Map<String, Object> result = new HashMap<String, Object>();
         result.put(TransmitField.Type, t);
         result.put(TransmitField.Msg, m);

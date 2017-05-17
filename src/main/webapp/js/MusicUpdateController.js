@@ -17,8 +17,7 @@ nsApp.controller('MusicUpdateController',function($scope,$routeParams) {
 			$('#name').val(music.name);
 			$('#author').val(music.author);
 			$('#filename').val(music.filename);
-			var musicUrl = "http://lx-music.oss-cn-beijing.aliyuncs.com/"+category+"/";
-			$('audio').attr('src',musicUrl+music.filename);
+			$('audio').attr('src',cosurl+'/'+category+"/"+music.filename);
 		}
 	});
 	$("#update-btn").click(function(){

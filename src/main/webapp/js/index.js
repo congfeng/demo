@@ -2,13 +2,16 @@ Messenger.options = {
     extraClasses: 'messenger-fixed messenger-on-bottom messenger-on-right',
     theme: 'air'
 }
+var cosurl;
+var profile;
 $(function(){
 	var im4socketio;
 	$.ajax({
 		url:'/profile',
 		dataType:'json',
 		success:function(data){
-			var profile = data.profile;
+			cosurl = data.cosurl;
+			profile = data.profile;
 			$("#username-text").text(profile.name);
 			$('body').show();
 		}

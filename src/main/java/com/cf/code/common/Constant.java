@@ -18,6 +18,7 @@ public interface Constant {
 	}
 	public static final String UserId = "uid";
 	public static final String ClientId = "cid";
+	public static final String KEY = "key";
 	
 }
 
