@@ -16,12 +16,6 @@
 			<artifactId>junit</artifactId>
 			<scope>test</scope>
 		</dependency>
-		<dependency>
-		    <groupId>tomcat</groupId>
-		    <artifactId>catalina-optional</artifactId>
-		    <version>5.5.23</version>
-		    <scope>test</scope>
-		</dependency>
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>javax.servlet-api</artifactId>
