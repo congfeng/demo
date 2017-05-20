@@ -17,7 +17,9 @@ public class MusicCollect {
 	
 	private String author;
 	
-	private String size;
+	private String filesize;
+	
+	private String soundsize;
 	
 	private Byte category;
 	
@@ -56,13 +58,21 @@ public class MusicCollect {
 	public void setAuthor(String author) {
 		this.author = author;
 	}
-
-	public String getSize() {
-		return size;
+	
+	public String getFilesize() {
+		return filesize;
 	}
 
-	public void setSize(String size) {
-		this.size = size;
+	public void setFilesize(String filesize) {
+		this.filesize = filesize;
+	}
+
+	public String getSoundsize() {
+		return soundsize;
+	}
+
+	public void setSoundsize(String soundsize) {
+		this.soundsize = soundsize;
 	}
 
 	public Byte getCategory() {
@@ -97,7 +107,5 @@ public class MusicCollect {
 		}
 		return this.userId.equals(that.userId)&&this.musicId.equals(that.musicId);
 	}
-
-	
 	
 }

@@ -17,11 +17,15 @@ public class Music {
 	
 	private String filename;
 	
-	private String size;
+	private String filesize;
+	
+	private String soundsize;
 	
 	private Byte category;
 	
 	private Integer collects;
+	
+	private Integer plays;
 
 	public Integer getId() {
 		return id;
@@ -46,13 +50,21 @@ public class Music {
 	public void setAuthor(String author) {
 		this.author = author;
 	}
-
-	public String getSize() {
-		return size;
+	
+	public String getFilesize() {
+		return filesize;
 	}
 
-	public void setSize(String size) {
-		this.size = size;
+	public void setFilesize(String filesize) {
+		this.filesize = filesize;
+	}
+
+	public String getSoundsize() {
+		return soundsize;
+	}
+
+	public void setSoundsize(String soundsize) {
+		this.soundsize = soundsize;
 	}
 
 	public Byte getCategory() {
@@ -77,6 +89,14 @@ public class Music {
 
 	public void setFilename(String filename) {
 		this.filename = filename;
+	}
+
+	public Integer getPlays() {
+		return plays;
+	}
+
+	public void setPlays(Integer plays) {
+		this.plays = plays;
 	}
 	
 }

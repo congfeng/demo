@@ -115,7 +115,8 @@ public class WxController {
 				Music music = musicDaoRead.find(musicId);
 				mcollect.setName(music.getName());
 				mcollect.setAuthor(music.getAuthor());
-				mcollect.setSize(music.getSize());
+				mcollect.setFilesize(music.getFilesize());
+				mcollect.setSoundsize(music.getSoundsize());
 				mcollect.setFilename(music.getFilename());
 				mcollects.add(mcollect);
 				mcollectsNew.add(mcollect);

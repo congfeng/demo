@@ -21,6 +21,8 @@ public interface MusicDao {
 	
     public boolean updateCollects(@Param("id") Integer id,@Param("collects") Integer collects);
     
+    public boolean increasePlays(@Param("id") Integer id);
+    
     public boolean update(@Param("id") Integer id,
     		@Param("name") String name,
     		@Param("author") String author);

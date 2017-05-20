@@ -8,7 +8,8 @@
 		<result property="musicId" column="music_id" />
 		<result property="name" column="name" />
 		<result property="author" column="author" />
-		<result property="size" column="size" />
+		<result property="filesize" column="filesize" />
+		<result property="soundsize" column="soundsize" />
 		<result property="category" column="category" />
 		<result property="filename" column="filename" />
 	</resultMap>

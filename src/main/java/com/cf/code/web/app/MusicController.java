@@ -71,10 +71,24 @@ public class MusicController {
 		mc.setMusicId(musicId);
 		mc.setName(music.getName());
 		mc.setAuthor(music.getAuthor());
-		mc.setSize(music.getSize());
+		mc.setFilesize(music.getFilesize());
+		mc.setSoundsize(music.getSoundsize());
 		mc.setFilename(music.getFilename());
 		mc.setCategory(music.getCategory());
 		musicCollectDao.insert(mc);
+        return model;
+    }
+	
+	@RequestMapping(value = {"play"}, method = { RequestMethod.GET,RequestMethod.POST})
+    @ResponseBody
+    public Object play(Model model,HttpSession session,
+            @RequestParam(required = true) Integer userId,
+            @RequestParam(required = true) Integer musicId) throws BusinessException{
+		Music music = musicDaoRead.find(musicId);
+		if(music == null){
+			throw new BusinessException("音乐不存在");
+		}
+		musicDao.increasePlays(musicId);
         return model;
     }
 	

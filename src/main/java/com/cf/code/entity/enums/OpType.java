@@ -13,6 +13,7 @@ public enum OpType {
 	ColletMusic(20,"收藏音乐（收藏、取消）"),
     UpdateMusicList(30,"更新音乐列表"),
     UpdateMusicColletNum(40,"更新音乐收藏数量"),
+    UpdateMusicPlayNum(50,"更新音乐播放数量"),
     ;
     
     private OpType(Integer value,String desc){

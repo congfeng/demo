@@ -38,7 +38,7 @@
 	
 	<bean id="cronTrigger_EmptyJob" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
 		<property name="jobDetail" ref="jobDetail_EmptyJob" />
-		<property name="cronExpression" value="0 0/5 * * * ? *" />
+		<property name="cronExpression" value="0 0 * * * ?" />
 	</bean>
 	<bean id="cronTrigger_MusicJob_updateCollects" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
 		<property name="jobDetail" ref="jobDetail_MusicJob_updateCollects" />

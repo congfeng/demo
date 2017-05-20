@@ -3,18 +3,18 @@
 <mapper namespace="com.cf.code.dao.MusicCollectDao">
 	
 	<insert id="insert" parameterType="com.cf.code.entity.MusicCollect">
-        INSERT INTO music_collect(ct,user_id,music_id,name,author,size,category,filename,c_t)
-        VALUES (UNIX_TIMESTAMP(NOW()),#{userId},#{musicId},#{name},#{author},#{size},#{category},#{filename},UNIX_TIMESTAMP(now()))
+        INSERT INTO music_collect(ct,user_id,music_id,name,author,filesize,soundsize,category,filename,c_t)
+        VALUES (UNIX_TIMESTAMP(NOW()),#{userId},#{musicId},#{name},#{author},#{filesize},#{soundsize},#{category},#{filename},UNIX_TIMESTAMP(now()))
         <selectKey keyProperty="id" resultType="java.lang.Integer" order="AFTER" statementType="STATEMENT">
             select last_insert_id()
         </selectKey>
     </insert>
     
 	<insert id="inserts" parameterType="java.util.List">
-        INSERT INTO music_collect(ct,user_id,music_id,name,author,size,category,filename)
+        INSERT INTO music_collect(ct,user_id,music_id,name,author,filesize,soundsize,category,filename)
         VALUES 
         <foreach collection ="mcList" item="mc" index="index" separator =",">
-            (UNIX_TIMESTAMP(NOW()),#{mc.userId},#{mc.musicId},#{mc.name},#{mc.author},#{mc.size},#{mc.category},#{mc.filename})
+            (UNIX_TIMESTAMP(NOW()),#{mc.userId},#{mc.musicId},#{mc.name},#{mc.author},#{mc.filesize},#{mc.soundsize},#{mc.category},#{mc.filename})
         </foreach >
     </insert>
     

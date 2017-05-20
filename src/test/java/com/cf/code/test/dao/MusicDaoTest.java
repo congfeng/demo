@@ -45,7 +45,8 @@ public class MusicDaoTest extends AbstractTestCase{
 		music.setName("test");
 		music.setAuthor("1");
 		music.setFilename("2");
-		music.setSize("3");
+		music.setFilesize("");
+		music.setSoundsize("");
 		musicDao.insert(music);
         log.info(JSON.toJSONString(music));
     }
@@ -56,7 +57,8 @@ public class MusicDaoTest extends AbstractTestCase{
 		mc.setMusicId(10);
 		mc.setName("");
 		mc.setAuthor("");
-		mc.setSize("");
+		mc.setFilesize("");
+		mc.setSoundsize("");
 		mc.setCategory(MusicCategory.ChanYin.value);
 		musicCollectDao.insert(mc);
         log.info(JSON.toJSONString(mc));

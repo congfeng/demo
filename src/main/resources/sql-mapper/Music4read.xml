@@ -7,9 +7,11 @@
 		<result property="name" column="name" />
 		<result property="author" column="author" />
 		<result property="filename" column="filename" />
-		<result property="size" column="size" />
+		<result property="filesize" column="filesize" />
+		<result property="soundsize" column="soundsize" />
 		<result property="category" column="category" />
 		<result property="collects" column="collects" />
+		<result property="plays" column="plays" />
 	</resultMap>
 	
 	<select id="find" resultMap="MusicRet">
@@ -37,7 +39,7 @@
        SELECT *
          FROM music
         <include refid="query_where" />
-        ORDER BY collects DESC,id ASC
+        ORDER BY plays DESC,id ASC
         LIMIT #{start},#{size}
     </select>
   

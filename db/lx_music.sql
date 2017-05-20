@@ -7,9 +7,11 @@ CREATE TABLE `music` (
   `name` varchar(64) NOT NULL DEFAULT '',
   `author` varchar(32) NOT NULL DEFAULT '',
   `filename` varchar(256) NOT NULL DEFAULT '',
-  `size` varchar(12) NOT NULL DEFAULT '',
+  `filesize` varchar(12) NOT NULL DEFAULT '',
+  `soundsize` varchar(12) NOT NULL DEFAULT '',
   `category` tinyint(4) NOT NULL DEFAULT '0',
   `collects` int(11) NOT NULL DEFAULT '0',
+  `plays` int(11) NOT NULL DEFAULT '0',
   `is_deleted` tinyint(1) NOT NULL DEFAULT '0',
   `c_t` int(11) NOT NULL DEFAULT '0',
   `u_t` int(11) NOT NULL DEFAULT '0',
@@ -25,7 +27,8 @@ CREATE TABLE `music_collect` (
   `music_id` int(11) NOT NULL DEFAULT '0',
   `name` varchar(32) NOT NULL DEFAULT '',
   `author` varchar(32) NOT NULL DEFAULT '',
-  `size` varchar(12) NOT NULL DEFAULT '',
+  `filesize` varchar(12) NOT NULL DEFAULT '',
+  `soundsize` varchar(12) NOT NULL DEFAULT '',
   `category` tinyint(4) NOT NULL DEFAULT '0',
   `filename` varchar(256) NOT NULL DEFAULT '',
   `user_id` int(11) NOT NULL DEFAULT '0',
@@ -77,7 +80,7 @@ CREATE TABLE `operation_log` (
 -- ----------------------------
 --  Records of `music`
 -- ----------------------------
-INSERT INTO music(name,author,filename,size,category) VALUES 
+INSERT INTO music(name,author,filename,filesize,category) VALUES 
 ('醒来','艾米丽·王嘉宝','艾米丽·王嘉宝 - 醒来.mp3','5.57MB',10),
 ('八圣吉祥颂','未知','八圣吉祥颂.mp3','178.22KB',10),
 ('观世音菩萨','陈星','陈星 - 观世音菩萨.mp3','4.65MB',10),
@@ -122,7 +125,7 @@ INSERT INTO music(name,author,filename,size,category) VALUES
 ('佛陀的爱','新加坡净宗学会','新加坡净宗学会 - 佛陀的爱.mp3','8.49MB',10),
 ('放下','印良法师','印良法师 - 放下.mp3','9.17MB',10),
 ('礼赞释迦牟尼佛','印良法师','印能法师-礼赞释迦牟尼佛.mp3','4.53MB',10);
-INSERT INTO music(name,author,filename,size,category) VALUES 
+INSERT INTO music(name,author,filename,filesize,category) VALUES 
 ('百字明咒','王菲','佛教音乐-百字明咒(王菲).mp3','725.49KB',30),
 ('佛顶尊胜陀罗尼(宝锋居士 唱颂版)','宝锋居士','佛教音乐-佛顶尊胜陀罗尼(宝锋居士 唱颂版).mp3','4.76MB',30),
 ('佛顶尊胜陀罗尼(瑜伽燄口-尊胜咒)','未知','佛教音乐-佛顶尊胜陀罗尼(瑜伽燄口-尊胜咒).mp3','1.28MB',30),
@@ -145,7 +148,7 @@ INSERT INTO music(name,author,filename,size,category) VALUES
 ('心经梵唱','未知','心经梵唱.mp3','4.22MB',30),
 ('黄财神心咒','祖古·白玛奥色上师','祖古·白玛奥色上师 - 黄财神心咒.mp3','8.30MB',30),
 ('故郷の原风景上师 - 大悲咒','祖古·白玛奥色宗次郎','祖古·白玛奥色宗次郎 (のむら そうじろう) - 故郷の原风景上师 - 大悲咒.mp3','10.55MB',30);
-INSERT INTO music(name,author,filename,size,category) VALUES 
+INSERT INTO music(name,author,filename,filesize,category) VALUES 
 ('拜愿','佛光山梵呗团','佛光山梵呗团 - 拜愿.mp3','50.08MB',40),
 ('戒定真香赞','佛光山梵呗团','佛光山梵呗团 - 戒定真香赞.mp3','7.26MB',40),
 ('炉香赞','佛光山梵呗团','佛光山梵呗团 - 炉香赞.mp3','16.75MB',40),
@@ -168,7 +171,7 @@ INSERT INTO music(name,author,filename,size,category) VALUES
 ('浴佛偈颂','耀一法师','耀一法师 - 浴佛偈颂.mp3','14.60MB',40),
 ('妙音天女赞','印能法师','印能法师 - 妙音天女赞.mp3','8.52MB',40),
 ('大自在祈祷文','扎西俄热仁波切','扎西俄热仁波切 - 大自在祈祷文.mp3','5.88MB',40);
-INSERT INTO music(name,author,filename,size,category) VALUES 
+INSERT INTO music(name,author,filename,filesize,category) VALUES 
 ('阳关三叠','未知','《阳关三叠》.mp3','4.44MB',50),
 ('瑜伽-宁静的美妙音乐','阿黛之声','阿黛之声-瑜伽-宁静的美妙音乐.mp3','1.17MB',50),
 ('阿弥陀佛四字宏名','未知','阿弥陀佛四字宏名.mp3','4.43MB',50),

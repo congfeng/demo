@@ -3,8 +3,8 @@
 <mapper namespace="com.cf.code.dao.MusicDao">
     
     <insert id="insert" parameterType="com.cf.code.entity.Music">
-        INSERT INTO music(name,author,filename,size,category,c_t,u_t)
-        VALUES (#{name},#{author},#{filename},#{size},#{category},UNIX_TIMESTAMP(now()),UNIX_TIMESTAMP(now()))
+        INSERT INTO music(name,author,filename,filesize,soundsize,category,c_t,u_t)
+        VALUES (#{name},#{author},#{filename},#{filesize},#{soundsize},#{category},UNIX_TIMESTAMP(now()),UNIX_TIMESTAMP(now()))
         <selectKey keyProperty="id" resultType="java.lang.Integer" order="AFTER" statementType="STATEMENT">
             select last_insert_id()
         </selectKey>
@@ -21,6 +21,14 @@
         UPDATE music
            SET u_t = UNIX_TIMESTAMP(now())
 			  ,collects = #{collects}
+         WHERE is_deleted = 0
+           AND id = #{id,jdbcType=INTEGER}
+    </update>
+    
+    <update id="increasePlays">
+        UPDATE music
+           SET u_t = UNIX_TIMESTAMP(now())
+			  ,plays = plays + 1
          WHERE is_deleted = 0
            AND id = #{id,jdbcType=INTEGER}
     </update>

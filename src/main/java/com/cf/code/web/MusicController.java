@@ -78,7 +78,7 @@ public class MusicController {
             @RequestParam(required = false) String author,
             @RequestParam(value = "music", required = true) MultipartFile musicFile) throws Exception{
 		String fileName = musicFile.getOriginalFilename();
-		String size = FileUtil.getDataSize(musicFile.getSize());
+		String filesize = FileUtil.getDataSize(musicFile.getSize());
 		byte[] data = musicFile.getBytes();
 		cloudService.uploadMusic(category, fileName, data);
 		Music music = new Music();
@@ -86,7 +86,8 @@ public class MusicController {
 		music.setName(name);
 		music.setAuthor(author);
 		music.setFilename(fileName);
-		music.setSize(size);
+		music.setFilesize(filesize);
+		music.setSoundsize("");
 		musicDao.insert(music);
         return model;
     }
