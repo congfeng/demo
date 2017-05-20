@@ -17,6 +17,13 @@
          WHERE id = #{id,jdbcType=INTEGER}
     </update>
     
+    <update id="updateSoundsize">
+        UPDATE music
+           SET u_t = UNIX_TIMESTAMP(now())
+			  ,soundsize = #{soundsize}
+         WHERE id = #{id,jdbcType=INTEGER}
+    </update>
+    
     <update id="updateCollects">
         UPDATE music
            SET u_t = UNIX_TIMESTAMP(now())

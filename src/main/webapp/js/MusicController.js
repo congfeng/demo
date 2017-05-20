@@ -36,8 +36,20 @@ nsApp.controller('MusicController',function($scope,$routeParams) {
 				page.refresh(data.pager);
 				$('.name-btn').click(function(){
 					var index = $(this).data('index');
-					var filename = data.musics[index].filename;
-					$('audio').attr('src',cosurl+'/'+category+"/"+filename)[0].play();
+					var music = data.musics[index];
+					var filename = music.filename;
+					var audioObj = $('audio').attr('src',cosurl+'/'+category+"/"+filename)[0];
+					audioObj.onplaying = function(){
+						$.ajax({
+							url:'/music/update/soundsize',
+							data:{
+								'id':music.id,
+								'soundsize':audioObj.duration
+							},
+							dataType:'json'
+						});	
+					}
+					audioObj.play();
 				});
 				$('.musicupdate-btn').click(function(){
 					window.location.href = "#/music/update?category="+category+"&id="+$(this).data('musicid');

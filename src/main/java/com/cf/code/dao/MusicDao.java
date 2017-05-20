@@ -23,6 +23,8 @@ public interface MusicDao {
     
     public boolean increasePlays(@Param("id") Integer id);
     
+    public boolean updateSoundsize(@Param("id") Integer id,@Param("soundsize") String soundsize);
+    
     public boolean update(@Param("id") Integer id,
     		@Param("name") String name,
     		@Param("author") String author);
