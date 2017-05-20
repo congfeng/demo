@@ -132,11 +132,18 @@ public class MusicController {
     		@RequestParam(required = true) Integer id,
             @RequestParam(required = true) Double soundsize){
 		Music music = this.musicDaoRead.find(id);
-		String soundsizeFormat = (int)(soundsize/60) + ":" + new DecimalFormat("00").format(soundsize%60);
+		String soundsizeFormat = (int)(soundsize/60) + ":" + new DecimalFormat("00").format((int)(soundsize%60));
 		if(!music.getSoundsize().equals(soundsizeFormat)){
 			this.musicDao.updateSoundsize(id, soundsizeFormat);
 		}
         return model;
     }
 	
+	public static void main(String[] args) {
+		double soundsize = 239.986939;
+		System.out.println(soundsize/60);
+		System.out.println(soundsize%60);
+		String soundsizeFormat = (int)(soundsize/60) + ":" + new DecimalFormat("00").format((int)(soundsize%60));
+		System.out.println(soundsizeFormat);
+	}
 }
