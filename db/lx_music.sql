@@ -32,7 +32,6 @@ CREATE TABLE `music_collect` (
   `category` tinyint(4) NOT NULL DEFAULT '0',
   `filename` varchar(256) NOT NULL DEFAULT '',
   `user_id` int(11) NOT NULL DEFAULT '0',
-  `c_t` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='音乐收藏';
 

@@ -29,4 +29,9 @@ public interface MusicCollectDao {
     
     public int queryLatestTime(@Param("category") Byte category);
     
+    public boolean update(@Param("musicId") Integer musicId,
+    		@Param("name") String name,
+    		@Param("author") String author,
+    		@Param("soundsize") String soundsize);
+    
 }

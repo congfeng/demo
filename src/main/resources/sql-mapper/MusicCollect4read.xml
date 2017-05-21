@@ -28,7 +28,7 @@
     </select>
     
     <select id="queryLatestTime" resultType="int">
-       SELECT IFNULL(MAX(c_t),0)
+       SELECT IFNULL(MAX(ct),0)
          FROM music_collect
         WHERE category = #{category}
     </select>

@@ -131,6 +131,7 @@ public class MusicController {
             @RequestParam(required = true) String name,
             @RequestParam(required = true) String author){
 		this.musicDao.update(id, name, author);
+		this.musicCollectDao.update(id, name, author, null);
         return model;
     }
 	
@@ -144,6 +145,7 @@ public class MusicController {
 		String soundsize = this.soundsizeFormat(duration);
 		if(!music.getSoundsize().equals(soundsize)){
 			this.musicDao.updateSoundsize(id, soundsize);
+			this.musicCollectDao.update(id, null, null, soundsize);
 		}
         return model;
     }
