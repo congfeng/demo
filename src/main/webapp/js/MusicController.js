@@ -44,7 +44,7 @@ nsApp.controller('MusicController',function($scope,$routeParams) {
 							url:'/music/update/soundsize',
 							data:{
 								'id':music.id,
-								'soundsize':audioObj.duration
+								'duration':audioObj.duration
 							},
 							dataType:'json'
 						});	

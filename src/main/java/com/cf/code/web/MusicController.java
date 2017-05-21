@@ -21,6 +21,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.cf.code.common.FileUtil;
 import com.cf.code.common.Pager;
+import com.cf.code.core.aop.AccessVerifier;
 import com.cf.code.core.exception.BusinessException;
 import com.cf.code.dao.MusicCollectDao;
 import com.cf.code.dao.MusicDao;
@@ -52,6 +53,7 @@ public class MusicController {
 	@Resource(name = "cloudCosService")
 	CloudService cloudService;
 	
+	@AccessVerifier
 	@RequestMapping(value = {"list"}, method = { RequestMethod.GET,RequestMethod.POST})
     @ResponseBody
     public Object list(Model model,HttpSession session,
@@ -71,12 +73,14 @@ public class MusicController {
         return model;
     }
 	
+	@AccessVerifier
 	@RequestMapping(value = {"add"}, method = { RequestMethod.GET,RequestMethod.POST})
     @ResponseBody
     public Object add(Model model,HttpSession session,
     		@RequestParam(required = true) Byte category,
             @RequestParam(required = true) String name,
             @RequestParam(required = false) String author,
+            @RequestParam(required = true) Double duration,
             @RequestParam(value = "music", required = true) MultipartFile musicFile) throws Exception{
 		String fileName = musicFile.getOriginalFilename();
 		String filesize = FileUtil.getDataSize(musicFile.getSize());
@@ -88,11 +92,13 @@ public class MusicController {
 		music.setAuthor(author);
 		music.setFilename(fileName);
 		music.setFilesize(filesize);
-		music.setSoundsize("");
+		String soundsize = this.soundsizeFormat(duration);
+		music.setSoundsize(soundsize);
 		musicDao.insert(music);
         return model;
     }
 	
+	@AccessVerifier
 	@RequestMapping(value = {"find"}, method = { RequestMethod.GET,RequestMethod.POST})
     @ResponseBody
     public Object find(Model model,HttpSession session,
@@ -102,6 +108,7 @@ public class MusicController {
         return model;
     }
 	
+	@AccessVerifier
 	@RequestMapping(value = {"delete"}, method = { RequestMethod.GET,RequestMethod.POST})
     @ResponseBody
     public Object delete(Model model,HttpSession session,
@@ -116,6 +123,7 @@ public class MusicController {
         return model;
     }
 	
+	@AccessVerifier
 	@RequestMapping(value = {"update"}, method = { RequestMethod.GET,RequestMethod.POST})
     @ResponseBody
     public Object update(Model model,HttpSession session,
@@ -126,24 +134,23 @@ public class MusicController {
         return model;
     }
 	
+	@AccessVerifier
 	@RequestMapping(value = {"update/soundsize"}, method = { RequestMethod.GET,RequestMethod.POST})
     @ResponseBody
     public Object updateSoundsize(Model model,
     		@RequestParam(required = true) Integer id,
-            @RequestParam(required = true) Double soundsize){
+            @RequestParam(required = true) Double duration){
 		Music music = this.musicDaoRead.find(id);
-		String soundsizeFormat = (int)(soundsize/60) + ":" + new DecimalFormat("00").format((int)(soundsize%60));
-		if(!music.getSoundsize().equals(soundsizeFormat)){
-			this.musicDao.updateSoundsize(id, soundsizeFormat);
+		String soundsize = this.soundsizeFormat(duration);
+		if(!music.getSoundsize().equals(soundsize)){
+			this.musicDao.updateSoundsize(id, soundsize);
 		}
         return model;
     }
 	
-	public static void main(String[] args) {
-		double soundsize = 239.986939;
-		System.out.println(soundsize/60);
-		System.out.println(soundsize%60);
-		String soundsizeFormat = (int)(soundsize/60) + ":" + new DecimalFormat("00").format((int)(soundsize%60));
-		System.out.println(soundsizeFormat);
+	private String soundsizeFormat(Double duration){
+		String soundsize = (int)(duration/60) + ":" + new DecimalFormat("00").format((int)(duration%60));
+		return soundsize;
 	}
+	
 }

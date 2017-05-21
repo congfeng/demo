@@ -31,6 +31,7 @@ nsApp.controller('MusicAddController',function($scope,$routeParams) {
 			});
 			return;
 		}
+		$('#duration').val($('audio')[0].duration);
 		var index = layer.load('',{shade: [0.5, '#393D49']});
 		$("#musicform").ajaxSubmit({
 			type:'post',
