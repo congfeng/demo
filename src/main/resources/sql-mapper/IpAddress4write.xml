@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cf.code.dao.IpAddressDao">
+    
+    <insert id="insert" parameterType="com.cf.code.entity.IpAddress">
+        INSERT INTO ip_address(ip,address,country_id,country,region_id,region,city_id,city,isp_id,isp,area_id,area)
+        VALUES (#{ip},#{address},#{countryId},#{country},#{regionId},#{region},#{cityId},#{city},#{ispId},#{isp},#{areaId},#{area})
+    </insert>
+	    
+</mapper>

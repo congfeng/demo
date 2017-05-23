@@ -46,4 +46,13 @@
         <property name="sqlSessionFactory" ref="WriteSqlSessionFactory" />
     </bean>
     
+    <bean id="ipAddressDaoRead" class="org.mybatis.spring.mapper.MapperFactoryBean">
+        <property name="mapperInterface" value="com.cf.code.dao.IpAddressDao" />
+        <property name="sqlSessionFactory" ref="ReadSqlSessionFactory" />
+    </bean>
+    <bean id="ipAddressDao" class="org.mybatis.spring.mapper.MapperFactoryBean">
+        <property name="mapperInterface" value="com.cf.code.dao.IpAddressDao" />
+        <property name="sqlSessionFactory" ref="WriteSqlSessionFactory" />
+    </bean>
+    
 </beans>

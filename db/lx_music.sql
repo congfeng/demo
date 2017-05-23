@@ -77,6 +77,26 @@ CREATE TABLE `operation_log` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='操作日志';
 
 -- ----------------------------
+--  Table structure for `operation_log`
+-- ----------------------------
+CREATE TABLE `ip_address` (
+  `ip` varchar(16) NOT NULL,
+  `address` varchar(128) NOT NULL DEFAULT '',
+  `country_id` varchar(16) NOT NULL DEFAULT '',
+  `country` varchar(32) NOT NULL DEFAULT '',
+  `region_id` varchar(16) NOT NULL DEFAULT '',
+  `region` varchar(32) NOT NULL DEFAULT '',
+  `city_id` varchar(16) NOT NULL DEFAULT '',
+  `city` varchar(32) NOT NULL DEFAULT '',
+  `isp_id` varchar(16) NOT NULL DEFAULT '',
+  `isp` varchar(32) NOT NULL DEFAULT '',
+  `area_id` varchar(16) NOT NULL DEFAULT '',
+  `area` varchar(32) NOT NULL DEFAULT '',
+  PRIMARY KEY (`ip`),
+  KEY `i_address` (`address`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='IP地址表';
+
+-- ----------------------------
 --  Records of `music`
 -- ----------------------------
 INSERT INTO music(name,author,filename,filesize,category) VALUES 

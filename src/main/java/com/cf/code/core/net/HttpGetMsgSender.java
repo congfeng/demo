@@ -51,54 +51,6 @@ public class HttpGetMsgSender extends AbstractMsgSender<String, Map<String,Strin
 		} finally{
 			getMethod.releaseConnection();
 		}
-        
-//        HttpClient client = new HttpClient();
-//        
-//        GetMethod getMethod = new GetMethod(targetUrl){};
-//        if(msgMap!=null&&!msgMap.isEmpty()){
-//            getMethod.setQueryString(buildQuery(msgMap, getDefaultCharset()));
-//        }
-//        try {
-//             client.executeMethod(getMethod);
-//        } catch (HttpException e) {
-//            getMethod.releaseConnection();
-//            throw new MsgSendException("请求协议异常:"+e.getMessage());
-//        } catch (IOException e) {
-//            getMethod.releaseConnection();
-//            throw new MsgSendException("请求网络异常:"+e.getMessage());
-//        }
-//        int statusCode = getMethod.getStatusCode();
-//        String resText = null;
-//        InputStream is = null;
-//        ByteArrayOutputStream outSteam = new ByteArrayOutputStream();
-//        try {
-//            is = getMethod.getResponseBodyAsStream();
-//            byte[] buffer = new byte[1024];  
-//            int len = -1;  
-//            while ((len = is.read(buffer)) != -1) {  
-//                outSteam.write(buffer, 0, len);  
-//            }
-//            resText = new String(outSteam.toByteArray(), getDefaultCharset());
-//        } catch (IOException e) {
-//            throw new MsgSendException("读取响应信息异常:"+e.getMessage());
-//        } finally{
-//            getMethod.releaseConnection();
-//            try {
-//                outSteam.close();
-//            } catch (IOException e) {
-//                outSteam = null;
-//            }  
-//            if(is != null){
-//                try {
-//                    is.close();
-//                } catch (IOException e) {
-//                    is = null;
-//                }
-//            }
-//        }
-//        if(statusCode != 200){
-//        	throw new MsgSendException("返回状态错误:"+statusCode+",msg:"+resText);
-//        }
         return resText;
     }
 
