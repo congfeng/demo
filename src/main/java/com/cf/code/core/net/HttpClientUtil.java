@@ -3,7 +3,6 @@
  */
 package com.cf.code.core.net;
 
-import java.io.UnsupportedEncodingException;
 import java.security.cert.CertificateException;
 import java.security.cert.X509Certificate;
 import java.util.ArrayList;
@@ -73,8 +72,10 @@ public class HttpClientUtil {
 		CloseableHttpClient httpClient = HttpClients.custom().setConnectionManager(connectionManager).build();
 		HttpPost httpPost = new HttpPost(url);
 		List<NameValuePair> nvps = new ArrayList<NameValuePair>();  
-		for(String key:params.keySet()){
-			nvps.add(new BasicNameValuePair(key, params.get(key)));  
+		if(params != null){
+			for(String key:params.keySet()){
+				nvps.add(new BasicNameValuePair(key, params.get(key)));  
+			}
 		}
         httpPost.setEntity(new UrlEncodedFormEntity(nvps));  
 		CloseableHttpResponse response = httpClient.execute(httpPost);
