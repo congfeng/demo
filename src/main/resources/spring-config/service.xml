@@ -11,7 +11,7 @@
       http://www.springframework.org/schema/util/spring-util.xsd">
 
 	<!-- 扫描文件（自动将service层注入） -->
-	<context:component-scan base-package="com.cf.code.service.**,com.cf.code.web.**" />
+	<context:component-scan base-package="com.cf.code.service.**,com.cf.code.web.**,com.cf.code.test.**" />
 	
 	<util:properties id="sys" location="classpath:sys.properties"/>  
 	

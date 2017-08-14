@@ -9,11 +9,9 @@ import java.io.IOException;
 import org.apache.commons.io.FileUtils;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
-import org.jaudiotagger.audio.AudioFileIO;
-import org.jaudiotagger.audio.mp3.MP3AudioHeader;
-import org.jaudiotagger.audio.mp3.MP3File;
-
-import com.cf.code.common.FileUtil;
+//import org.jaudiotagger.audio.AudioFileIO;
+//import org.jaudiotagger.audio.mp3.MP3AudioHeader;
+//import org.jaudiotagger.audio.mp3.MP3File;
 
 /**
  * @Version: 1.0
@@ -27,13 +25,13 @@ public class TestMain {
 	static int i = 100;
 	
 	public static int getMp3TrackLength(File mp3File) {  
-	    try {  
-	        MP3File f = (MP3File)AudioFileIO.read(mp3File);  
-	        MP3AudioHeader audioHeader = (MP3AudioHeader)f.getAudioHeader();  
-	        return audioHeader.getTrackLength();      
-	    } catch(Exception e) {  
+//	    try {  
+//	        MP3File f = (MP3File)AudioFileIO.read(mp3File);  
+//	        MP3AudioHeader audioHeader = (MP3AudioHeader)f.getAudioHeader();  
+//	        return audioHeader.getTrackLength();      
+//	    } catch(Exception e) {  
 	        return -1;  
-	    }  
+//	    }  
 	}  
 	
 	public static void main(String[] args) throws IOException {
